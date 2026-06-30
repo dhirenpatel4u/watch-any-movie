@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/watch/:id",
-      "destination": "/api/watch/:id"
+      "source": "/watch/(.*)",
+      "destination": "/api/watch.py"
     }
   ]
 }
