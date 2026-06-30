@@ -1,209 +1,111 @@
-from http.server import BaseHTTPRequestHandler
 from playwright.sync_api import sync_playwright
-import html
+from html import escape
 
 
-class handler(BaseHTTPRequestHandler):
+def handler(request):
 
-    def do_GET(self):
+    imdb_id = request.path.rstrip("/").split("/")[-1]
 
-        imdb_id = self.path.rstrip("/").split("/")[-1]
+    title = "Watch Movie Online"
+    description = "Watch online now"
+    image = ""
 
-        title = "Watch Movie Online"
-        description = "Watch online now"
-        image = ""
+    debug = ""
 
-        try:
-            imdb_url = f"https://www.imdb.com/title/{imdb_id}/"
+    try:
+        imdb_url = f"https://www.imdb.com/title/{imdb_id}/"
 
-            with sync_playwright() as p:
-                browser = p.chromium.launch(
-                    headless=True
+        with sync_playwright() as p:
+
+            browser = p.chromium.launch(
+                headless=True
+            )
+
+            page = browser.new_page(
+                user_agent=(
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/137.0.0.0 Safari/537.36"
                 )
+            )
 
-                page = browser.new_page(
-                    user_agent=(
-                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                        "AppleWebKit/537.36 (KHTML, like Gecko) "
-                        "Chrome/137.0.0.0 Safari/537.36"
-                    )
-                )
+            page.goto(
+                imdb_url,
+                wait_until="domcontentloaded",
+                timeout=30000
+            )
 
-                page.goto(
-                    imdb_url,
-                    wait_until="domcontentloaded",
-                    timeout=30000
-                )
+            page.wait_for_timeout(3000)
 
-                page.wait_for_timeout(3000)
+            debug += f"Loaded IMDb page\n"
 
-                try:
-                    title = page.locator(
-                        'meta[property="og:title"]'
-                    ).get_attribute("content") or title
-                except:
-                    pass
+            try:
+                title_meta = page.locator(
+                    'meta[property="og:title"]'
+                ).get_attribute("content")
 
-                try:
-                    image = page.locator(
-                        'meta[property="og:image"]'
-                    ).get_attribute("content") or image
-                except:
-                    pass
+                if title_meta:
+                    title = title_meta
 
-                try:
-                    description = page.locator(
-                        'meta[property="og:description"]'
-                    ).get_attribute("content") or description
-                except:
-                    pass
+                debug += f"TITLE OK: {title}\n"
 
-                browser.close()
+            except Exception as e:
+                debug += f"TITLE ERROR: {str(e)}\n"
 
-        except Exception as e:
-            print("Playwright scrape error:", e)
+            try:
+                image_meta = page.locator(
+                    'meta[property="og:image"]'
+                ).get_attribute("content")
 
-        player_url = f"https://gemma416okl.com/play/{imdb_id}"
+                if image_meta:
+                    image = image_meta
 
-        page_html = f"""
-<!DOCTYPE html>
-<html lang="en">
-<head>
+                debug += f"IMAGE OK\n"
 
-<meta charset="utf-8">
+            except Exception as e:
+                debug += f"IMAGE ERROR: {str(e)}\n"
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1, viewport-fit=cover">
+            try:
+                desc_meta = page.locator(
+                    'meta[name="description"]'
+                ).get_attribute("content")
 
-<title>{html.escape(title)}</title>
+                if desc_meta:
+                    description = desc_meta
 
-<meta
-name="description"
-content="{html.escape(description)}">
+                debug += f"DESCRIPTION OK\n"
 
-<meta property="og:type" content="video.movie">
+            except Exception as e:
+                debug += f"DESCRIPTION ERROR: {str(e)}\n"
 
-<meta
-property="og:title"
-content="{html.escape(title)}">
+            browser.close()
 
-<meta
-property="og:description"
-content="{html.escape(description)}">
+    except Exception as e:
+        debug += f"\nPLAYWRIGHT ERROR:\n{str(e)}\n"
 
-<meta
-property="og:image"
-content="{image}">
+    # DEBUG MODE
+    # Shows exactly what Vercel sees
+    return {
+        "statusCode": 200,
+        "headers": {
+            "Content-Type": "text/plain"
+        },
+        "body": f"""
+IMDb ID: {imdb_id}
 
-<meta
-property="og:image:secure_url"
-content="{image}">
+TITLE:
+{title}
 
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+IMAGE:
+{image}
 
-<meta
-property="og:url"
-content="https://watch-any-movies.vercel.app/watch/{imdb_id}">
+DESCRIPTION:
+{description}
 
-<meta
-property="og:site_name"
-content="Watch Any Movies">
+-----------------------
 
-<meta
-name="twitter:card"
-content="summary_large_image">
+DEBUG:
 
-<meta
-name="twitter:title"
-content="{html.escape(title)}">
-
-<meta
-name="twitter:description"
-content="{html.escape(description)}">
-
-<meta
-name="twitter:image"
-content="{image}">
-
-<style>
-
-:root {{
-  --app-height:100vh;
-}}
-
-* {{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}}
-
-html,
-body {{
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  background:#000;
-}}
-
-.player-container {{
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100dvh;
-  height:var(--app-height);
-  background:#000;
-}}
-
-iframe {{
-  width:100%;
-  height:100%;
-  border:none;
-  display:block;
-}}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="player-container">
-  <iframe
-    src="{player_url}"
-    allowfullscreen
-    webkitallowfullscreen
-    mozallowfullscreen
-    allow="fullscreen; autoplay; encrypted-media; picture-in-picture">
-  </iframe>
-</div>
-
-<script>
-function setAppHeight() {{
-  document.documentElement.style.setProperty(
-    '--app-height',
-    window.innerHeight + 'px'
-  );
-}}
-
-setAppHeight();
-
-window.addEventListener('resize', setAppHeight);
-window.addEventListener('orientationchange', setAppHeight);
-
-setTimeout(setAppHeight, 500);
-setTimeout(setAppHeight, 1000);
-</script>
-
-</body>
-</html>
+{debug}
 """
-
-        self.send_response(200)
-        self.send_header(
-            "Content-Type",
-            "text/html; charset=utf-8"
-        )
-        self.end_headers()
-        self.wfile.write(page_html.encode("utf-8"))
+    }
