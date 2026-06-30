@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/watch/:id",
+      "destination": "/watch/[id].html"
+    }
+  ]
+}
