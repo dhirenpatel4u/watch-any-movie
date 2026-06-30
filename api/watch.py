@@ -1,59 +1,71 @@
 from http.server import BaseHTTPRequestHandler
-import requests
-from bs4 import BeautifulSoup
+from playwright.sync_api import sync_playwright
 import html
 
 
 class handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
+
+        imdb_id = self.path.rstrip("/").split("/")[-1]
+
+        title = "Watch Movie Online"
+        description = "Watch online now"
+        image = ""
+
         try:
-            path = self.path
-
-            imdb_id = path.rstrip("/").split("/")[-1]
-
-            title = "Watch Movie Online"
-            description = "Watch online now"
-            image = ""
-
             imdb_url = f"https://www.imdb.com/title/{imdb_id}/"
 
-            response = requests.get(
-                imdb_url,
-                headers={
-                    "User-Agent":
+            with sync_playwright() as p:
+                browser = p.chromium.launch(
+                    headless=True
+                )
+
+                page = browser.new_page(
+                    user_agent=(
                         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                         "AppleWebKit/537.36 (KHTML, like Gecko) "
-                        "Chrome/125.0.0.0 Safari/537.36",
-                    "Accept-Language": "en-US,en;q=0.9"
-                },
-                timeout=20
-            )
+                        "Chrome/137.0.0.0 Safari/537.36"
+                    )
+                )
 
-            soup = BeautifulSoup(response.text, "html.parser")
+                page.goto(
+                    imdb_url,
+                    wait_until="domcontentloaded",
+                    timeout=30000
+                )
 
-            og_title = soup.find("meta", property="og:title")
-            og_image = soup.find("meta", property="og:image")
-            meta_desc = soup.find(
-                "meta",
-                attrs={"name": "description"}
-            )
+                page.wait_for_timeout(3000)
 
-            if og_title and og_title.get("content"):
-                title = og_title["content"]
+                try:
+                    title = page.locator(
+                        'meta[property="og:title"]'
+                    ).get_attribute("content") or title
+                except:
+                    pass
 
-            if og_image and og_image.get("content"):
-                image = og_image["content"]
+                try:
+                    image = page.locator(
+                        'meta[property="og:image"]'
+                    ).get_attribute("content") or image
+                except:
+                    pass
 
-            if meta_desc and meta_desc.get("content"):
-                description = meta_desc["content"]
+                try:
+                    description = page.locator(
+                        'meta[property="og:description"]'
+                    ).get_attribute("content") or description
+                except:
+                    pass
+
+                browser.close()
 
         except Exception as e:
-            print("IMDb scrape error:", e)
+            print("Playwright scrape error:", e)
 
         player_url = f"https://gemma416okl.com/play/{imdb_id}"
 
-        page = f"""
+        page_html = f"""
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,21 +149,18 @@ body {{
 
 .player-container {{
   position:fixed;
-  top:0;
-  left:0;
+  inset:0;
   width:100%;
   height:100dvh;
   height:var(--app-height);
-  overflow:hidden;
   background:#000;
 }}
 
 iframe {{
-  display:block;
   width:100%;
   height:100%;
   border:none;
-  background:#000;
+  display:block;
 }}
 
 </style>
@@ -171,7 +180,6 @@ iframe {{
 </div>
 
 <script>
-
 function setAppHeight() {{
   document.documentElement.style.setProperty(
     '--app-height',
@@ -186,7 +194,6 @@ window.addEventListener('orientationchange', setAppHeight);
 
 setTimeout(setAppHeight, 500);
 setTimeout(setAppHeight, 1000);
-
 </script>
 
 </body>
@@ -199,4 +206,4 @@ setTimeout(setAppHeight, 1000);
             "text/html; charset=utf-8"
         )
         self.end_headers()
-        self.wfile.write(page.encode("utf-8"))
+        self.wfile.write(page_html.encode("utf-8"))
