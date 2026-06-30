@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/watch/:id",
-      "destination": "/watch/[id].html"
+      "destination": "/api/watch/:id"
     }
   ]
 }
