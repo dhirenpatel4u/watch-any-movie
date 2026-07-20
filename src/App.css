@@ -8,10 +8,20 @@ body {
 .navbar {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
+    align-items: center;
+    padding: 15px 20px;
+    background: #000;
     position: sticky;
     top: 0;
-    background: #000;
+    z-index: 100;
+}
+
+.home-btn {
+    background: #e50914;
+    padding: 8px 16px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
 }
 
 .navbar input {
