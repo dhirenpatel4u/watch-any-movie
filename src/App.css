@@ -111,8 +111,141 @@ body {
 }
 
 iframe {
-    width: 100%;
-    height: 80vh;
     border: none;
+}
+.watch-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.player-section {
+    flex: 1;
+}
+
+.player-section iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    height: auto;
+    border: none;
+    border-radius: 12px;
+}
+
+.player-section h1 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.player-section p {
+    margin: 0;
+    color: #aaa;
+}
+
+.sidebar {
+    width: 350px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    position: sticky;
+    top: 80px;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.side-card {
+    display: flex;
+    gap: 12px;
+
+    padding: 10px;
+    margin-bottom: 10px;
+
+    background: #1a1a1a;
     border-radius: 10px;
+
+    text-decoration: none;
+    color: white;
+
+    transition: 0.2s;
+}
+
+.side-card:hover {
+    background: #222;
+}
+
+.poster-wrapper {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.poster-wrapper img {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.side-info {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.side-info h3 {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.4;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.side-info p {
+    margin-top: 8px;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.play-icon {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+
+    font-size: 32px;
+}
+
+.active {
+    border: 2px solid #e50914;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .watch-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        position: static;
+        max-height: none;
+    }
 }
