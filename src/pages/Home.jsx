@@ -131,19 +131,19 @@ export default function Home({ search }) {
                 )
         );
 
-    const latest =
-        filtered.filter(
-            (movie) =>
-                movie.Year ===
-                2026
-        );
+const latest = filtered
+    .filter(
+        (movie) =>
+            movie.Year === 2026
+    )
+    .slice(0, 12);
 
-    const recent =
-        filtered.filter(
-            (movie) =>
-                movie.Year ===
-                2025
-        );
+const trending = [...filtered]
+    .sort(
+        () =>
+            Math.random() - 0.5
+    )
+    .slice(0, 12);
 
     const isSearching =
         search.trim() !== "";
@@ -169,16 +169,16 @@ return (
         <div className="container">
             {!isSearching && (
                 <>
-                    <MovieSection
-                        title="Latest"
-                        movies={latest}
-                    />
+                <MovieSection
+                    title="Latest"
+                    movies={latest}
+                />
 
-                    <MovieSection
-                        title="Recent"
-                        movies={recent}
-                    />
-                </>
+                <MovieSection
+                    title="Trending"
+                    movies={trending}
+                />
+            </>
             )}
 
             {filtered.length ===
