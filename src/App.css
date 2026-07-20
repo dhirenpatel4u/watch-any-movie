@@ -59,7 +59,9 @@ body {
 }
 
 .card:hover {
-    transform: scale(1.05);
+        transform:
+        scale(1.05)
+        translateY(-5px);
 }
 
 .card img {
