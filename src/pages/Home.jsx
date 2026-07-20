@@ -136,14 +136,14 @@ const latest = filtered
         (movie) =>
             movie.Year === 2026
     )
-    .slice(0, 12);
+    .slice(0, 14);
 
 const trending = [...filtered]
     .sort(
         () =>
             Math.random() - 0.5
     )
-    .slice(0, 12);
+    .slice(0, 14);
 
     const isSearching =
         search.trim() !== "";
