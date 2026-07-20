@@ -345,6 +345,13 @@ iframe {
 
     overflow: hidden;
 }
+.movie-section {
+    margin: 40px 0;
+}
+
+.movie-section h2 {
+    margin-bottom: 20px;
+}
 
 @media (max-width: 768px) {
     .watch-container {
