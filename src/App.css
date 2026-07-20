@@ -11,10 +11,10 @@ body {
 }
 
 .logo-watch {
-    font-size: 35px;
-    font-weight: 800;
+    font-size: 30px;
+    font-weight: 700;
     letter-spacing: 3px;
-    color: white;
+    color: #e50914;
 }
 
 .logo-sub {
@@ -22,8 +22,8 @@ body {
 
     font-size: 14px;
     font-weight: 700;
-
-    color: #e50914;
+    
+    color: white;
 
     text-transform: uppercase;
     letter-spacing: 2px;
