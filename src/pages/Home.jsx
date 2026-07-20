@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import Hero from "../components/Hero";
 import MovieSection from "../components/MovieSection";
 
 export default function Home({ search }) {
     const [movies, setMovies] = useState([]);
+    const [heroMovies, setHeroMovies] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -55,8 +57,19 @@ export default function Home({ search }) {
                             : "Loaded from localStorage"
                     );
 
-                    setMovies(
-                        JSON.parse(cached)
+                    const parsed =
+                        JSON.parse(cached);
+
+                    setMovies(parsed);
+
+                    setHeroMovies(
+                        [...parsed]
+                            .sort(
+                                () =>
+                                    Math.random() -
+                                    0.5
+                            )
+                            .slice(0, 5)
                     );
 
                     setLoading(false);
@@ -76,6 +89,16 @@ export default function Home({ search }) {
                     await response.json();
 
                 setMovies(data.data);
+
+                setHeroMovies(
+                    [...data.data]
+                        .sort(
+                            () =>
+                                Math.random() -
+                                0.5
+                        )
+                        .slice(0, 5)
+                );
 
                 storage.setItem(
                     CACHE_KEY,
@@ -133,7 +156,16 @@ export default function Home({ search }) {
         );
     }
 
-    return (
+return (
+    <>
+        {!isSearching && (
+            <Hero
+                movies={
+                    heroMovies
+                }
+            />
+        )}
+
         <div className="container">
             {!isSearching && (
                 <>
@@ -167,5 +199,6 @@ export default function Home({ search }) {
                 />
             )}
         </div>
+        </>
     );
 }
