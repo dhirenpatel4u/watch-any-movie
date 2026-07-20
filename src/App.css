@@ -376,36 +376,6 @@ iframe {
 .movie-section h2 {
     margin-bottom: 20px;
 }
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-
-    margin: 40px 0;
-}
-
-.pagination button {
-    background: #e50914;
-    color: white;
-
-    border: none;
-    padding: 10px 20px;
-
-    border-radius: 5px;
-
-    cursor: pointer;
-}
-
-.pagination button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.pagination span {
-    font-size: 18px;
-    font-weight: bold;
-}
 
 @media (max-width: 768px) {
     .watch-container {
