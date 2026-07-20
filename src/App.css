@@ -315,6 +315,36 @@ iframe {
 
     cursor: pointer;
 }
+.movie-year {
+    color: #aaa;
+    margin-bottom: 15px;
+}
+
+.movie-description {
+    line-height: 1.7;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.movie-actors {
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+.side-actors {
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 13px;
+    color: #bbb;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
 
 @media (max-width: 768px) {
     .watch-container {
