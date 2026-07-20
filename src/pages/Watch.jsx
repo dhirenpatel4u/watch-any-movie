@@ -1,64 +1,94 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
+
 export default function Watch() {
     const { id } = useParams();
 
     const [movies, setMovies] = useState([]);
     const [movie, setMovie] = useState(null);
+    const [random, setRandom] = useState([]);
 
-    useEffect(() => {
+useEffect(() => {
+    async function loadMovies() {
+
+        let data = [];
+
         const cached =
-            localStorage.getItem("movies");
-
-        if (cached) {
-            const data =
-                JSON.parse(cached);
-
-            setMovies(data);
-
-            setMovie(
-                data.find(
-                    (m) =>
-                        m["IMDB ID"] === id
-                )
+            localStorage.getItem(
+                "movies"
             );
 
-            return;
+        if (cached) {
+            data =
+                JSON.parse(
+                    cached
+                );
+        } else {
+            const response =
+                await fetch(
+                    "https://script.googleusercontent.com/macros/echo?..."
+                );
+
+            const json =
+                await response.json();
+
+            data = json.data;
         }
 
-        fetch(
-            "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRVaQVJXRUjmOv7OVWraFMF4rvcJlXXamDr4hIAz54OqSYcXP_Zq6vyW-a_TDVHSe_qe_o51RZiV46RGIrHzqIxjbRUqA7ABWdSGdRVX2Pl9yFlQtGLuAzB27VFpiORg2D4iLOtd-eoruV0HrqUuomTCk_cfdmgOdzFkCBFqRiKKAZ2eZxy4Rz4qsjQvJ4Wk2E3w1c8DdpQWtRFFho0dHqM3LydDH4U2m696GKnlZlDJvHPQ8Ieg77izbeNNthNp4ArtnWgjihn0HkfoCG0-bxYWADwvQ&lib=MdkOOLVUqxpsMtamGk_CUO1T3b6iDXk-u"
-        )
-            .then((r) => r.json())
-            .then((data) => {
-                setMovies(data.data);
+        setMovies(data);
 
-                setMovie(
-                    data.data.find(
-                        (m) =>
-                            m[
-                                "IMDB ID"
-                            ] === id
-                    )
-                );
-            });
-    }, [id]);
-
-    const random = [
-        movie,
-        ...movies
-            .filter(
+        setMovie(
+            data.find(
                 (m) =>
-                    m["IMDB ID"] !== id
+                    m["IMDB ID"] === id
             )
-            .sort(
-                () =>
-                    Math.random() -
-                    0.5
+        );
+
+        // Generate random list once
+        let randomMovies =
+            sessionStorage.getItem(
+                "watch_random"
+            );
+
+        if (!randomMovies) {
+
+            randomMovies =
+                JSON.stringify(
+                    data
+                        .sort(
+                            () =>
+                                Math.random() -
+                                0.5
+                        )
+                        .slice(0, 20)
+                );
+
+            sessionStorage.setItem(
+                "watch_random",
+                randomMovies
+            );
+        }
+
+        setRandom(
+            JSON.parse(
+                randomMovies
             )
-            .slice(0, 19),
-    ].filter(Boolean);
+        );
+    }
+
+    loadMovies();
+
+}, [id]);
+
+const sidebarMovies = [
+    movie,
+    ...random.filter(
+        (m) =>
+            m["IMDB ID"] !==
+            movie?.["IMDB ID"]
+    ),
+].filter(Boolean);
 
     if (!movie) {
         return (
@@ -104,7 +134,7 @@ export default function Watch() {
                     Like
                 </h2>
 
-                {random.map(
+                {sidebarMovies.map(
                     (item) => (
                         <Link
                             key={
