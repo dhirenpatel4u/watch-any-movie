@@ -78,11 +78,11 @@ body {
 
     padding: 12px;
 
-    background:
-        linear-gradient(
-            transparent,
-            rgba(0, 0, 0, 0.95)
-        );
+background:
+    linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 1)
+    );
 }
 
 .card-info h3 {
