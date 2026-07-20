@@ -82,7 +82,7 @@ export default function Home({ search }) {
 
                 const response =
                     await fetch(
-                        "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRVaQVJXRUjmOv7OVWraFMF4rvcJlXXamDr4hIAz54OqSYcXP_Zq6vyW-a_TDVHSe_qe_o51RZiV46RGIrHzqIxjbRUqA7ABWdSGdRVX2Pl9yFlQtGLuAzB27VFpiORg2D4iLOtd-eoruV0HrqUuomTCk_cfdmgOdzFkCBFqRiKKAZ2eZxy4Rz4qsjQvJ4Wk2E3w1c8DdpQWtRFFho0dHqM3LydDH4U2m696GKnlZlDJvHPQ8Ieg77izbeNNthNp4ArtnWgjihn0HkfoCG0-bxYWADwvQ&lib=MdkOOLVUqxpsMtamGk_CUO1T3b6iDXk-u"
+                        "https://script.google.com/macros/s/AKfycbyxKNbRtP9u9UyuuFrmR8gUA9rSeRfu3foRqDFxrWpRadM4L1Lx29bK2A7wzrEMPIxILw/exec"
                     );
 
                 const data =
@@ -134,14 +134,14 @@ export default function Home({ search }) {
     const latest =
         filtered.filter(
             (movie) =>
-                movie["Stream URL"] ===
+                movie.Year ===
                 2026
         );
 
     const recent =
         filtered.filter(
             (movie) =>
-                movie["Stream URL"] ===
+                movie.Year ===
                 2025
         );
 
