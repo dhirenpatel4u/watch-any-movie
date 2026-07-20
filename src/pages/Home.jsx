@@ -4,53 +4,106 @@ import MovieSection from "../components/MovieSection";
 export default function Home({ search }) {
     const [movies, setMovies] = useState([]);
 
-    useEffect(() => {
-        const CACHE_KEY = "movies";
-        const CACHE_TIME = "movies_time";
+useEffect(() => {
 
-        const cachedMovies =
-            localStorage.getItem(CACHE_KEY);
+    async function isIncognito() {
+        try {
+            const { quota } =
+                await navigator.storage.estimate();
+
+            return quota < 120000000;
+        } catch {
+            return false;
+        }
+    }
+
+    async function loadMovies() {
+
+        const incognito =
+            await isIncognito();
+
+        const storage =
+            incognito
+                ? sessionStorage
+                : localStorage;
+
+        const CACHE_KEY =
+            "movies";
+
+        const CACHE_TIME =
+            "movies_time";
+
+        const cached =
+            storage.getItem(
+                CACHE_KEY
+            );
 
         const cachedTime =
-            localStorage.getItem(CACHE_TIME);
+            storage.getItem(
+                CACHE_TIME
+            );
 
-        const now = Date.now();
+        const now =
+            Date.now();
 
-        // Cache valid for 24 hours
+        // Use cache if less than 24 hours old
         if (
-            cachedMovies &&
+            cached &&
             cachedTime &&
             now - Number(cachedTime) <
-                24 * 60 * 60 * 1000
+                24 *
+                    60 *
+                    60 *
+                    1000
         ) {
+
+            console.log(
+                incognito
+                    ? "Loaded from sessionStorage"
+                    : "Loaded from localStorage"
+            );
+
             setMovies(
-                JSON.parse(cachedMovies)
+                JSON.parse(
+                    cached
+                )
             );
 
             return;
         }
 
-        fetch(
-            "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRVaQVJXRUjmOv7OVWraFMF4rvcJlXXamDr4hIAz54OqSYcXP_Zq6vyW-a_TDVHSe_qe_o51RZiV46RGIrHzqIxjbRUqA7ABWdSGdRVX2Pl9yFlQtGLuAzB27VFpiORg2D4iLOtd-eoruV0HrqUuomTCk_cfdmgOdzFkCBFqRiKKAZ2eZxy4Rz4qsjQvJ4Wk2E3w1c8DdpQWtRFFho0dHqM3LydDH4U2m696GKnlZlDJvHPQ8Ieg77izbeNNthNp4ArtnWgjihn0HkfoCG0-bxYWADwvQ&lib=MdkOOLVUqxpsMtamGk_CUO1T3b6iDXk-u"
-        )
-            .then((r) => r.json())
-            .then((data) => {
-                setMovies(data.data);
+        console.log(
+            "Fetching movies..."
+        );
 
-                localStorage.setItem(
-                    CACHE_KEY,
-                    JSON.stringify(data.data)
-                );
-
-                localStorage.setItem(
-                    CACHE_TIME,
-                    now
-                );
-            })
-            .catch((err) =>
-                console.error(err)
+        const response =
+            await fetch(
+                "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRVaQVJXRUjmOv7OVWraFMF4rvcJlXXamDr4hIAz54OqSYcXP_Zq6vyW-a_TDVHSe_qe_o51RZiV46RGIrHzqIxjbRUqA7ABWdSGdRVX2Pl9yFlQtGLuAzB27VFpiORg2D4iLOtd-eoruV0HrqUuomTCk_cfdmgOdzFkCBFqRiKKAZ2eZxy4Rz4qsjQvJ4Wk2E3w1c8DdpQWtRFFho0dHqM3LydDH4U2m696GKnlZlDJvHPQ8Ieg77izbeNNthNp4ArtnWgjihn0HkfoCG0-bxYWADwvQ&lib=MdkOOLVUqxpsMtamGk_CUO1T3b6iDXk-u"
             );
-    }, []);
+
+        const data =
+            await response.json();
+
+        setMovies(
+            data.data
+        );
+
+        storage.setItem(
+            CACHE_KEY,
+            JSON.stringify(
+                data.data
+            )
+        );
+
+        storage.setItem(
+            CACHE_TIME,
+            now
+        );
+    }
+
+    loadMovies();
+
+}, []);
 
     const filtered = movies.filter(
         (movie) =>
