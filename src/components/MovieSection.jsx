@@ -5,17 +5,21 @@ export default function MovieSection({
     movies
 }) {
     return (
-        <>
+        <div className="movie-section">
             <h2>{title}</h2>
 
             <div className="grid">
                 {movies.map((movie) => (
                     <MovieCard
-                        key={movie["IMDB ID"]}
+                        key={
+                            movie[
+                                "IMDB ID"
+                            ]
+                        }
                         movie={movie}
                     />
                 ))}
             </div>
-        </>
+        </div>
     );
 }
