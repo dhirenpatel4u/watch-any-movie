@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/watch/(.*)",
-      "destination": "/api/watch.py"
-    }
-  ]
-}
