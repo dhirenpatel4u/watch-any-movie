@@ -6,6 +6,7 @@ export default function Home({ search }) {
     const [movies, setMovies] = useState([]);
     const [heroMovies, setHeroMovies] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         async function isIncognito() {
@@ -122,6 +123,10 @@ export default function Home({ search }) {
         loadMovies();
     }, []);
 
+    useEffect(() => {
+        setPage(1);
+    }, [search]);
+
     const filtered =
         movies.filter((movie) =>
             movie["Movie Name"]
@@ -129,6 +134,21 @@ export default function Home({ search }) {
                 .includes(
                     search.toLowerCase()
                 )
+        );
+
+    const MOVIES_PER_PAGE = 35;
+
+    const totalPages = Math.ceil(
+        filtered.length /
+            MOVIES_PER_PAGE
+    );
+
+    const paginatedMovies =
+        filtered.slice(
+            (page - 1) *
+                MOVIES_PER_PAGE,
+            page *
+                MOVIES_PER_PAGE
         );
 
 const latest = filtered
@@ -187,16 +207,55 @@ return (
                     No movies found.
                 </h2>
             ) : (
-                <MovieSection
-                    title={
-                        isSearching
-                            ? `Search Results (${filtered.length})`
-                            : "All Movies"
-                    }
-                    movies={
-                        filtered
-                    }
-                />
+            <MovieSection
+                title={
+                    isSearching
+                        ? `Search Results (${filtered.length})`
+                        : "All Movies"
+                }
+                movies={
+                    isSearching
+                        ? filtered
+                        : paginatedMovies
+                }
+            />
+             {!isSearching &&
+                totalPages > 1 && (
+                    <div className="pagination">
+                        <button
+                            disabled={
+                                page === 1
+                            }
+                            onClick={() =>
+                                setPage(
+                                    page - 1
+                                )
+                            }
+                        >
+                            Previous
+                        </button>
+
+                        <span>
+                            {page} /{" "}
+                            {totalPages}
+                        </span>
+
+                        <button
+                            disabled={
+                                page ===
+                                    totalPages
+                            }
+                            onClick={() =>
+                                setPage(
+                                    page + 1
+                                )
+                            }
+                        >
+                            Next
+                        </button>
+                    </div>
+                )}   
+                
             )}
         </div>
         </>
