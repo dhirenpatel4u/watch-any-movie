@@ -1,85 +1,167 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import MovieCard from "../components/MovieCard";
+import { Link, useParams } from "react-router-dom";
 
 export default function Watch() {
-
     const { id } = useParams();
 
     const [movies, setMovies] = useState([]);
+    const [movie, setMovie] = useState(null);
 
-useEffect(() => {
+    useEffect(() => {
+        const cached =
+            localStorage.getItem("movies");
 
-    const CACHE_KEY = "movies";
-    const CACHE_TIME = "movies_time";
+        if (cached) {
+            const data =
+                JSON.parse(cached);
 
-    const movies =
-        localStorage.getItem(CACHE_KEY);
+            setMovies(data);
 
-    const time =
-        localStorage.getItem(CACHE_TIME);
+            setMovie(
+                data.find(
+                    (m) =>
+                        m["IMDB ID"] === id
+                )
+            );
 
-    const now = Date.now();
+            return;
+        }
 
-    if (
-        movies &&
-        time &&
-        now - Number(time)
-            < 24 * 60 * 60 * 1000
-    ) {
+        fetch(
+            "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRVaQVJXRUjmOv7OVWraFMF4rvcJlXXamDr4hIAz54OqSYcXP_Zq6vyW-a_TDVHSe_qe_o51RZiV46RGIrHzqIxjbRUqA7ABWdSGdRVX2Pl9yFlQtGLuAzB27VFpiORg2D4iLOtd-eoruV0HrqUuomTCk_cfdmgOdzFkCBFqRiKKAZ2eZxy4Rz4qsjQvJ4Wk2E3w1c8DdpQWtRFFho0dHqM3LydDH4U2m696GKnlZlDJvHPQ8Ieg77izbeNNthNp4ArtnWgjihn0HkfoCG0-bxYWADwvQ&lib=MdkOOLVUqxpsMtamGk_CUO1T3b6iDXk-u"
+        )
+            .then((r) => r.json())
+            .then((data) => {
+                setMovies(data.data);
 
-        setMovies(
-            JSON.parse(movies)
+                setMovie(
+                    data.data.find(
+                        (m) =>
+                            m[
+                                "IMDB ID"
+                            ] === id
+                    )
+                );
+            });
+    }, [id]);
+
+    const random = [
+        movie,
+        ...movies
+            .filter(
+                (m) =>
+                    m["IMDB ID"] !== id
+            )
+            .sort(
+                () =>
+                    Math.random() -
+                    0.5
+            )
+            .slice(0, 19),
+    ].filter(Boolean);
+
+    if (!movie) {
+        return (
+            <div className="loading">
+                Loading...
+            </div>
         );
-
-        return;
     }
 
-    fetch(
-        "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRVaQVJXRUjmOv7OVWraFMF4rvcJlXXamDr4hIAz54OqSYcXP_Zq6vyW-a_TDVHSe_qe_o51RZiV46RGIrHzqIxjbRUqA7ABWdSGdRVX2Pl9yFlQtGLuAzB27VFpiORg2D4iLOtd-eoruV0HrqUuomTCk_cfdmgOdzFkCBFqRiKKAZ2eZxy4Rz4qsjQvJ4Wk2E3w1c8DdpQWtRFFho0dHqM3LydDH4U2m696GKnlZlDJvHPQ8Ieg77izbeNNthNp4ArtnWgjihn0HkfoCG0-bxYWADwvQ&lib=MdkOOLVUqxpsMtamGk_CUO1T3b6iDXk-u"
-    )
-        .then((r) => r.json())
-        .then((data) => {
-
-            setMovies(data.data);
-
-            localStorage.setItem(
-                CACHE_KEY,
-                JSON.stringify(data.data)
-            );
-
-            localStorage.setItem(
-                CACHE_TIME,
-                now
-            );
-        });
-
-}, []);
-
-    const random = [...movies]
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 12);
-
     return (
-        <div className="watch-page">
+        <div className="watch-container">
+            <div className="player-section">
+                <iframe
+                    src={`https://gemma416okl.com/play/${id}`}
+                    title={
+                        movie[
+                            "Movie Name"
+                        ]
+                    }
+                    allowFullScreen
+                />
 
-            <iframe
-                src={`https://gemma416okl.com/play/${id}`}
-                title="player"
-                allowFullScreen
-            />
+                <h1>
+                    {
+                        movie[
+                            "Movie Name"
+                        ]
+                    }
+                </h1>
 
-            <h2>You May Also Like</h2>
-
-            <div className="grid">
-                {random.map((movie) => (
-                    <MovieCard
-                        key={movie["IMDB ID"]}
-                        movie={movie}
-                    />
-                ))}
+                <p>
+                    {
+                        movie[
+                            "Stream URL"
+                        ]
+                    }
+                </p>
             </div>
 
+            <div className="sidebar">
+                <h2>
+                    You May Also
+                    Like
+                </h2>
+
+                {random.map(
+                    (item) => (
+                        <Link
+                            key={
+                                item[
+                                    "IMDB ID"
+                                ]
+                            }
+                            to={`/watch/${item["IMDB ID"]}`}
+                            className={`side-card ${
+                                item[
+                                    "IMDB ID"
+                                ] === id
+                                    ? "active"
+                                    : ""
+                            }`}
+                        >
+                            <div className="poster-wrapper">
+                                <img
+                                    src={`https://m.media-amazon.com/images/M/${item.Poster}`}
+                                    alt={
+                                        item[
+                                            "Movie Name"
+                                        ]
+                                    }
+                                />
+
+                                {item[
+                                    "IMDB ID"
+                                ] ===
+                                    id && (
+                                    <div className="play-icon">
+                                        ▶
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="side-info">
+                                <h3>
+                                    {
+                                        item[
+                                            "Movie Name"
+                                        ]
+                                    }
+                                </h3>
+
+                                <p>
+                                    {
+                                        item[
+                                            "Stream URL"
+                                        ]
+                                    }
+                                </p>
+                            </div>
+                        </Link>
+                    )
+                )}
+            </div>
         </div>
     );
 }
