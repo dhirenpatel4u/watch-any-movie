@@ -17,7 +17,15 @@ export default function Navbar({
         <nav className="navbar">
 
             <Link to="/">
-                <h1>Watch Any Movie</h1>
+                <div className="logo">
+                    <span className="logo-watch">
+                        WATCH
+                    </span>
+
+                    <span className="logo-sub">
+                        Any Movies
+                    </span>
+                </div>
             </Link>
 
             {isHome && (
