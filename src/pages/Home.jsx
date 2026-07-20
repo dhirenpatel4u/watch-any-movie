@@ -31,37 +31,42 @@ export default function Home({ search }) {
                         : localStorage;
 
                 const CACHE_KEY = "movies";
-                const CACHE_TIME = "movies_time";
+                const CACHE_TIME =
+                    "movies_time";
 
                 const cached =
-                    storage.getItem(CACHE_KEY);
+                    storage.getItem(
+                        CACHE_KEY
+                    );
 
                 const cachedTime =
-                    storage.getItem(CACHE_TIME);
+                    storage.getItem(
+                        CACHE_TIME
+                    );
 
-                const now = Date.now();
+                const now =
+                    Date.now();
 
-                // Use cache if less than 24 hours old
                 if (
                     cached &&
                     cachedTime &&
                     now -
-                        Number(cachedTime) <
+                        Number(
+                            cachedTime
+                        ) <
                         24 *
                             60 *
                             60 *
                             1000
                 ) {
-                    console.log(
-                        incognito
-                            ? "Loaded from sessionStorage"
-                            : "Loaded from localStorage"
-                    );
-
                     const parsed =
-                        JSON.parse(cached);
+                        JSON.parse(
+                            cached
+                        );
 
-                    setMovies(parsed);
+                    setMovies(
+                        parsed
+                    );
 
                     setHeroMovies(
                         [...parsed]
@@ -70,16 +75,18 @@ export default function Home({ search }) {
                                     Math.random() -
                                     0.5
                             )
-                            .slice(0, 5)
+                            .slice(
+                                0,
+                                5
+                            )
                     );
 
-                    setLoading(false);
+                    setLoading(
+                        false
+                    );
+
                     return;
                 }
-
-                console.log(
-                    "Fetching movies..."
-                );
 
                 const response =
                     await fetch(
@@ -89,7 +96,9 @@ export default function Home({ search }) {
                 const data =
                     await response.json();
 
-                setMovies(data.data);
+                setMovies(
+                    data.data
+                );
 
                 setHeroMovies(
                     [...data.data]
@@ -98,7 +107,10 @@ export default function Home({ search }) {
                                 Math.random() -
                                 0.5
                         )
-                        .slice(0, 5)
+                        .slice(
+                            0,
+                            5
+                        )
                 );
 
                 storage.setItem(
@@ -115,7 +127,9 @@ export default function Home({ search }) {
 
                 setLoading(false);
             } catch (error) {
-                console.error(error);
+                console.error(
+                    error
+                );
                 setLoading(false);
             }
         }
@@ -128,20 +142,24 @@ export default function Home({ search }) {
     }, [search]);
 
     const filtered =
-        movies.filter((movie) =>
-            movie["Movie Name"]
-                .toLowerCase()
-                .includes(
-                    search.toLowerCase()
-                )
+        movies.filter(
+            (movie) =>
+                movie[
+                    "Movie Name"
+                ]
+                    .toLowerCase()
+                    .includes(
+                        search.toLowerCase()
+                    )
         );
 
     const MOVIES_PER_PAGE = 35;
 
-    const totalPages = Math.ceil(
-        filtered.length /
-            MOVIES_PER_PAGE
-    );
+    const totalPages =
+        Math.ceil(
+            filtered.length /
+                MOVIES_PER_PAGE
+        );
 
     const paginatedMovies =
         filtered.slice(
@@ -151,19 +169,23 @@ export default function Home({ search }) {
                 MOVIES_PER_PAGE
         );
 
-const latest = filtered
-    .filter(
-        (movie) =>
-            movie.Year === 2026
-    )
-    .slice(0, 14);
+    const latest =
+        filtered
+            .filter(
+                (movie) =>
+                    movie.Year ===
+                    2026
+            )
+            .slice(0, 12);
 
-const trending = [...filtered]
-    .sort(
-        () =>
-            Math.random() - 0.5
-    )
-    .slice(0, 14);
+    const trending =
+        [...filtered]
+            .sort(
+                () =>
+                    Math.random() -
+                    0.5
+            )
+            .slice(0, 12);
 
     const isSearching =
         search.trim() !== "";
@@ -171,93 +193,110 @@ const trending = [...filtered]
     if (loading) {
         return (
             <div className="loading">
-                Loading Movies...
+                Loading
+                Movies...
             </div>
         );
     }
 
-return (
-    <>
-        {!isSearching && (
-            <Hero
-                movies={
-                    heroMovies
-                }
-            />
-        )}
-
-        <div className="container">
+    return (
+        <>
             {!isSearching && (
-                <>
-                <MovieSection
-                    title="Latest"
-                    movies={latest}
+                <Hero
+                    movies={
+                        heroMovies
+                    }
                 />
-
-                <MovieSection
-                    title="Trending"
-                    movies={trending}
-                />
-            </>
             )}
 
-            {filtered.length ===
-            0 ? (
-                <h2>
-                    No movies found.
-                </h2>
-            ) : (
-            <MovieSection
-                title={
-                    isSearching
-                        ? `Search Results (${filtered.length})`
-                        : "All Movies"
-                }
-                movies={
-                    isSearching
-                        ? filtered
-                        : paginatedMovies
-                }
-            />
-             {!isSearching &&
-                totalPages > 1 && (
-                    <div className="pagination">
-                        <button
-                            disabled={
-                                page === 1
+            <div className="container">
+                {!isSearching && (
+                    <>
+                        <MovieSection
+                            title="Latest"
+                            movies={
+                                latest
                             }
-                            onClick={() =>
-                                setPage(
-                                    page - 1
-                                )
-                            }
-                        >
-                            Previous
-                        </button>
+                        />
 
-                        <span>
-                            {page} /{" "}
-                            {totalPages}
-                        </span>
+                        <MovieSection
+                            title="Trending"
+                            movies={
+                                trending
+                            }
+                        />
+                    </>
+                )}
 
-                        <button
-                            disabled={
-                                page ===
-                                    totalPages
+                {filtered.length ===
+                0 ? (
+                    <h2>
+                        No movies
+                        found.
+                    </h2>
+                ) : (
+                    <>
+                        <MovieSection
+                            title={
+                                isSearching
+                                    ? `Search Results (${filtered.length})`
+                                    : "All Movies"
                             }
-                            onClick={() =>
-                                setPage(
-                                    page + 1
-                                )
+                            movies={
+                                isSearching
+                                    ? filtered
+                                    : paginatedMovies
                             }
-                        >
-                            Next
-                        </button>
-                    </div>
-                )}   
-                
-            )}
-        </div>
+                        />
+
+                        {!isSearching &&
+                            totalPages >
+                                1 && (
+                                <div className="pagination">
+                                    <button
+                                        disabled={
+                                            page ===
+                                            1
+                                        }
+                                        onClick={() =>
+                                            setPage(
+                                                page -
+                                                    1
+                                            )
+                                        }
+                                    >
+                                        Previous
+                                    </button>
+
+                                    <span>
+                                        {
+                                            page
+                                        }{" "}
+                                        /{" "}
+                                        {
+                                            totalPages
+                                        }
+                                    </span>
+
+                                    <button
+                                        disabled={
+                                            page ===
+                                            totalPages
+                                        }
+                                        onClick={() =>
+                                            setPage(
+                                                page +
+                                                    1
+                                            )
+                                        }
+                                    >
+                                        Next
+                                    </button>
+                                </div>
+                            )}
+                    </>
+                )}
+            </div>
         </>
     );
 }
