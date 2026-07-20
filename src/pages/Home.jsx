@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 import MovieSection from "../components/MovieSection";
 
 export default function Home() {
@@ -35,10 +34,6 @@ export default function Home() {
 
     return (
         <>
-            <Navbar
-                search={search}
-                setSearch={setSearch}
-            />
 
             <div className="container">
 
