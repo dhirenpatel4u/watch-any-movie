@@ -27,7 +27,7 @@ useEffect(() => {
         } else {
             const response =
                 await fetch(
-                    "https://script.googleusercontent.com/macros/echo?..."
+                    "https://script.google.com/macros/s/AKfycbyxKNbRtP9u9UyuuFrmR8gUA9rSeRfu3foRqDFxrWpRadM4L1Lx29bK2A7wzrEMPIxILw/exec"
                 );
 
             const json =
@@ -111,20 +111,19 @@ const sidebarMovies = [
                     allowFullScreen
                 />
 
-                <h1>
-                    {
-                        movie[
-                            "Movie Name"
-                        ]
-                    }
-                </h1>
+                <h1>{movie["Movie Name"]}</h1>
 
-                <p>
-                    {
-                        movie[
-                            "Stream URL"
-                        ]
-                    }
+                <p className="movie-year">
+                    {movie.Year}
+                </p>
+
+                <p className="movie-description">
+                    {movie.Description}
+                </p>
+
+                <p className="movie-actors">
+                    <strong>Actors:</strong>{" "}
+                    {movie.Actors?.join(", ")}
                 </p>
             </div>
 
@@ -173,19 +172,15 @@ const sidebarMovies = [
 
                             <div className="side-info">
                                 <h3>
-                                    {
-                                        item[
-                                            "Movie Name"
-                                        ]
-                                    }
+                                    {item["Movie Name"]}
                                 </h3>
 
+                                <span className="side-actors">
+                                    {item.Actors?.join(", ")}
+                                </span>
+
                                 <p>
-                                    {
-                                        item[
-                                            "Stream URL"
-                                        ]
-                                    }
+                                    {item.Year}
                                 </p>
                             </div>
                         </Link>
