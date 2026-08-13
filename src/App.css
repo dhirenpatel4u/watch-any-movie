@@ -559,6 +559,14 @@ iframe {
     font-weight: bold;
 }
 
+.movie-description-actors-space {
+    height: 1em;
+}
+
+.movie-actors-bottom-space {
+    height: 2em;
+}
+
 /* =========================
    MOBILE
 ========================= */
