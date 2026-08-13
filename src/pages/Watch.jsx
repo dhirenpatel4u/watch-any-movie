@@ -146,6 +146,8 @@ const sidebarMovies = [
 
                 <h1>{movie["Movie Name"]}</h1>
 
+                <div className="movie-description-actors-space"></div>
+
                 <p className="movie-year">
                     {movie.Year}
                 </p>
