@@ -149,7 +149,9 @@ const sidebarMovies = [
                 <p className="movie-year">
                     {movie.Year}
                 </p>
-
+                
+                <div className="movie-description-actors-space"></div>
+                
                 <p className="movie-description">
                     {movie.Description}
                 </p>
