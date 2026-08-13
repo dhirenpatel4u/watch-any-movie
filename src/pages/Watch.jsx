@@ -120,11 +120,15 @@ const sidebarMovies = [
                 <p className="movie-description">
                     {movie.Description}
                 </p>
-
+                
+                <div className="movie-description-actors-space"></div>
+                
                 <p className="movie-actors">
                     <strong>Actors:</strong>{" "}
                     {movie.Actors?.join(", ")}
                 </p>
+                
+                <div className="movie-actors-bottom-space"></div>
             </div>
 
             <div className="sidebar">
