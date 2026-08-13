@@ -1,0 +1,430 @@
+body {
+    margin: 0;
+    background: #111;
+    color: white;
+    font-family: Arial;
+}
+.logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.logo-watch {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #e50914;
+}
+
+.logo-sub {
+    margin-top: 2px;
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    
+    color: white;
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #000;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.home-btn {
+    background: #e50914;
+    padding: 8px 16px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.navbar input {
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.container {
+    padding: 20px;
+}
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(180px, 1fr)
+        );
+
+    gap: 20px;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2/3;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #222;
+    transition: 0.3s;
+    box-shadow:
+        0 0 10px rgba(0,0,0,0.5);
+}
+
+.card:hover {
+        transform:
+        scale(1.05)
+        translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 12px;
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0, 0, 0, 0.95)
+        );
+}
+
+.card-info h3 {
+    font-size: 14px;
+    line-height: 1.4;
+    color: white;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+.loading {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+}
+
+.watch-page {
+    padding: 20px;
+}
+
+iframe {
+    border: none;
+}
+.watch-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.player-section {
+    flex: 1;
+}
+
+.player-section iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    height: auto;
+    border: none;
+    border-radius: 12px;
+}
+
+.player-section h1 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.player-section p {
+    margin: 0;
+    color: #aaa;
+}
+
+.sidebar {
+    width: 350px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    position: sticky;
+    top: 80px;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.side-card {
+    display: flex;
+    gap: 12px;
+
+    padding: 10px;
+    margin-bottom: 10px;
+
+    background: #1a1a1a;
+    border-radius: 10px;
+
+    text-decoration: none;
+    color: white;
+
+    transition: 0.2s;
+}
+
+.side-card:hover {
+    background: #222;
+}
+
+.poster-wrapper {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.poster-wrapper img {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.side-info {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.side-info h3 {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.4;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.side-info p {
+    margin-top: 8px;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.play-icon {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+
+    font-size: 32px;
+}
+
+.active {
+    border: 2px solid #e50914;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+
+.hero {
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr;
+
+    grid-template-rows:
+        repeat(2, 220px);
+
+    gap: 15px;
+
+    padding: 20px;
+}
+
+.hero-main {
+    grid-row: span 2;
+}
+
+.hero-main,
+.hero-small {
+    position: relative;
+
+    overflow: hidden;
+    border-radius: 15px;
+
+    text-decoration: none;
+    color: white;
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-info {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(
+                0,
+                0,
+                0,
+                0.95
+            )
+        );
+}
+
+.hero-info h2 {
+    margin: 0;
+}
+
+.hero-info p {
+    color: #ccc;
+}
+
+.hero-info button {
+    background: #e50914;
+    color: white;
+
+    border: none;
+
+    padding:
+        10px 20px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+.movie-year {
+    color: #aaa;
+    margin-bottom: 15px;
+}
+
+.movie-description {
+    line-height: 1.7;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.movie-actors {
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+.side-actors {
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 13px;
+    color: #bbb;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+.movie-section {
+    margin: 40px 0;
+}
+
+.movie-section h2 {
+    margin-bottom: 20px;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    margin: 40px 0;
+}
+
+.pagination button {
+    background: #e50914;
+    color: white;
+
+    border: none;
+    padding: 10px 20px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .watch-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        position: static;
+        max-height: none;
+    }
+    .hero {
+        display: flex;
+        overflow-x: auto;
+    }
+
+    .hero-main,
+    .hero-small {
+        min-width: 300px;
+        height: 200px;
+    }
+}
