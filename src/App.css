@@ -326,9 +326,9 @@ iframe {
     margin: 0 0 15px;
 
     font-size: clamp(
-        40px,
-        6vw,
-        76px
+        28px,
+        4vw,
+        52px
     );
 
     line-height: 1.05;
