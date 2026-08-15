@@ -25,13 +25,14 @@ useEffect(() => {
                     cached
                 );
         } else {
-            const response =
-                await fetch(
-                    "https://script.google.com/macros/s/AKfycbyxKNbRtP9u9UyuuFrmR8gUA9rSeRfu3foRqDFxrWpRadM4L1Lx29bK2A7wzrEMPIxILw/exec"
-                );
+            
+            const response = await fetch("/movies.json");
 
-            const json =
-                await response.json();
+            if (!response.ok) {
+                throw new Error("Failed to load movies.json");
+            }
+
+            const data = await response.json();
 
             data = json.data;
         }
@@ -193,7 +194,7 @@ const sidebarMovies = [
                         >
                             <div className="poster-wrapper">
                                 <img
-                                    src={`https://m.media-amazon.com/images/M/${item.Poster}`}
+                                    src={movie.Poster}
                                     alt={
                                         item[
                                             "Movie Name"
