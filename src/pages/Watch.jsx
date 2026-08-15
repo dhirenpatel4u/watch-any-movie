@@ -9,12 +9,17 @@ export default function Watch() {
     const [random, setRandom] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    // =====================================================
+    // LOAD MOVIES + CREATE RANDOM LIST ONLY ONCE
+    // =====================================================
+
     useEffect(() => {
         async function loadMovies() {
             try {
                 setLoading(true);
 
-                const response = await fetch("/movies.json");
+                const response =
+                    await fetch("/movies.json");
 
                 if (!response.ok) {
                     throw new Error(
@@ -22,7 +27,8 @@ export default function Watch() {
                     );
                 }
 
-                const json = await response.json();
+                const json =
+                    await response.json();
 
                 const data = Array.isArray(json)
                     ? json
@@ -30,68 +36,24 @@ export default function Watch() {
 
                 setMovies(data);
 
-                const currentMovie = data.find(
-                    (m) => m["IMDB ID"] === id
-                );
-
-                setMovie(currentMovie);
-
                 // -------------------------------------------------
-                // Recently Watched
-                // -------------------------------------------------
-
-                if (currentMovie) {
-                    try {
-                        const stored =
-                            localStorage.getItem(
-                                "recently_watched"
-                            );
-
-                        let recent = stored
-                            ? JSON.parse(stored)
-                            : [];
-
-                        recent = recent.filter(
-                            (item) =>
-                                item["IMDB ID"] !==
-                                currentMovie["IMDB ID"]
-                        );
-
-                        recent.unshift(currentMovie);
-
-                        recent = recent.slice(0, 7);
-
-                        localStorage.setItem(
-                            "recently_watched",
-                            JSON.stringify(recent)
-                        );
-                    } catch (error) {
-                        console.error(
-                            "Failed to save recently watched:",
-                            error
-                        );
-                    }
-                }
-
-                // -------------------------------------------------
-                // You May Also Like
-                //
-                // Generate RANDOM list only when Watch.jsx loads.
-                // Do NOT regenerate when changing movie.
+                // Generate You May Also Like ONLY ONCE
                 // -------------------------------------------------
 
                 const shuffled = [...data].sort(
                     () => Math.random() - 0.5
                 );
 
-                const randomMovies = shuffled
-                    .filter(
-                        (m) =>
-                            m["IMDB ID"] !== id
-                    )
-                    .slice(0, 20);
+                const randomMovies =
+                    shuffled
+                        .filter(
+                            (item) =>
+                                item["IMDB ID"] !== id
+                        )
+                        .slice(0, 20);
 
                 setRandom(randomMovies);
+
             } catch (error) {
                 console.error(
                     "Failed to load movies:",
@@ -99,7 +61,6 @@ export default function Watch() {
                 );
 
                 setMovies([]);
-                setMovie(null);
             } finally {
                 setLoading(false);
             }
@@ -108,13 +69,71 @@ export default function Watch() {
         loadMovies();
     }, []);
 
-    // -------------------------------------------------
-    // Current movie is always shown first.
+    // =====================================================
+    // UPDATE CURRENT MOVIE WHEN URL ID CHANGES
+    // =====================================================
+
+    useEffect(() => {
+        if (!movies.length) return;
+
+        const currentMovie =
+            movies.find(
+                (item) =>
+                    item["IMDB ID"] === id
+            );
+
+        setMovie(currentMovie || null);
+
+        // -------------------------------------------------
+        // Recently Watched
+        // -------------------------------------------------
+
+        if (currentMovie) {
+            try {
+                const stored =
+                    localStorage.getItem(
+                        "recently_watched"
+                    );
+
+                let recent = stored
+                    ? JSON.parse(stored)
+                    : [];
+
+                // Remove if already exists
+                recent = recent.filter(
+                    (item) =>
+                        item["IMDB ID"] !==
+                        currentMovie["IMDB ID"]
+                );
+
+                // Add current movie to beginning
+                recent.unshift(currentMovie);
+
+                // Keep only latest 7
+                recent =
+                    recent.slice(0, 7);
+
+                localStorage.setItem(
+                    "recently_watched",
+                    JSON.stringify(recent)
+                );
+
+            } catch (error) {
+                console.error(
+                    "Failed to save recently watched:",
+                    error
+                );
+            }
+        }
+
+    }, [id, movies]);
+
+    // =====================================================
+    // SIDEBAR
     //
-    // Random movies remain exactly the same when
-    // navigating between movies because random[]
-    // is NOT regenerated when id changes.
-    // -------------------------------------------------
+    // random[] NEVER changes when id changes.
+    // Only current movie is changed/inserted at top.
+    // =====================================================
 
     const sidebarMovies = [
         movie,
@@ -125,6 +144,10 @@ export default function Watch() {
         ),
     ].filter(Boolean);
 
+    // =====================================================
+    // LOADING
+    // =====================================================
+
     if (loading) {
         return (
             <div className="loading">
@@ -132,6 +155,10 @@ export default function Watch() {
             </div>
         );
     }
+
+    // =====================================================
+    // MOVIE NOT FOUND
+    // =====================================================
 
     if (!movie) {
         return (
@@ -141,12 +168,16 @@ export default function Watch() {
         );
     }
 
+    // =====================================================
+    // PAGE
+    // =====================================================
+
     return (
         <div className="watch-container">
 
-            {/* =========================
-                PLAYER SECTION
-            ========================= */}
+            {/* ==========================================
+                PLAYER + MOVIE INFORMATION
+            ========================================== */}
 
             <div className="player-section">
 
@@ -155,6 +186,8 @@ export default function Watch() {
                     title={movie["Movie Name"]}
                     allowFullScreen
                 />
+
+                {/* Movie Title */}
 
                 <h1>
                     {movie["Movie Name"]}
@@ -200,9 +233,9 @@ export default function Watch() {
 
             </div>
 
-            {/* =========================
+            {/* ==========================================
                 YOU MAY ALSO LIKE
-            ========================= */}
+            ========================================== */}
 
             <div className="sidebar">
 
@@ -237,8 +270,7 @@ export default function Watch() {
                                     }
                                 />
 
-                                {/* Play icon only
-                                    on current movie */}
+                                {/* Play icon */}
 
                                 {item[
                                     "IMDB ID"
@@ -250,9 +282,11 @@ export default function Watch() {
 
                             </div>
 
-                            {/* Movie information */}
+                            {/* Information */}
 
                             <div className="side-info">
+
+                                {/* Title */}
 
                                 <h3>
                                     {
