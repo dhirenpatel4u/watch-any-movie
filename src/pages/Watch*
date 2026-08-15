@@ -36,14 +36,47 @@ useEffect(() => {
             data = json.data;
         }
 
+        const currentMovie = data.find(
+            (m) =>
+                m["IMDB ID"] === id
+        );
+
         setMovies(data);
 
-        setMovie(
-            data.find(
-                (m) =>
-                    m["IMDB ID"] === id
-            )
-        );
+        setMovie(currentMovie);
+
+        if (currentMovie) {
+            try {
+                const stored =
+                    localStorage.getItem(
+                        "recently_watched"
+                    );
+        
+                let recent = stored
+                    ? JSON.parse(stored)
+                    : [];
+
+                recent = recent.filter(
+                    (item) =>
+                        item["IMDB ID"] !==
+                        currentMovie["IMDB ID"]
+                );
+
+                recent.unshift(currentMovie);
+
+                recent = recent.slice(0, 7);
+
+                localStorage.setItem(
+                    "recently_watched",
+                    JSON.stringify(recent)
+                );
+            } catch (error) {
+                console.error(
+                    "Failed to save recently watched:",
+                    error
+                );
+            }
+        }
 
         // Generate random list once
         let randomMovies =
@@ -113,10 +146,14 @@ const sidebarMovies = [
 
                 <h1>{movie["Movie Name"]}</h1>
 
+                <div className="movie-description-actors-space"></div>
+
                 <p className="movie-year">
                     {movie.Year}
                 </p>
-
+                
+                <div className="movie-description-actors-space"></div>
+                
                 <p className="movie-description">
                     {movie.Description}
                 </p>
