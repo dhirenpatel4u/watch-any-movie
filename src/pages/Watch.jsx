@@ -11,55 +11,108 @@ export default function Watch() {
 
 useEffect(() => {
     async function loadMovies() {
-        try {
-            const response = await fetch("/movies.json");
-            const json = await response.json();
 
-            const data = json.data;
+        let data = [];
 
-            setMovies(data);
-
-            const currentMovie = data.find(
-                (m) => m["IMDB ID"] === id
+        const cached =
+            localStorage.getItem(
+                "movies"
             );
 
-            setMovie(currentMovie);
-
-            // Generate recommendations only once
-            let saved =
-                sessionStorage.getItem(
-                    "watch_random"
+        if (cached) {
+            data =
+                JSON.parse(
+                    cached
+                );
+        } else {
+            const response =
+                await fetch(
+                    "https://script.google.com/macros/s/AKfycbyxKNbRtP9u9UyuuFrmR8gUA9rSeRfu3foRqDFxrWpRadM4L1Lx29bK2A7wzrEMPIxILw/exec"
                 );
 
-            if (saved) {
-                setRandom(JSON.parse(saved));
-            } else {
-                const recommendations = [...data]
-                    .filter(
-                        (m) =>
-                            m["IMDB ID"] !== id
-                    )
-                    .sort(
-                        () => Math.random() - 0.5
-                    )
-                    .slice(0, 20);
+            const json =
+                await response.json();
 
-                sessionStorage.setItem(
-                    "watch_random",
-                    JSON.stringify(
-                        recommendations
-                    )
-                );
-
-                setRandom(recommendations);
-            }
-        } catch (error) {
-            console.error(error);
+            data = json.data;
         }
+
+        const currentMovie = data.find(
+            (m) =>
+                m["IMDB ID"] === id
+        );
+
+        setMovies(data);
+
+        setMovie(currentMovie);
+
+        if (currentMovie) {
+            try {
+                const stored =
+                    localStorage.getItem(
+                        "recently_watched"
+                    );
+        
+                let recent = stored
+                    ? JSON.parse(stored)
+                    : [];
+
+                recent = recent.filter(
+                    (item) =>
+                        item["IMDB ID"] !==
+                        currentMovie["IMDB ID"]
+                );
+
+                recent.unshift(currentMovie);
+
+                recent = recent.slice(0, 7);
+
+                localStorage.setItem(
+                    "recently_watched",
+                    JSON.stringify(recent)
+                );
+            } catch (error) {
+                console.error(
+                    "Failed to save recently watched:",
+                    error
+                );
+            }
+        }
+
+        // Generate random list once
+        let randomMovies =
+            sessionStorage.getItem(
+                "watch_random"
+            );
+
+        if (!randomMovies) {
+
+            randomMovies =
+                JSON.stringify(
+                    data
+                        .sort(
+                            () =>
+                                Math.random() -
+                                0.5
+                        )
+                        .slice(0, 20)
+                );
+
+            sessionStorage.setItem(
+                "watch_random",
+                randomMovies
+            );
+        }
+
+        setRandom(
+            JSON.parse(
+                randomMovies
+            )
+        );
     }
 
     loadMovies();
-}, []);
+
+}, [id]);
 
 const sidebarMovies = [
     movie,
