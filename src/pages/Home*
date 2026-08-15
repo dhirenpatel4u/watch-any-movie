@@ -1,12 +1,34 @@
 import { useEffect, useState } from "react";
 import Hero from "../components/Hero";
 import MovieSection from "../components/MovieSection";
+import Recent from "../components/Recent";
 
 export default function Home({ search }) {
     const [movies, setMovies] = useState([]);
     const [heroMovies, setHeroMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
+    const [recentMovies, setRecentMovies] = useState([]);
+
+    useEffect(() => {
+    try {
+        const recent =
+            localStorage.getItem(
+                "recently_watched"
+            );
+
+        if (recent) {
+            setRecentMovies(
+                JSON.parse(recent)
+            );
+        }
+    } catch (error) {
+        console.error(
+            "Failed to load recently watched:",
+            error
+        );
+    }
+    }, []);
 
     useEffect(() => {
         async function isIncognito() {
@@ -212,18 +234,18 @@ export default function Home({ search }) {
             <div className="container">
                 {!isSearching && (
                     <>
+                        <Recent
+                            movies={recentMovies}
+                        />
+
                         <MovieSection
                             title="Latest"
-                            movies={
-                                latest
-                            }
+                            movies={latest}
                         />
 
                         <MovieSection
                             title="Trending"
-                            movies={
-                                trending
-                            }
+                            movies={trending}
                         />
                     </>
                 )}
