@@ -194,7 +194,7 @@ const sidebarMovies = [
                         >
                             <div className="poster-wrapper">
                                 <img
-                                    src={movie.Poster}
+                                    src={item.Poster}
                                     alt={
                                         item[
                                             "Movie Name"
