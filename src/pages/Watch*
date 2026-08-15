@@ -193,7 +193,7 @@ const sidebarMovies = [
                         >
                             <div className="poster-wrapper">
                                 <img
-                                    src={`https://m.media-amazon.com/images/M/${item.Poster}`}
+                                    src={item.Poster}
                                     alt={
                                         item[
                                             "Movie Name"
