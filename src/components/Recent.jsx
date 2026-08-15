@@ -17,7 +17,7 @@ export default function Recent({ movies }) {
                         className="recent-card"
                     >
                         <img
-                            src={`https://m.media-amazon.com/images/M/${movie.Poster}`}
+                            src={`${movie.Poster}`}
                             alt={movie["Movie Name"]}
                             loading="lazy"
                         />
