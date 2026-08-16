@@ -10,7 +10,7 @@ export default function Watch() {
     const [loading, setLoading] = useState(true);
 
     // =====================================================
-    // LOAD MOVIES + CREATE RANDOM LIST ONLY ONCE
+    // LOAD MOVIES + RANDOM RECOMMENDATIONS ONLY ONCE
     // =====================================================
 
     useEffect(() => {
@@ -36,9 +36,8 @@ export default function Watch() {
 
                 setMovies(data);
 
-                // -------------------------------------------------
-                // Generate You May Also Like ONLY ONCE
-                // -------------------------------------------------
+                // Generate random recommendations
+                // ONLY when Watch page loads
 
                 const shuffled = [...data].sort(
                     () => Math.random() - 0.5
@@ -59,8 +58,6 @@ export default function Watch() {
                     "Failed to load movies:",
                     error
                 );
-
-                setMovies([]);
             } finally {
                 setLoading(false);
             }
@@ -70,7 +67,7 @@ export default function Watch() {
     }, []);
 
     // =====================================================
-    // UPDATE CURRENT MOVIE WHEN URL ID CHANGES
+    // CHANGE CURRENT MOVIE WHEN ID CHANGES
     // =====================================================
 
     useEffect(() => {
@@ -84,9 +81,7 @@ export default function Watch() {
 
         setMovie(currentMovie || null);
 
-        // -------------------------------------------------
-        // Recently Watched
-        // -------------------------------------------------
+        // Recently watched
 
         if (currentMovie) {
             try {
@@ -99,17 +94,14 @@ export default function Watch() {
                     ? JSON.parse(stored)
                     : [];
 
-                // Remove if already exists
                 recent = recent.filter(
                     (item) =>
                         item["IMDB ID"] !==
                         currentMovie["IMDB ID"]
                 );
 
-                // Add current movie to beginning
                 recent.unshift(currentMovie);
 
-                // Keep only latest 7
                 recent =
                     recent.slice(0, 7);
 
@@ -130,9 +122,6 @@ export default function Watch() {
 
     // =====================================================
     // SIDEBAR
-    //
-    // random[] NEVER changes when id changes.
-    // Only current movie is changed/inserted at top.
     // =====================================================
 
     const sidebarMovies = [
@@ -157,7 +146,7 @@ export default function Watch() {
     }
 
     // =====================================================
-    // MOVIE NOT FOUND
+    // NOT FOUND
     // =====================================================
 
     if (!movie) {
@@ -168,15 +157,11 @@ export default function Watch() {
         );
     }
 
-    // =====================================================
-    // PAGE
-    // =====================================================
-
     return (
         <div className="watch-container">
 
             {/* ==========================================
-                PLAYER + MOVIE INFORMATION
+                PLAYER
             ========================================== */}
 
             <div className="player-section">
@@ -199,8 +184,6 @@ export default function Watch() {
                     {movie.Year}
                 </p>
 
-                {/* Space */}
-
                 <div className="movie-description-actors-space"></div>
 
                 {/* Description */}
@@ -211,23 +194,45 @@ export default function Watch() {
                     </p>
                 )}
 
-                {/* Space between Description and Actors */}
-
                 <div className="movie-description-actors-space"></div>
 
-                {/* Actors */}
+                {/* ==================================
+                    ACTORS
+                ================================== */}
 
                 {movie.Actors &&
                     movie.Actors.length > 0 && (
-                        <p className="movie-actors">
-                            <strong>
-                                Actors:
-                            </strong>{" "}
-                            {movie.Actors.join(", ")}
-                        </p>
-                    )}
 
-                {/* Two-line space after Actors */}
+                    <p className="movie-actors">
+
+                        <strong>
+                            Actors:
+                        </strong>{" "}
+
+                        {movie.Actors.map(
+                            (actor, index) => (
+                                <span
+                                    key={actor}
+                                >
+                                    <Link
+                                        to={`/actor/${encodeURIComponent(
+                                            actor
+                                        )}`}
+                                        className="actor-link"
+                                    >
+                                        {actor}
+                                    </Link>
+
+                                    {index <
+                                        movie.Actors.length -
+                                            1 &&
+                                        ", "}
+                                </span>
+                            )
+                        )}
+
+                    </p>
+                )}
 
                 <div className="movie-actors-bottom-space"></div>
 
@@ -270,8 +275,6 @@ export default function Watch() {
                                     }
                                 />
 
-                                {/* Play icon */}
-
                                 {item[
                                     "IMDB ID"
                                 ] === id && (
@@ -286,8 +289,6 @@ export default function Watch() {
 
                             <div className="side-info">
 
-                                {/* Title */}
-
                                 <h3>
                                     {
                                         item[
@@ -296,19 +297,52 @@ export default function Watch() {
                                     }
                                 </h3>
 
-                                {/* Actors */}
+                                {/* Clickable Actors */}
 
                                 {item.Actors &&
                                     item.Actors.length >
                                         0 && (
-                                        <span className="side-actors">
-                                            {item.Actors.join(
-                                                ", "
-                                            )}
-                                        </span>
-                                    )}
 
-                                {/* Year */}
+                                    <span className="side-actors">
+
+                                        {item.Actors.map(
+                                            (
+                                                actor,
+                                                index
+                                            ) => (
+                                                <span
+                                                    key={
+                                                        actor
+                                                    }
+                                                >
+                                                    <Link
+                                                        to={`/actor/${encodeURIComponent(
+                                                            actor
+                                                        )}`}
+                                                        className="actor-link"
+                                                        onClick={(
+                                                            e
+                                                        ) =>
+                                                            e.stopPropagation()
+                                                        }
+                                                    >
+                                                        {
+                                                            actor
+                                                        }
+                                                    </Link>
+
+                                                    {index <
+                                                        item
+                                                            .Actors
+                                                            .length -
+                                                            1 &&
+                                                        ", "}
+                                                </span>
+                                            )
+                                        )}
+
+                                    </span>
+                                )}
 
                                 <p>
                                     {item.Year}
