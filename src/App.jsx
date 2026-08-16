@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Watch from "./pages/Watch";
+import ActorSearch from "./pages/ActorSearch";
 
 export default function App() {
 
@@ -31,6 +32,10 @@ export default function App() {
                     element={
                         <Watch />
                     }
+                />
+                <Route
+                    path="/actor/:actor"
+                    element={<ActorSearch />}
                 />
             </Routes>
         </>
