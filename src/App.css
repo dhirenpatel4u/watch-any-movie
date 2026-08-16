@@ -497,13 +497,14 @@ iframe {
 }
 
 .movie-description {
-    line-height: 1.7;
+    line-height: 1.2;
     color: #ddd;
     margin-bottom: 20px;
 }
 
 .movie-actors {
     color: #ccc;
+    line-height: 1.2;
     margin-bottom: 30px;
 }
 
