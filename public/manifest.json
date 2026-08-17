@@ -1,21 +1,30 @@
 {
- "short_name": "Watch Any Movies",
- "name": "Watch Any Movies",
- "theme_color": "#000000",
- "background_color": "#000000",
- "manifest_version": 2,
- "display": "standalone",
- "icons": [
-  {
-   "src": "launchericon-192x192.png",
-   "sizes": "192x192",
-   "type": "image/png"
-  },
-  {
-   "src": "launchericon-512x512.png",
-   "sizes": "512x512",
-   "type": "image/png"
-  }
- ],
-   "start_url": "/?utm_source=launcher"
+  "name": "Watch Any Movies",
+  "short_name": "Watch Any Movies",
+  "id": "/",
+  "start_url": "/?utm_source=launcher",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "icons": [
+    {
+      "src": "/launchericon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/launchericon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/launchericon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
 }
