@@ -723,4 +723,7 @@ iframe {
     .hero-indicators {
         bottom: 20px;
     }
+    .navbar input {
+        width: 240px;
+    }
 }
