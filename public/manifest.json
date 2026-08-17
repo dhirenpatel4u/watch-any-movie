@@ -1,8 +1,8 @@
 {
  "short_name": "Watch Any Movies",
  "name": "Watch Any Movies",
- "theme_color": "#f4501e",
- "background_color": "#F7F8F9",
+ "theme_color": "#000000",
+ "background_color": "#000000",
  "manifest_version": 2,
  "display": "standalone",
  "icons": [
