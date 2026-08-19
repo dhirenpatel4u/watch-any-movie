@@ -316,6 +316,12 @@ export default function Hero({ shows = [] }) {
                 {imdbId && (
                     <Link
                         to={`/watch/${imdbId}`}
+                        onClick={() => {
+                            sessionStorage.setItem(
+                                "home_scroll_position",
+                                String(window.scrollY)
+                            );
+                        }}
                         className="hero-watch-btn"
                     >
                         ▶ Watch Now
