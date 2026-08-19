@@ -726,4 +726,104 @@ iframe {
     .navbar input {
         width: 240px;
     }
+    /*
+     * Latest / Trending / Recently Watched
+     * horizontal scrolling
+     */
+    .home-mobile-scroll-section .grid,
+    .recent-section .grid {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        gap: 14px;
+
+        padding: 5px 5px 15px;
+
+        scroll-behavior: smooth;
+
+        scrollbar-width: none;
+    }
+
+    .home-mobile-scroll-section
+        .grid::-webkit-scrollbar,
+    .recent-section
+        .grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    /*
+     * Keep cards same size
+     * inside horizontal sections
+     */
+    .home-mobile-scroll-section
+        .grid
+        .card,
+    .recent-section
+        .grid
+        .card {
+        flex: 0 0 145px;
+
+        width: 145px;
+
+        min-width: 145px;
+
+        aspect-ratio: 2 / 3;
+    }
+
+    /*
+     * Recently Watched heading
+     */
+    .recent-section {
+        margin: 40px 0;
+    }
+
+    /*
+     * Latest / Trending spacing
+     */
+    .home-mobile-scroll-section {
+        margin: 40px 0;
+    }
+
+    /*
+     * All Movies remains normal
+     * vertical grid
+     */
+    .mobile-all-movies .grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap: 15px;
+    }
+
+    .mobile-all-movies .card {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /*
+     * Hide desktop pagination
+     * on mobile
+     */
+    .pagination {
+        display: none;
+    }
+
+    /*
+     * Mobile loading-more message
+     */
+    .load-more-indicator {
+        text-align: center;
+
+        padding: 25px 10px 40px;
+
+        color: #aaa;
+
+        font-size: 14px;
+    }
 }
