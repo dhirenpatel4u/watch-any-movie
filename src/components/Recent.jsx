@@ -15,6 +15,12 @@ export default function Recent({ movies }) {
                         key={movie["IMDB ID"]}
                         to={`/watch/${movie["IMDB ID"]}`}
                         className="recent-card"
+                        onClick={() => {
+                            sessionStorage.setItem(
+                                "home_scroll_position",
+                                window.scrollY.toString()
+                            );
+                        }}
                     >
                         <img
                             src={movie.Poster}
