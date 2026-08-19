@@ -186,7 +186,7 @@ export default function Hero({ movies }) {
         slides[current];
 
     const posterUrl =
-        `https://m.media-amazon.com/images/M/${movie.Poster}`;
+        `${movie.Poster}`;
 
     return (
         <div
