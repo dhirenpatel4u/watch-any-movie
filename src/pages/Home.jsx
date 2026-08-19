@@ -227,7 +227,7 @@ export default function Home({ search }) {
                         movie.Year
                     ) === 2026
             )
-            .slice(0, 12);
+            .slice(0, 14);
 
     /*
      * Trending
@@ -247,7 +247,7 @@ export default function Home({ search }) {
                         Math.random() -
                         0.5
                 )
-                .slice(0, 12)
+                .slice(0, 14)
         );
     }, [movies, search]);
 
