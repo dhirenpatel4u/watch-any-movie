@@ -10,10 +10,20 @@ import Recent from "../components/Recent";
 export default function Home({ search }) {
     const [movies, setMovies] = useState([]);
     const [heroMovies, setHeroMovies] = useState([]);
-    const [loading, setLoading] = useState(true);
 
-    const [page, setPage] = useState(1);
+    const [loading, setLoading] =
+        useState(true);
 
+    const [page, setPage] =
+        useState(1);
+
+    /*
+     * Mobile infinite scroll
+     *
+     * First 40
+     * then 80
+     * then 120...
+     */
     const [mobileCount, setMobileCount] =
         useState(40);
 
@@ -29,22 +39,27 @@ export default function Home({ search }) {
      * Disable browser automatic
      * scroll restoration.
      *
-     * We handle it ourselves.
+     * We handle restoration ourselves.
      */
     useEffect(() => {
         if ("scrollRestoration" in history) {
-            history.scrollRestoration = "manual";
+            history.scrollRestoration =
+                "manual";
         }
 
         return () => {
-            if ("scrollRestoration" in history) {
-                history.scrollRestoration = "auto";
+            if (
+                "scrollRestoration" in
+                history
+            ) {
+                history.scrollRestoration =
+                    "auto";
             }
         };
     }, []);
 
     /*
-     * Mobile detection
+     * Detect mobile / desktop
      */
     useEffect(() => {
         const handleResize = () => {
@@ -67,13 +82,16 @@ export default function Home({ search }) {
     }, []);
 
     /*
-     * Load movies
+     * Load movies from
+     * public/movies.json
      */
     useEffect(() => {
         async function loadMovies() {
             try {
                 const response =
-                    await fetch("/movies.json");
+                    await fetch(
+                        "/movies.json"
+                    );
 
                 if (!response.ok) {
                     throw new Error(
@@ -90,7 +108,8 @@ export default function Home({ search }) {
                 setMovies(movieData);
 
                 /*
-                 * Random 5 hero movies
+                 * Random 5 movies
+                 * for Hero
                  */
                 setHeroMovies(
                     [...movieData]
@@ -117,7 +136,8 @@ export default function Home({ search }) {
     }, []);
 
     /*
-     * Reset pagination when search changes
+     * Reset pagination when
+     * search changes
      */
     useEffect(() => {
         setPage(1);
@@ -125,12 +145,13 @@ export default function Home({ search }) {
     }, [search]);
 
     /*
-     * Filter
+     * Filter movies
      */
     const filtered =
         movies.filter((movie) =>
             String(
-                movie["Movie Name"] || ""
+                movie["Movie Name"] ||
+                    ""
             )
                 .toLowerCase()
                 .includes(
@@ -142,7 +163,9 @@ export default function Home({ search }) {
         search.trim() !== "";
 
     /*
-     * Latest
+     * =========================
+     * LATEST
+     * =========================
      *
      * First 12 movies from JSON
      * having Year 2026.
@@ -151,15 +174,18 @@ export default function Home({ search }) {
         filtered
             .filter(
                 (movie) =>
-                    Number(movie.Year) ===
-                    2026
+                    Number(
+                        movie.Year
+                    ) === 2026
             )
             .slice(0, 12);
 
     /*
-     * Trending
+     * =========================
+     * TRENDING
+     * =========================
      *
-     * Random 12.
+     * Random 12 movies.
      */
     useEffect(() => {
         if (!filtered.length) {
@@ -167,19 +193,24 @@ export default function Home({ search }) {
             return;
         }
 
-        setTrending(
+        const randomMovies =
             [...filtered]
                 .sort(
                     () =>
                         Math.random() -
                         0.5
                 )
-                .slice(0, 12)
-        );
+                .slice(0, 12);
+
+        setTrending(randomMovies);
     }, [movies, search]);
 
     /*
-     * Desktop pagination
+     * =========================
+     * DESKTOP PAGINATION
+     * =========================
+     *
+     * 35 movies per page.
      */
     const DESKTOP_PER_PAGE = 35;
 
@@ -198,7 +229,12 @@ export default function Home({ search }) {
         );
 
     /*
-     * Mobile movies
+     * =========================
+     * MOBILE MOVIES
+     * =========================
+     *
+     * First 40
+     * then load another 40.
      */
     const mobileMovies =
         filtered.slice(
@@ -207,10 +243,13 @@ export default function Home({ search }) {
         );
 
     /*
-     * Mobile infinite loading
+     * =========================
+     * MOBILE INFINITE SCROLL
+     * =========================
      */
     useEffect(() => {
         if (!isMobile) return;
+
         if (isSearching) return;
 
         const handleScroll = () => {
@@ -222,6 +261,10 @@ export default function Home({ search }) {
                 document.documentElement
                     .scrollHeight;
 
+            /*
+             * Load next batch
+             * when 500px from bottom.
+             */
             if (
                 documentHeight -
                     scrollPosition <
@@ -266,137 +309,122 @@ export default function Home({ search }) {
     ]);
 
     /*
-     * IMPORTANT:
+     * =========================
+     * RESTORE HOME POSITION
+     * =========================
      *
-     * Restore previous Home position
-     * AFTER Home has rendered.
+     * This is intentionally separate
+     * from the scroll listener.
+     *
+     * It runs only when Home finishes
+     * loading.
      */
     useEffect(() => {
         if (loading) return;
 
-        const saved =
+        const savedPosition =
             sessionStorage.getItem(
                 "home_scroll_position"
             );
 
-        if (!saved) return;
+        if (!savedPosition) {
+            return;
+        }
 
         const position =
-            Number(saved);
+            Number(savedPosition);
+
+        if (
+            !Number.isFinite(position) ||
+            position < 0
+        ) {
+            sessionStorage.removeItem(
+                "home_scroll_position"
+            );
+
+            return;
+        }
+
+        let restored = false;
 
         /*
-         * Give React time to render
-         * Hero + sections + cards.
+         * Try to restore after the page
+         * has rendered.
          */
-        let attempts = 0;
+        const restorePosition = () => {
+            if (restored) {
+                return;
+            }
 
-        const restoreScroll = () => {
-            attempts++;
-
-            window.scrollTo(
-                0,
-                position
-            );
+            const maxScroll =
+                Math.max(
+                    0,
+                    document.documentElement
+                        .scrollHeight -
+                        window.innerHeight
+                );
 
             /*
-             * Check whether browser actually
-             * reached the requested position.
+             * Do not restore until the
+             * page is tall enough.
              */
             if (
-                Math.abs(
-                    window.scrollY -
-                        position
-                ) > 10 &&
-                attempts < 20
+                maxScroll < position
             ) {
-                requestAnimationFrame(
-                    restoreScroll
-                );
+                return;
             }
+
+            restored = true;
+
+            window.scrollTo({
+                top: position,
+                left: 0,
+                behavior: "instant"
+            });
+
+            /*
+             * Remove saved position
+             * after successful restore.
+             */
+            sessionStorage.removeItem(
+                "home_scroll_position"
+            );
         };
 
-        requestAnimationFrame(() => {
-            requestAnimationFrame(
-                restoreScroll
-            );
-        });
+        /*
+         * Wait for React rendering.
+         */
+        const timer1 =
+            setTimeout(() => {
+                restorePosition();
+            }, 300);
 
         /*
-         * Extra restoration because
-         * images/cards may increase page height.
+         * Images/cards may still be
+         * rendering.
          */
-        const timer1 = setTimeout(
-            () => {
-                window.scrollTo(
-                    0,
-                    position
-                );
-            },
-            300
-        );
+        const timer2 =
+            setTimeout(() => {
+                restorePosition();
+            }, 700);
 
-        const timer2 = setTimeout(
-            () => {
-                window.scrollTo(
-                    0,
-                    position
-                );
-            },
-            800
-        );
+        const timer3 =
+            setTimeout(() => {
+                restorePosition();
+            }, 1200);
 
         return () => {
             clearTimeout(timer1);
             clearTimeout(timer2);
+            clearTimeout(timer3);
         };
     }, [loading]);
 
     /*
-     * Save scroll position continuously.
+     * =========================
+     * LOADING
+     * =========================
      */
-    useEffect(() => {
-        if (loading) return;
-
-        let timeout;
-
-        const savePosition = () => {
-            clearTimeout(timeout);
-
-            timeout = setTimeout(() => {
-                sessionStorage.setItem(
-                    "home_scroll_position",
-                    window.scrollY.toString()
-                );
-            }, 100);
-        };
-
-        window.addEventListener(
-            "scroll",
-            savePosition,
-            {
-                passive: true
-            }
-        );
-
-        return () => {
-            clearTimeout(timeout);
-
-            /*
-             * Save exact position
-             * before leaving Home.
-             */
-            sessionStorage.setItem(
-                "home_scroll_position",
-                window.scrollY.toString()
-            );
-
-            window.removeEventListener(
-                "scroll",
-                savePosition
-            );
-        };
-    }, [loading]);
-
     if (loading) {
         return (
             <div className="loading">
@@ -405,6 +433,11 @@ export default function Home({ search }) {
         );
     }
 
+    /*
+     * =========================
+     * PAGE
+     * =========================
+     */
     return (
         <>
             {!isSearching && (
@@ -417,7 +450,11 @@ export default function Home({ search }) {
 
                 {!isSearching && (
                     <>
+                        {/* Recently Watched */}
+
                         <Recent />
+
+                        {/* Latest */}
 
                         <div className="home-mobile-scroll-section">
                             <MovieSection
@@ -425,6 +462,8 @@ export default function Home({ search }) {
                                 movies={latest}
                             />
                         </div>
+
+                        {/* Trending */}
 
                         <div className="home-mobile-scroll-section">
                             <MovieSection
@@ -441,6 +480,10 @@ export default function Home({ search }) {
                     </h2>
                 ) : (
                     <>
+                        {/* =====================
+                            ALL MOVIES
+                        ====================== */}
+
                         <div
                             className={
                                 isMobile
@@ -461,6 +504,10 @@ export default function Home({ search }) {
                                 }
                             />
                         </div>
+
+                        {/* =====================
+                            DESKTOP PAGINATION
+                        ====================== */}
 
                         {!isMobile &&
                             !isSearching &&
@@ -506,6 +553,10 @@ export default function Home({ search }) {
 
                                 </div>
                             )}
+
+                        {/* =====================
+                            MOBILE LOAD MORE
+                        ====================== */}
 
                         {isMobile &&
                             !isSearching &&
