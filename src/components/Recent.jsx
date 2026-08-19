@@ -1,28 +1,47 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Recent({ movies }) {
-    if (!movies || movies.length === 0) {
+export default function Recent() {
+    const [recentMovies, setRecentMovies] =
+        useState([]);
+
+    useEffect(() => {
+        try {
+            const stored =
+                localStorage.getItem(
+                    "recently_watched"
+                );
+
+            if (stored) {
+                setRecentMovies(
+                    JSON.parse(stored)
+                );
+            }
+        } catch (error) {
+            console.error(
+                "Failed to load recently watched:",
+                error
+            );
+        }
+    }, []);
+
+    if (
+        !recentMovies ||
+        recentMovies.length === 0
+    ) {
         return null;
     }
-
-    const handleClick = () => {
-        sessionStorage.setItem(
-            "home_scroll_position",
-            String(window.scrollY)
-        );
-    };
 
     return (
         <section className="movie-section recent-section">
             <h2>Recently Watched</h2>
 
             <div className="recent-grid">
-                {movies.map((movie) => (
+                {recentMovies.map((movie) => (
                     <Link
                         key={movie["IMDB ID"]}
                         to={`/watch/${movie["IMDB ID"]}`}
                         className="recent-card"
-                        onClick={handleClick}
                     >
                         <img
                             src={movie.Poster}
