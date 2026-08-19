@@ -1,4 +1,4 @@
-import {
+pimport {
     useEffect,
     useState
 } from "react";
@@ -8,8 +8,12 @@ import MovieSection from "../components/MovieSection";
 import Recent from "../components/Recent";
 
 export default function Home({ search }) {
+
     const [movies, setMovies] = useState([]);
     const [heroMovies, setHeroMovies] = useState([]);
+
+    const [recentMovies, setRecentMovies] =
+        useState([]);
 
     const [loading, setLoading] =
         useState(true);
@@ -26,10 +30,12 @@ export default function Home({ search }) {
             window.innerWidth <= 768
         );
 
+
     /*
      * Detect mobile / desktop
      */
     useEffect(() => {
+
         const handleResize = () => {
             setIsMobile(
                 window.innerWidth <= 768
@@ -47,44 +53,147 @@ export default function Home({ search }) {
                 handleResize
             );
         };
+
     }, []);
 
+
     /*
-     * Load movies
+     * Load Recently Watched
      */
     useEffect(() => {
+
+        try {
+
+            const stored =
+                localStorage.getItem(
+                    "recently_watched"
+                );
+
+            if (stored) {
+
+                const parsed =
+                    JSON.parse(stored);
+
+                setRecentMovies(
+                    parsed.slice(0, 7)
+                );
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Failed to load recently watched:",
+                error
+            );
+
+            setRecentMovies([]);
+        }
+
+    }, []);
+
+
+    /*
+     * Load Movies
+     */
+    useEffect(() => {
+
         async function loadMovies() {
+
             try {
+
                 /*
-                 * Detect incognito/private mode
+                 * Detect Incognito / Private mode
                  */
                 async function isIncognito() {
+
                     try {
-                        const { quota } =
-                            await navigator.storage.estimate();
+
+                        const {
+                            quota
+                        } =
+                            await navigator
+                                .storage
+                                .estimate();
 
                         return (
                             quota <
                             120000000
                         );
+
                     } catch {
+
                         return false;
                     }
                 }
 
+
                 const incognito =
                     await isIncognito();
 
+
+                /*
+                 * IMPORTANT:
+                 *
+                 * Incognito:
+                 * Directly load movies.json
+                 *
+                 * Normal:
+                 * Use localStorage cache
+                 */
+                if (incognito) {
+
+                    console.log(
+                        "Incognito mode: loading movies.json directly"
+                    );
+
+                    const response =
+                        await fetch(
+                            "/movies.json"
+                        );
+
+                    if (!response.ok) {
+                        throw new Error(
+                            "Failed to load movies.json"
+                        );
+                    }
+
+                    const data =
+                        await response.json();
+
+                    const movieData =
+                        data.data ||
+                        data;
+
+                    setMovies(movieData);
+
+                    setHeroMovies(
+                        [...movieData]
+                            .sort(
+                                () =>
+                                    Math.random() -
+                                    0.5
+                            )
+                            .slice(0, 5)
+                    );
+
+                    setLoading(false);
+
+                    return;
+                }
+
+
+                /*
+                 * Normal browser
+                 */
                 const storage =
-                    incognito
-                        ? sessionStorage
-                        : localStorage;
+                    localStorage;
 
                 const CACHE_KEY =
                     "movies";
 
                 const CACHE_TIME =
                     "movies_time";
+
 
                 const cached =
                     storage.getItem(
@@ -99,8 +208,10 @@ export default function Home({ search }) {
                 const now =
                     Date.now();
 
+
                 /*
-                 * Use cached movies
+                 * Use cache if less
+                 * than 24 hours old
                  */
                 if (
                     cached &&
@@ -114,6 +225,11 @@ export default function Home({ search }) {
                             60 *
                             1000
                 ) {
+
+                    console.log(
+                        "Loaded movies from localStorage"
+                    );
+
                     const parsed =
                         JSON.parse(
                             cached
@@ -136,19 +252,26 @@ export default function Home({ search }) {
                     return;
                 }
 
+
                 /*
                  * Fetch movies.json
                  */
+                console.log(
+                    "Fetching /movies.json"
+                );
+
                 const response =
                     await fetch(
                         "/movies.json"
                     );
 
                 if (!response.ok) {
+
                     throw new Error(
                         "Failed to load movies.json"
                     );
                 }
+
 
                 const data =
                     await response.json();
@@ -157,8 +280,13 @@ export default function Home({ search }) {
                     data.data ||
                     data;
 
+
                 setMovies(movieData);
 
+
+                /*
+                 * Random 5 Hero movies
+                 */
                 setHeroMovies(
                     [...movieData]
                         .sort(
@@ -169,8 +297,9 @@ export default function Home({ search }) {
                         .slice(0, 5)
                 );
 
+
                 /*
-                 * Cache
+                 * Save cache
                  */
                 storage.setItem(
                     CACHE_KEY,
@@ -184,9 +313,11 @@ export default function Home({ search }) {
                     now.toString()
                 );
 
+
                 setLoading(false);
 
             } catch (error) {
+
                 console.error(
                     "Movie loading error:",
                     error
@@ -196,23 +327,29 @@ export default function Home({ search }) {
             }
         }
 
+
         loadMovies();
+
     }, []);
 
+
     /*
-     * Reset page when search changes
+     * Reset pagination when search changes
      */
     useEffect(() => {
+
         setPage(1);
+
         setMobileCount(40);
+
     }, [search]);
+
 
     /*
      * Restore previous Home scroll
-     *
-     * This happens after movies have loaded.
      */
     useEffect(() => {
+
         if (loading) return;
 
         const savedPosition =
@@ -227,40 +364,48 @@ export default function Home({ search }) {
         const position =
             Number(savedPosition);
 
-        /*
-         * Wait for cards/images to render
-         */
+
         requestAnimationFrame(() => {
+
             setTimeout(() => {
+
                 window.scrollTo({
                     top: position,
                     behavior: "instant"
                 });
+
             }, 100);
+
         });
 
     }, [loading]);
 
+
     /*
-     * Remember current Home scroll position
+     * Remember current Home scroll
      */
     useEffect(() => {
+
         if (loading) return;
 
         let timeout;
 
-        const saveScroll =
-            () => {
-                clearTimeout(timeout);
 
-                timeout =
-                    setTimeout(() => {
-                        sessionStorage.setItem(
-                            "home_scroll_position",
-                            window.scrollY.toString()
-                        );
-                    }, 50);
-            };
+        const saveScroll = () => {
+
+            clearTimeout(timeout);
+
+            timeout =
+                setTimeout(() => {
+
+                    sessionStorage.setItem(
+                        "home_scroll_position",
+                        window.scrollY.toString()
+                    );
+
+                }, 50);
+        };
+
 
         window.addEventListener(
             "scroll",
@@ -270,24 +415,26 @@ export default function Home({ search }) {
             }
         );
 
+
         return () => {
+
             clearTimeout(timeout);
 
-            /*
-             * Save final position
-             * before leaving Home
-             */
+
             sessionStorage.setItem(
                 "home_scroll_position",
                 window.scrollY.toString()
             );
+
 
             window.removeEventListener(
                 "scroll",
                 saveScroll
             );
         };
+
     }, [loading]);
+
 
     /*
      * Search
@@ -304,8 +451,10 @@ export default function Home({ search }) {
                 )
         );
 
+
     const isSearching =
         search.trim() !== "";
+
 
     /*
      * Latest
@@ -323,23 +472,25 @@ export default function Home({ search }) {
             )
             .slice(0, 12);
 
+
     /*
      * Trending
      *
-     * Random 12.
-     *
-     * IMPORTANT:
-     * useMemo would be better here, but
-     * this keeps your existing behavior.
+     * Random 12 movies.
      */
     const [trending, setTrending] =
         useState([]);
 
+
     useEffect(() => {
+
         if (!filtered.length) {
+
             setTrending([]);
+
             return;
         }
+
 
         setTrending(
             [...filtered]
@@ -350,7 +501,9 @@ export default function Home({ search }) {
                 )
                 .slice(0, 12)
         );
+
     }, [movies, search]);
+
 
     /*
      * Desktop pagination
@@ -359,11 +512,13 @@ export default function Home({ search }) {
      */
     const DESKTOP_PER_PAGE = 35;
 
+
     const totalPages =
         Math.ceil(
             filtered.length /
                 DESKTOP_PER_PAGE
         );
+
 
     const desktopMovies =
         filtered.slice(
@@ -374,12 +529,14 @@ export default function Home({ search }) {
                 DESKTOP_PER_PAGE
         );
 
+
     /*
      * Mobile infinite scroll
      *
-     * First 40
-     * then 80
-     * then 120...
+     * 40
+     * 80
+     * 120
+     * ...
      */
     const mobileMovies =
         filtered.slice(
@@ -387,50 +544,55 @@ export default function Home({ search }) {
             mobileCount
         );
 
+
     /*
-     * Infinite scroll
+     * Mobile Infinite Scroll
      */
     useEffect(() => {
+
         if (!isMobile) return;
+
         if (isSearching) return;
 
-        const handleScroll =
-            () => {
-                const scrollPosition =
-                    window.innerHeight +
-                    window.scrollY;
 
-                const documentHeight =
-                    document.documentElement
-                        .scrollHeight;
+        const handleScroll = () => {
 
-                /*
-                 * Start loading when
-                 * 500px from bottom
-                 */
-                if (
-                    documentHeight -
-                        scrollPosition <
-                    500
-                ) {
-                    setMobileCount(
-                        (current) => {
-                            if (
-                                current >=
-                                filtered.length
-                            ) {
-                                return current;
-                            }
+            const scrollPosition =
+                window.innerHeight +
+                window.scrollY;
 
-                            return Math.min(
-                                current +
-                                    40,
-                                filtered.length
-                            );
+
+            const documentHeight =
+                document.documentElement
+                    .scrollHeight;
+
+
+            if (
+                documentHeight -
+                    scrollPosition <
+                500
+            ) {
+
+                setMobileCount(
+                    (current) => {
+
+                        if (
+                            current >=
+                            filtered.length
+                        ) {
+                            return current;
                         }
-                    );
-                }
-            };
+
+
+                        return Math.min(
+                            current + 40,
+                            filtered.length
+                        );
+                    }
+                );
+            }
+        };
+
 
         window.addEventListener(
             "scroll",
@@ -440,11 +602,14 @@ export default function Home({ search }) {
             }
         );
 
+
         return () => {
+
             window.removeEventListener(
                 "scroll",
                 handleScroll
             );
+
         };
 
     }, [
@@ -453,7 +618,12 @@ export default function Home({ search }) {
         filtered.length
     ]);
 
+
+    /*
+     * Loading screen
+     */
     if (loading) {
+
         return (
             <div className="loading">
                 Loading Movies...
@@ -461,49 +631,74 @@ export default function Home({ search }) {
         );
     }
 
+
     return (
         <>
+
+            {/* HERO */}
+
             {!isSearching && (
                 <Hero
                     shows={heroMovies}
                 />
             )}
 
+
             <div className="container">
+
+
+                {/* HOME SECTIONS */}
 
                 {!isSearching && (
                     <>
+
                         {/* Recently Watched */}
 
-                        <Recent />
+                        <Recent
+                            movies={
+                                recentMovies
+                            }
+                        />
+
 
                         {/* Latest */}
 
                         <div className="home-mobile-scroll-section">
+
                             <MovieSection
                                 title="Latest"
                                 movies={latest}
                             />
+
                         </div>
+
 
                         {/* Trending */}
 
                         <div className="home-mobile-scroll-section">
+
                             <MovieSection
                                 title="Trending"
                                 movies={trending}
                             />
+
                         </div>
+
                     </>
                 )}
 
+
+                {/* SEARCH / ALL MOVIES */}
+
                 {filtered.length === 0 ? (
+
                     <h2>
                         No movies found.
                     </h2>
+
                 ) : (
+
                     <>
-                        {/* ALL MOVIES */}
 
                         <div
                             className={
@@ -512,41 +707,46 @@ export default function Home({ search }) {
                                     : ""
                             }
                         >
+
                             <MovieSection
                                 title={
                                     isSearching
                                         ? `Search Results (${filtered.length})`
                                         : "All Movies"
                                 }
+
                                 movies={
                                     isMobile
                                         ? mobileMovies
                                         : desktopMovies
                                 }
                             />
+
                         </div>
 
-                        {/* Desktop pagination */}
+
+                        {/* DESKTOP PAGINATION */}
 
                         {!isMobile &&
                             !isSearching &&
                             totalPages > 1 && (
+
                                 <div className="pagination">
 
                                     <button
                                         disabled={
-                                            page ===
-                                            1
+                                            page === 1
                                         }
+
                                         onClick={() =>
                                             setPage(
-                                                page -
-                                                    1
+                                                page - 1
                                             )
                                         }
                                     >
                                         Previous
                                     </button>
+
 
                                     <span>
                                         {page} /{" "}
@@ -555,15 +755,16 @@ export default function Home({ search }) {
                                         }
                                     </span>
 
+
                                     <button
                                         disabled={
                                             page ===
                                             totalPages
                                         }
+
                                         onClick={() =>
                                             setPage(
-                                                page +
-                                                    1
+                                                page + 1
                                             )
                                         }
                                     >
@@ -573,20 +774,25 @@ export default function Home({ search }) {
                                 </div>
                             )}
 
-                        {/* Mobile loading indicator */}
+
+                        {/* MOBILE LOAD MORE */}
 
                         {isMobile &&
                             !isSearching &&
                             mobileCount <
                                 filtered.length && (
+
                                 <div className="load-more-indicator">
                                     Loading more movies...
                                 </div>
+
                             )}
+
                     </>
                 )}
 
             </div>
+
         </>
     );
 }
