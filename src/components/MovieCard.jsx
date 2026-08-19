@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 
 export default function MovieCard({ movie }) {
     const handleClick = () => {
+        /*
+         * Save exact Home scroll position
+         */
         sessionStorage.setItem(
             "home_scroll_position",
             String(window.scrollY)
