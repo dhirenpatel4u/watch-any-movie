@@ -4,7 +4,7 @@ export default function MovieCard({ movie }) {
     const handleClick = () => {
         sessionStorage.setItem(
             "home_scroll_position",
-            window.scrollY.toString()
+            String(window.scrollY)
         );
     };
 
