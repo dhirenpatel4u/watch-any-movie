@@ -110,13 +110,13 @@ export default function Home({ search }) {
                     return;
                 }
 
-                const response =
-                    await fetch(
-                        "https://script.google.com/macros/s/AKfycbyxKNbRtP9u9UyuuFrmR8gUA9rSeRfu3foRqDFxrWpRadM4L1Lx29bK2A7wzrEMPIxILw/exec"
-                    );
+                const response = await fetch("/movies.json");
 
-                const data =
-                    await response.json();
+                if (!response.ok) {
+                    throw new Error("Failed to load movies.json");
+                }
+
+                const data = await response.json();
 
                 setMovies(
                     data.data
