@@ -1,13 +1,20 @@
-import { useEffect, useState, useRef } from "react";
+import {
+    useEffect,
+    useRef,
+    useState
+} from "react";
+
 import { Link } from "react-router-dom";
 
 const placeholderTitle = (title) => {
-    const words = title
+    const words = String(title || "")
         .trim()
         .split(/\s+/);
 
     if (words.length < 4) {
-        return encodeURIComponent(title);
+        return encodeURIComponent(
+            title || "Movie"
+        );
     }
 
     const middle =
@@ -18,39 +25,57 @@ const placeholderTitle = (title) => {
             .slice(0, middle)
             .join(" ") +
             "\n" +
-            words
-                .slice(middle)
-                .join(" ")
+        words
+            .slice(middle)
+            .join(" ")
     );
 };
 
-export default function Hero({ movies }) {
-    const [slides, setSlides] = useState([]);
-    const [current, setCurrent] = useState(0);
+export default function Hero({ shows = [] }) {
+    const [slides, setSlides] =
+        useState([]);
 
-    const touchStartX = useRef(0);
-    const touchEndX = useRef(0);
-    const isSwiping = useRef(false);
-    const timerRef = useRef(null);
+    const [current, setCurrent] =
+        useState(0);
 
-    // Random 5 movies
+    const timerRef =
+        useRef(null);
+
+    const touchStartX =
+        useRef(0);
+
+    const touchEndX =
+        useRef(0);
+
+    const isSwiping =
+        useRef(false);
+
+    /*
+     * Select random 5 movies
+     */
     useEffect(() => {
-        if (!movies || !movies.length) {
+        if (!shows || !shows.length) {
+            setSlides([]);
             return;
         }
 
-        const randomMovies = [...movies]
-            .sort(
-                () =>
-                    Math.random() - 0.5
-            )
-            .slice(0, 5);
+        const randomShows =
+            [...shows]
+                .sort(
+                    () =>
+                        Math.random() -
+                        0.5
+                )
+                .slice(0, 5);
 
-        setSlides(randomMovies);
+        setSlides(randomShows);
         setCurrent(0);
-    }, [movies]);
 
-    // Auto slider
+    }, [shows]);
+
+    /*
+     * Start / restart automatic slider
+     */
     const startAutoSlide = () => {
         clearInterval(
             timerRef.current
@@ -62,15 +87,19 @@ export default function Hero({ movies }) {
 
         timerRef.current =
             setInterval(() => {
-                setCurrent((prev) => {
-                    return (
-                        (prev + 1) %
+                setCurrent(
+                    (previous) =>
+                        (
+                            previous + 1
+                        ) %
                         slides.length
-                    );
-                });
+                );
             }, 5000);
     };
 
+    /*
+     * Start slider when slides change
+     */
     useEffect(() => {
         if (slides.length <= 1) {
             return;
@@ -85,55 +114,65 @@ export default function Hero({ movies }) {
         };
     }, [slides]);
 
-    // Next
+    /*
+     * Next slide
+     */
     const nextSlide = () => {
-        if (slides.length <= 1) {
+        if (!slides.length) {
             return;
         }
 
-        setCurrent((prev) => {
-            return (
-                (prev + 1) %
+        setCurrent(
+            (previous) =>
+                (
+                    previous + 1
+                ) %
                 slides.length
-            );
-        });
+        );
 
         startAutoSlide();
     };
 
-    // Previous
+    /*
+     * Previous slide
+     */
     const prevSlide = () => {
-        if (slides.length <= 1) {
+        if (!slides.length) {
             return;
         }
 
-        setCurrent((prev) => {
-            return (
-                (prev -
+        setCurrent(
+            (previous) =>
+                (
+                    previous -
                     1 +
-                    slides.length) %
+                    slides.length
+                ) %
                 slides.length
-            );
-        });
+        );
 
         startAutoSlide();
     };
 
-    // Touch Start
-    const handleTouchStart = (e) => {
+    /*
+     * Touch start
+     */
+    const handleTouchStart = (event) => {
         isSwiping.current = false;
 
         touchStartX.current =
-            e.touches[0].clientX;
+            event.touches[0].clientX;
 
         touchEndX.current =
-            e.touches[0].clientX;
+            event.touches[0].clientX;
     };
 
-    // Touch Move
-    const handleTouchMove = (e) => {
+    /*
+     * Touch move
+     */
+    const handleTouchMove = (event) => {
         touchEndX.current =
-            e.touches[0].clientX;
+            event.touches[0].clientX;
 
         if (
             Math.abs(
@@ -145,31 +184,25 @@ export default function Hero({ movies }) {
         }
     };
 
-    // Touch End
+    /*
+     * Touch end
+     */
     const handleTouchEnd = () => {
         if (!isSwiping.current) {
-            touchStartX.current = 0;
-            touchEndX.current = 0;
             return;
         }
 
-        const diff =
+        const difference =
             touchStartX.current -
             touchEndX.current;
 
-        if (Math.abs(diff) < 50) {
-            touchStartX.current = 0;
-            touchEndX.current = 0;
+        if (Math.abs(difference) < 50) {
             return;
         }
 
-        // Swipe left
-        if (diff > 0) {
+        if (difference > 0) {
             nextSlide();
-        }
-
-        // Swipe right
-        else {
+        } else {
             prevSlide();
         }
 
@@ -178,183 +211,187 @@ export default function Hero({ movies }) {
         isSwiping.current = false;
     };
 
+    /*
+     * Nothing to display
+     */
     if (!slides.length) {
         return null;
     }
 
-    const movie =
+    const show =
         slides[current];
 
-    const posterUrl =
-        `${movie.Poster}`;
+    if (!show) {
+        return null;
+    }
+
+    const movieName =
+        show["Movie Name"] ||
+        "Unknown Movie";
+
+    const imdbId =
+        show["IMDB ID"];
+
+    const poster =
+        show.Poster;
+
+    const year =
+        show.Year;
+
+    const description =
+        show.Description ||
+        "Watch this movie in HD quality.";
 
     return (
         <div
+            className="hero-slider"
+
             onTouchStart={
                 handleTouchStart
             }
+
             onTouchMove={
                 handleTouchMove
             }
+
             onTouchEnd={
                 handleTouchEnd
             }
-            className="
-                hero-slider
-            "
         >
-            {/* Background Image */}
 
+            {/* Background */}
             <img
-                src={posterUrl}
-                alt={
-                    movie[
-                        "Movie Name"
-                    ]
+                key={
+                    poster ||
+                    movieName
                 }
-                onError={(e) => {
-                    e.currentTarget.onerror =
+
+                src={poster}
+
+                alt={movieName}
+
+                className="hero-background"
+
+                onError={(event) => {
+                    event.currentTarget.onerror =
                         null;
 
-                    e.currentTarget.src =
-                        `https://placehold.co/1200x700/111/fff?font=lora&text=${placeholderTitle(
-                            movie[
-                                "Movie Name"
-                            ]
+                    event.currentTarget.src =
+                        `https://placehold.co/1200x700/222/fff?font=arial&text=${placeholderTitle(
+                            movieName
                         )}`;
                 }}
-                className="
-                    hero-background
-                "
             />
 
-            {/* Dark Overlay */}
-
-            <div
-                className="
-                    hero-overlay
-                "
-            />
+            {/* Dark overlay */}
+            <div className="hero-overlay" />
 
             {/* Content */}
+            <div className="hero-content">
 
-            <div
-                className="
-                    hero-content
-                "
-            >
                 <h1>
-                    {
-                        movie[
-                            "Movie Name"
-                        ]
-                    }
+                    {movieName}
                 </h1>
 
-                <div
-                    className="
-                        hero-meta
-                    "
-                >
+                <div className="hero-meta">
+
                     <span>
-                        {
-                            movie.Year
-                        }
+                        {year}
                     </span>
 
-                    {movie.Actors &&
-                        movie.Actors.length >
-                            0 && (
-                            <span>
-                                •{" "}
-                                {movie.Actors
-                                    .slice(
-                                        0,
-                                        2
-                                    )
-                                    .join(
-                                        ", "
-                                    )}
-                            </span>
-                        )}
+                    <span>
+                        •
+                    </span>
+
+                    <span>
+                        HD
+                    </span>
+
                 </div>
 
                 <p>
-                    {movie.Description ||
-                        "Watch this movie in HD quality."}
+                    {description}
                 </p>
 
-                <Link
-                    to={`/watch/${
-                        movie[
-                            "IMDB ID"
-                        ]
-                    }`}
-                    className="
-                        hero-watch-btn
-                    "
-                >
-                    ▶ Watch Now
-                </Link>
+                {imdbId && (
+                    <Link
+                        to={`/watch/${imdbId}`}
+                        className="hero-watch-btn"
+                    >
+                        ▶ Watch Now
+                    </Link>
+                )}
+
             </div>
 
-            {/* Left Arrow */}
+            {/* Previous */}
+            {slides.length > 1 && (
+                <button
+                    type="button"
+                    className="
+                        hero-arrow
+                        hero-arrow-left
+                    "
+                    onClick={prevSlide}
+                    aria-label="Previous"
+                >
+                    ❮
+                </button>
+            )}
 
-            <button
-                onClick={prevSlide}
-                className="
-                    hero-arrow
-                    hero-arrow-left
-                "
-                aria-label="Previous movie"
-            >
-                ❮
-            </button>
-
-            {/* Right Arrow */}
-
-            <button
-                onClick={nextSlide}
-                className="
-                    hero-arrow
-                    hero-arrow-right
-                "
-                aria-label="Next movie"
-            >
-                ❯
-            </button>
+            {/* Next */}
+            {slides.length > 1 && (
+                <button
+                    type="button"
+                    className="
+                        hero-arrow
+                        hero-arrow-right
+                    "
+                    onClick={nextSlide}
+                    aria-label="Next"
+                >
+                    ❯
+                </button>
+            )}
 
             {/* Indicators */}
+            {slides.length > 1 && (
+                <div className="hero-indicators">
 
-            <div
-                className="
-                    hero-indicators
-                "
-            >
-                {slides.map(
-                    (_, index) => (
-                        <button
-                            key={index}
-                            onClick={() => {
-                                setCurrent(
-                                    index
-                                );
+                    {slides.map(
+                        (_, index) => (
+                            <button
+                                key={index}
+                                type="button"
 
-                                startAutoSlide();
-                            }}
-                            className={
-                                current ===
-                                index
-                                    ? "hero-indicator active"
-                                    : "hero-indicator"
-                            }
-                            aria-label={`Go to slide ${
-                                index + 1
-                            }`}
-                        />
-                    )
-                )}
-            </div>
+                                className={`
+                                    hero-indicator
+                                    ${
+                                        current ===
+                                        index
+                                            ? "active"
+                                            : ""
+                                    }
+                                `}
+
+                                onClick={() => {
+                                    setCurrent(
+                                        index
+                                    );
+
+                                    startAutoSlide();
+                                }}
+
+                                aria-label={`Go to slide ${
+                                    index + 1
+                                }`}
+                            />
+                        )
+                    )}
+
+                </div>
+            )}
+
         </div>
     );
 }
