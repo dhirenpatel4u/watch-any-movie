@@ -1,4 +1,4 @@
-pimport {
+import {
     useEffect,
     useState
 } from "react";
