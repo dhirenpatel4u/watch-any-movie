@@ -167,7 +167,7 @@ export default function Watch() {
             <div className="player-section">
 
                 <iframe
-                    src={`https://gemma416okl.com/play/${id}`}
+                    src={`https://slast430did.com/play/${id}`}
                     title={movie["Movie Name"]}
                     allowFullScreen
                 />
