@@ -65,24 +65,27 @@ function setMeta(
 
     if (!element) {
         element =
-            document.createElement(
-                "meta"
+            document.createElement("meta");
+
+        const match =
+            selector.match(
+                new RegExp(
+                    `${attribute}=["']([^"']+)["']`,
+                    "i"
+                )
             );
 
-        element.setAttribute(
-            attribute,
-            value
-        );
+        if (match) {
+            element.setAttribute(
+                attribute,
+                match[1]
+            );
+        }
 
         document.head.appendChild(
             element
         );
     }
-
-    element.setAttribute(
-        attribute,
-        value
-    );
 
     element.setAttribute(
         "content",
