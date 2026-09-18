@@ -226,7 +226,6 @@ canonical.setAttribute(
     "href",
     movieUrl
 );
-```
 
 }
 
@@ -238,7 +237,6 @@ export default function Watch() {
 const { id } =
 useParams();
 
-```
 const [movies, setMovies] =
     useState([]);
 
