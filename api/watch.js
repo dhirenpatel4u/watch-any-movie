@@ -2,346 +2,261 @@ import fs from "fs";
 import path from "path";
 
 export default function handler(req, res) {
-const id = req.query.id;
+    const id = req.query.id;
 
-if (!id || Array.isArray(id)) {
-    return res.status(400).send(
-        "Movie ID missing"
-    );
-}
+    if (!id) {
+        return res.status(400).send(
+            "Movie ID missing"
+        );
+    }
 
-try {
-    // =====================================================
-    // LOAD MOVIES.JSON
-    // =====================================================
+    try {
+        // -----------------------------
+        // Load movies.json
+        // -----------------------------
 
-    const moviesPath = path.join(
-        process.cwd(),
-        "public",
-        "movies.json"
-    );
+        const moviesPath = path.join(
+            process.cwd(),
+            "public",
+            "movies.json"
+        );
 
-    const json = JSON.parse(
-        fs.readFileSync(
-            moviesPath,
-            "utf8"
-        )
-    );
+        const json = JSON.parse(
+            fs.readFileSync(
+                moviesPath,
+                "utf8"
+            )
+        );
 
-    const movies =
-        Array.isArray(json)
+        const movies = Array.isArray(json)
             ? json
             : json.data || [];
 
-    // =====================================================
-    // FIND MOVIE
-    // =====================================================
+        // -----------------------------
+        // Find movie by IMDb ID
+        // -----------------------------
 
-    const movie = movies.find(
-        (item) =>
-            String(
-                item["IMDB ID"]
-            ) === String(id)
-    );
-
-    if (!movie) {
-        return res.status(404).send(
-            "Movie Not Found"
-        );
-    }
-
-    // =====================================================
-    // MOVIE DATA
-    // =====================================================
-
-    const title =
-        movie["Movie Name"] ||
-        "Watch Any Movies";
-
-    const year =
-        movie.Year || "";
-
-    const description =
-        movie.Description ||
-        `Watch ${title} online.`;
-
-    const poster =
-        movie.Poster || "";
-
-    const siteUrl =
-        "https://watch-any-movies.vercel.app";
-
-    const movieUrl =
-        `${siteUrl}/watch/${encodeURIComponent(id)}`;
-
-    const fullTitle =
-        `${title}${year ? ` (${year})` : ""} - Watch Any Movies`;
-
-    // =====================================================
-    // ESCAPE HTML
-    // =====================================================
-
-    function escapeHtml(value) {
-        return String(value)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
-
-    const safeTitle =
-        escapeHtml(fullTitle);
-
-    const safeDescription =
-        escapeHtml(description);
-
-    const safePoster =
-        escapeHtml(poster);
-
-    const safeUrl =
-        escapeHtml(movieUrl);
-
-    // =====================================================
-    // READ VITE BUILD
-    // =====================================================
-
-    const indexPath = path.join(
-        process.cwd(),
-        "dist",
-        "index.html"
-    );
-
-    if (!fs.existsSync(indexPath)) {
-        console.error(
-            "dist/index.html not found"
+        const movie = movies.find(
+            (item) =>
+                item["IMDB ID"] === id
         );
 
-        return res.status(500).send(
-            "Build index.html not found"
-        );
-    }
+        if (!movie) {
+            return res.status(404).send(
+                "Movie Not Found"
+            );
+        }
 
-    let html =
-        fs.readFileSync(
+        // -----------------------------
+        // Movie data from JSON
+        // -----------------------------
+
+        const title =
+            movie["Movie Name"] ||
+            "Watch Any Movies";
+
+        const year =
+            movie.Year || "";
+
+        const description =
+            movie.Description ||
+            `Watch ${title} online.`;
+
+        const poster =
+            movie.Poster || "";
+
+        const siteUrl =
+            "https://watch-any-movies.vercel.app";
+
+        const movieUrl =
+            `${siteUrl}/watch/${encodeURIComponent(id)}`;
+
+        // -----------------------------
+        // Escape HTML
+        // -----------------------------
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        const fullTitle =
+            `${title}${year ? ` (${year})` : ""}`;
+
+        const safeTitle =
+            escapeHtml(fullTitle);
+
+        const safeDescription =
+            escapeHtml(description);
+
+        const safePoster =
+            escapeHtml(poster);
+
+        const safeUrl =
+            escapeHtml(movieUrl);
+
+        // -----------------------------
+        // Read Vite index.html
+        // -----------------------------
+
+        const indexPath = path.join(
+            process.cwd(),
+            "dist",
+            "index.html"
+        );
+
+        let html = fs.readFileSync(
             indexPath,
             "utf8"
         );
 
-    // =====================================================
-    // REMOVE OLD TITLE
-    // =====================================================
+        // -----------------------------
+        // Remove DEFAULT OG metadata
+        // -----------------------------
 
-    html = html.replace(
-        /<title[\s\S]*?<\/title>/gi,
-        ""
-    );
+        html = html.replace(
+            /<meta\s+property=["']og:[^>]*>\s*/gi,
+            ""
+        );
 
-    // =====================================================
-    // REMOVE DESCRIPTION
-    // =====================================================
+        html = html.replace(
+            /<meta\s+name=["']twitter:[^>]*>\s*/gi,
+            ""
+        );
 
-    html = html.replace(
-        /<meta[^>]+name=["']description["'][^>]*>/gi,
-        ""
-    );
+        html = html.replace(
+            /<link\s+rel=["']canonical["'][^>]*>\s*/gi,
+            ""
+        );
 
-    // =====================================================
-    // REMOVE OG TAGS
-    // =====================================================
+        // Remove default description
+        html = html.replace(
+            /<meta\s+name=["']description["'][^>]*>\s*/gi,
+            ""
+        );
 
-    html = html.replace(
-        /<meta[^>]+property=["']og:[^"']+["'][^>]*>/gi,
-        ""
-    );
+        // -----------------------------
+        // Movie page title
+        // -----------------------------
 
-    // =====================================================
-    // REMOVE TWITTER TAGS
-    // =====================================================
+        html = html.replace(
+            /<title>[\s\S]*?<\/title>/i,
+            `<title>${safeTitle} - Watch Any Movies</title>`
+        );
 
-    html = html.replace(
-        /<meta[^>]+name=["']twitter:[^"']+["'][^>]*>/gi,
-        ""
-    );
+        // -----------------------------
+        // Movie-specific metadata
+        // -----------------------------
 
-    // =====================================================
-    // REMOVE CANONICAL
-    // =====================================================
-
-    html = html.replace(
-        /<link[^>]+rel=["']canonical["'][^>]*>/gi,
-        ""
-    );
-
-    // =====================================================
-    // CORRECT MOVIE METADATA
-    // =====================================================
-
-    const metadata = `
-
-<title>${safeTitle}</title>
+        const meta = `
+<meta
+    name="description"
+    content="${safeDescription}"
+>
 
 <meta
-name="description"
-content="${safeDescription}"
-
-
-
+    property="og:type"
+    content="video.movie"
+>
 
 <meta
-property="og"
-content="Watch Any Movies"
-
-
-
+    property="og:title"
+    content="${safeTitle} - Watch Any Movies"
+>
 
 <meta
-property="og"
-content="video.movie"
-
-
-
+    property="og:description"
+    content="${safeDescription}"
+>
 
 <meta
-property="og"
-content="${safeTitle}"
-
-
-
+    property="og:image"
+    content="${safePoster}"
+>
 
 <meta
-property="og"
-content="${safeDescription}"
-
-
-
+    property="og:image:alt"
+    content="${safeTitle}"
+>
 
 <meta
-property="og"
-content="${safePoster}"
-
-
-
+    property="og:url"
+    content="${safeUrl}"
+>
 
 <meta
-property="og:image"
-content="${safeTitle}"
-
-
-
+    property="og:site_name"
+    content="Watch Any Movies"
+>
 
 <meta
-property="og"
-content="${safeUrl}"
-
-
-
+    name="twitter:card"
+    content="summary_large_image"
+>
 
 <meta
-property="og:image"
-content="image/jpeg"
-
-
-
+    name="twitter:title"
+    content="${safeTitle} - Watch Any Movies"
+>
 
 <meta
-property="og:image"
-content="500"
-
-
-
+    name="twitter:description"
+    content="${safeDescription}"
+>
 
 <meta
-property="og:image"
-content="750"
-
-
-
+    name="twitter:image"
+    content="${safePoster}"
+>
 
 <meta
-name="twitter"
-content="summary_large_image"
+    name="twitter:image:alt"
+    content="${safeTitle}"
+>
 
+<link
+    rel="canonical"
+    href="${safeUrl}"
+>
+`;
 
+        // -----------------------------
+        // Insert movie metadata
+        // -----------------------------
 
+        html = html.replace(
+            "</head>",
+            `${meta}\n</head>`
+        );
 
-<meta
-name="twitter"
-content="${safeTitle}"
+        // -----------------------------
+        // Cache
+        // -----------------------------
 
+        res.setHeader(
+            "Content-Type",
+            "text/html; charset=utf-8"
+        );
 
+        res.setHeader(
+            "Cache-Control",
+            "public, max-age=300, s-maxage=300"
+        );
 
+        return res.status(200).send(html);
 
-<meta
-name="twitter"
-content="${safeDescription}"
+    } catch (error) {
+        console.error(
+            "Movie OG metadata error:",
+            error
+        );
 
-
-
-
-<meta
-name="twitter"
-content="${safePoster}"
-
-
-
-
-<meta
-name="twitter:image"
-content="${safeTitle}"
-
-
-
-
-<link rel="canonical" href="${safeUrl}" > `;
-
-    // =====================================================
-    // INSERT METADATA
-    // =====================================================
-
-    html = html.replace(
-        /<\/head>/i,
-        `${metadata}\n</head>`
-    );
-
-    // =====================================================
-    // RESPONSE
-    // =====================================================
-
-    res.setHeader(
-        "Content-Type",
-        "text/html; charset=utf-8"
-    );
-
-    // Don't cache movie metadata while testing.
-    res.setHeader(
-        "Cache-Control",
-        "no-store, no-cache, must-revalidate, proxy-revalidate"
-    );
-
-    res.setHeader(
-        "Pragma",
-        "no-cache"
-    );
-
-    res.setHeader(
-        "Expires",
-        "0"
-    );
-
-    return res
-        .status(200)
-        .send(html);
-
-} catch (error) {
-    console.error(
-        "Movie metadata error:",
-        error
-    );
-
-    return res.status(500).send(
-        "Failed to load movie"
-    );
-}
-
+        return res.status(500).send(
+            "Failed to load movie"
+        );
+    }
 }
