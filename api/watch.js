@@ -21,35 +21,35 @@ export default function handler(req, res) {
             "movies.json"
         );
 
-        const json = JSON.parse(
+        const moviesFile =
             fs.readFileSync(
                 moviesPath,
                 "utf8"
-            )
-        );
+            );
 
-        const movies = Array.isArray(json)
-            ? json
-            : json.data || [];
+        const json =
+            JSON.parse(moviesFile);
+
+        const movies =
+            Array.isArray(json)
+                ? json
+                : json.data || [];
 
         // -----------------------------
-        // Find movie by IMDb ID
+        // Find movie
         // -----------------------------
 
-        const movie = movies.find(
-            (item) =>
-                item["IMDB ID"] === id
-        );
+        const movie =
+            movies.find(
+                (item) =>
+                    item["IMDB ID"] === id
+            );
 
         if (!movie) {
             return res.status(404).send(
                 "Movie Not Found"
             );
         }
-
-        // -----------------------------
-        // Movie data from JSON
-        // -----------------------------
 
         const title =
             movie["Movie Name"] ||
@@ -84,11 +84,10 @@ export default function handler(req, res) {
                 .replace(/'/g, "&#039;");
         }
 
-        const fullTitle =
-            `${title}${year ? ` (${year})` : ""}`;
-
         const safeTitle =
-            escapeHtml(fullTitle);
+            escapeHtml(
+                `${title}${year ? ` (${year})` : ""}`
+            );
 
         const safeDescription =
             escapeHtml(description);
@@ -109,47 +108,14 @@ export default function handler(req, res) {
             "index.html"
         );
 
-        let html = fs.readFileSync(
-            indexPath,
-            "utf8"
-        );
+        let html =
+            fs.readFileSync(
+                indexPath,
+                "utf8"
+            );
 
         // -----------------------------
-        // Remove DEFAULT OG metadata
-        // -----------------------------
-
-        html = html.replace(
-            /<meta\s+property=["']og:[^>]*>\s*/gi,
-            ""
-        );
-
-        html = html.replace(
-            /<meta\s+name=["']twitter:[^>]*>\s*/gi,
-            ""
-        );
-
-        html = html.replace(
-            /<link\s+rel=["']canonical["'][^>]*>\s*/gi,
-            ""
-        );
-
-        // Remove default description
-        html = html.replace(
-            /<meta\s+name=["']description["'][^>]*>\s*/gi,
-            ""
-        );
-
-        // -----------------------------
-        // Movie page title
-        // -----------------------------
-
-        html = html.replace(
-            /<title>[\s\S]*?<\/title>/i,
-            `<title>${safeTitle} - Watch Any Movies</title>`
-        );
-
-        // -----------------------------
-        // Movie-specific metadata
+        // OG metadata
         // -----------------------------
 
         const meta = `
@@ -165,7 +131,7 @@ export default function handler(req, res) {
 
 <meta
     property="og:title"
-    content="${safeTitle} - Watch Any Movies"
+    content="${safeTitle}"
 >
 
 <meta
@@ -200,7 +166,7 @@ export default function handler(req, res) {
 
 <meta
     name="twitter:title"
-    content="${safeTitle} - Watch Any Movies"
+    content="${safeTitle}"
 >
 
 <meta
@@ -223,18 +189,29 @@ export default function handler(req, res) {
     href="${safeUrl}"
 >
 `;
+        
+
+// -----------------------------
+// Page title
+// -----------------------------
+
+html = html.replace(
+    /<title>.*?<\/title>/i,
+    `<title>${safeTitle} - Watch Any Movies</title>`
+);
+
+// -----------------------------
+// Insert metadata
+// -----------------------------
+
+html = html.replace(
+    "</head>",
+    `${meta}</head>`
+);
+
 
         // -----------------------------
-        // Insert movie metadata
-        // -----------------------------
-
-        html = html.replace(
-            "</head>",
-            `${meta}\n</head>`
-        );
-
-        // -----------------------------
-        // Cache
+        // Return React app
         // -----------------------------
 
         res.setHeader(
@@ -250,10 +227,7 @@ export default function handler(req, res) {
         return res.status(200).send(html);
 
     } catch (error) {
-        console.error(
-            "Movie OG metadata error:",
-            error
-        );
+        console.error(error);
 
         return res.status(500).send(
             "Failed to load movie"
