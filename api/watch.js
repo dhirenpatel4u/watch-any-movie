@@ -4,9 +4,8 @@ import path from "path";
 export default function handler(req, res) {
 const id = req.query.id;
 
-
 // =====================================================
-// VALIDATE MOVIE ID
+// VALIDATE ID
 // =====================================================
 
 if (!id || Array.isArray(id)) {
@@ -33,18 +32,20 @@ try {
         )
     );
 
-    const movies = Array.isArray(json)
-        ? json
-        : json.data || [];
+    const movies =
+        Array.isArray(json)
+            ? json
+            : json.data || [];
 
     // =================================================
-    // FIND MOVIE BY IMDB ID
+    // FIND MOVIE
     // =================================================
 
     const movie = movies.find(
         (item) =>
-            String(item["IMDB ID"]) ===
-            String(id)
+            String(
+                item["IMDB ID"]
+            ) === String(id)
     );
 
     if (!movie) {
@@ -62,14 +63,16 @@ try {
         "Watch Any Movies";
 
     const year =
-        movie.Year || "";
+        movie.Year ||
+        "";
 
     const description =
         movie.Description ||
         `Watch ${title} online.`;
 
     let poster =
-        movie.Poster || "";
+        movie.Poster ||
+        "";
 
     const siteUrl =
         "https://watch-any-movies.vercel.app";
@@ -78,7 +81,7 @@ try {
         `${siteUrl}/watch/${encodeURIComponent(id)}`;
 
     // =================================================
-    // MAKE POSTER URL ABSOLUTE
+    // ABSOLUTE POSTER URL
     // =================================================
 
     if (
@@ -133,188 +136,151 @@ try {
         escapeHtml(movieUrl);
 
     // =================================================
-    // LOAD VITE BUILD HTML
+    // HTML
+    // =================================================
+    //
+    // Vite is configured to generate:
+    //
+    // /assets/app.js
+    //
+    // CSS files are generated as:
+    //
+    // /assets/<name>.css
+    //
     // =================================================
 
-    const indexPath = path.join(
-        process.cwd(),
-        "dist",
-        "index.html"
-    );
+    const html = `<!doctype html>
 
-    if (!fs.existsSync(indexPath)) {
-        console.error(
-            "dist/index.html was not found"
-        );
+<html lang="en">
 
-        return res.status(500).send(
-            "Built index.html not found"
-        );
-    }
+<head>
 
-    let html =
-        fs.readFileSync(
-            indexPath,
-            "utf8"
-        );
+<meta charset="UTF-8">
 
-    // =================================================
-    // REMOVE STATIC METADATA
-    // =================================================
-
-    html = html.replace(
-        /<title>[\s\S]*?<\/title>/gi,
-        ""
-    );
-
-    html = html.replace(
-        /<meta\s+name=["']description["'][^>]*>\s*/gi,
-        ""
-    );
-
-    html = html.replace(
-        /<meta\s+property=["']og:[^>]*>\s*/gi,
-        ""
-    );
-
-    html = html.replace(
-        /<meta\s+name=["']twitter:[^>]*>\s*/gi,
-        ""
-    );
-
-    html = html.replace(
-        /<link\s+rel=["']canonical["'][^>]*>\s*/gi,
-        ""
-    );
-
-    // =================================================
-    // MOVIE METADATA
-    // =================================================
-
-    const meta = `
-```
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>${safeTitle}</title>
 
 <meta
-name="description"
-content="${safeDescription}"
+    name="description"
+    content="${safeDescription}"
+>
 
+<!-- Open Graph -->
+
+<meta
+    property="og:type"
+    content="video.movie"
 >
 
 <meta
-property="og:type"
-content="video.movie"
-
+    property="og:title"
+    content="${safeTitle}"
 >
 
 <meta
-property="og:title"
-content="${safeTitle}"
-
+    property="og:description"
+    content="${safeDescription}"
 >
 
 <meta
-property="og:description"
-content="${safeDescription}"
-
+    property="og:image"
+    content="${safePoster}"
 >
 
 <meta
-property="og:image"
-content="${safePoster}"
-
+    property="og:image:alt"
+    content="${safeTitle}"
 >
 
 <meta
-property="og:image:alt"
-content="${safeTitle}"
-
+    property="og:url"
+    content="${safeUrl}"
 >
 
 <meta
-property="og:url"
-content="${safeUrl}"
-
+    property="og:site_name"
+    content="Watch Any Movies"
 >
 
 <meta
-property="og:site_name"
-content="Watch Any Movies"
-
+    property="og:image:type"
+    content="image/jpeg"
 >
 
 <meta
-property="og:image:type"
-content="image/jpeg"
-
+    property="og:image:width"
+    content="500"
 >
 
 <meta
-property="og:image:width"
-content="500"
+    property="og:image:height"
+    content="750"
+>
 
+<!-- Twitter -->
+
+<meta
+    name="twitter:card"
+    content="summary_large_image"
 >
 
 <meta
-property="og:image:height"
-content="750"
-
+    name="twitter:title"
+    content="${safeTitle}"
 >
 
 <meta
-name="twitter:card"
-content="summary_large_image"
-
+    name="twitter:description"
+    content="${safeDescription}"
 >
 
 <meta
-name="twitter:title"
-content="${safeTitle}"
-
+    name="twitter:image"
+    content="${safePoster}"
 >
 
 <meta
-name="twitter:description"
-content="${safeDescription}"
-
+    name="twitter:image:alt"
+    content="${safeTitle}"
 >
 
-<meta
-name="twitter:image"
-content="${safePoster}"
-
->
-
-<meta
-name="twitter:image:alt"
-content="${safeTitle}"
-
->
+<!-- Canonical -->
 
 <link
     rel="canonical"
     href="${safeUrl}"
 >
-`;
 
-```
-    // =================================================
-    // INSERT METADATA INTO HEAD
-    // =================================================
+<!-- Favicon -->
 
-    html = html.replace(
-        /<\/head>/i,
-        `${meta}\n</head>`
-    );
+<link
+    rel="icon"
+    type="image/png"
+    href="/your-logo.png"
+>
+
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script
+    type="module"
+    src="/assets/app.js"
+></script>
+
+</body>
+
+</html>`;
 
     // =================================================
-    // IMPORTANT CACHE SETTINGS
+    // CACHE
     // =================================================
-    //
-    // Each movie URL has different metadata.
-    // Do not let the browser/CDN reuse old HTML.
-    //
 
     res.setHeader(
         "Content-Type",
@@ -347,7 +313,7 @@ content="${safeTitle}"
     );
 
     // =================================================
-    // RETURN HTML
+    // RETURN
     // =================================================
 
     return res
@@ -356,7 +322,7 @@ content="${safeTitle}"
 
 } catch (error) {
     console.error(
-        "Movie OG metadata error:",
+        "Movie page error:",
         error
     );
 
