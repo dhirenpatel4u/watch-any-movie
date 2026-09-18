@@ -189,15 +189,26 @@ export default function handler(req, res) {
     href="${safeUrl}"
 >
 `;
+        
 
-        // -----------------------------
-        // Insert metadata
-        // -----------------------------
+// -----------------------------
+// Page title
+// -----------------------------
 
-        html = html.replace(
-            "</head>",
-            `${meta}</head>`
-        );
+html = html.replace(
+    /<title>.*?<\/title>/i,
+    `<title>${safeTitle} - Watch Any Movies</title>`
+);
+
+// -----------------------------
+// Insert metadata
+// -----------------------------
+
+html = html.replace(
+    "</head>",
+    `${meta}</head>`
+);
+
 
         // -----------------------------
         // Return React app
