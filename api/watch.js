@@ -5,7 +5,9 @@ export default function handler(req, res) {
 const id = req.query.id;
 
 if (!id || Array.isArray(id)) {
-    return res.status(400).send("Movie ID missing");
+    return res.status(400).send(
+        "Movie ID missing"
+    );
 }
 
 try {
@@ -37,8 +39,9 @@ try {
 
     const movie = movies.find(
         (item) =>
-            String(item["IMDB ID"]) ===
-            String(id)
+            String(
+                item["IMDB ID"]
+            ) === String(id)
     );
 
     if (!movie) {
@@ -75,7 +78,7 @@ try {
         `${title}${year ? ` (${year})` : ""} - Watch Any Movies`;
 
     // =====================================================
-    // ESCAPE
+    // ESCAPE HTML
     // =====================================================
 
     function escapeHtml(value) {
@@ -100,7 +103,7 @@ try {
         escapeHtml(movieUrl);
 
     // =====================================================
-    // READ VITE BUILD INDEX
+    // READ VITE BUILD
     // =====================================================
 
     const indexPath = path.join(
@@ -130,34 +133,34 @@ try {
     // =====================================================
 
     html = html.replace(
-        /<title>[\s\S]*?<\/title>/gi,
+        /<title[\s\S]*?<\/title>/gi,
         ""
     );
 
     // =====================================================
-    // REMOVE OLD DESCRIPTION
+    // REMOVE DESCRIPTION
     // =====================================================
 
     html = html.replace(
-        /<meta\s+name=["']description["'][^>]*>/gi,
+        /<meta[^>]+name=["']description["'][^>]*>/gi,
         ""
     );
 
     // =====================================================
-    // REMOVE ALL OG TAGS
+    // REMOVE OG TAGS
     // =====================================================
 
     html = html.replace(
-        /<meta\s+property=["']og:[^>]*>/gi,
+        /<meta[^>]+property=["']og:[^"']+["'][^>]*>/gi,
         ""
     );
 
     // =====================================================
-    // REMOVE ALL TWITTER TAGS
+    // REMOVE TWITTER TAGS
     // =====================================================
 
     html = html.replace(
-        /<meta\s+name=["']twitter:[^>]*>/gi,
+        /<meta[^>]+name=["']twitter:[^"']+["'][^>]*>/gi,
         ""
     );
 
@@ -166,41 +169,12 @@ try {
     // =====================================================
 
     html = html.replace(
-        /<link\s+rel=["']canonical["'][^>]*>/gi,
+        /<link[^>]+rel=["']canonical["'][^>]*>/gi,
         ""
     );
 
     // =====================================================
-    // REMOVE ANY BADLY GENERATED META TAGS
-    // =====================================================
-
-    html = html.replace(
-        /<meta\s+property=["'][^"']*["']\s+content=["'][^"']*["']\s*>/gi,
-        (tag) => {
-            const propertyMatch =
-                tag.match(
-                    /property=["']([^"']+)["']/i
-                );
-
-            if (!propertyMatch) {
-                return tag;
-            }
-
-            const property =
-                propertyMatch[1];
-
-            if (
-                property.startsWith("og:")
-            ) {
-                return "";
-            }
-
-            return tag;
-        }
-    );
-
-    // =====================================================
-    // MOVIE METADATA
+    // CORRECT MOVIE METADATA
     // =====================================================
 
     const metadata = `
@@ -217,6 +191,13 @@ content="${safeDescription}"
 <meta
 property="og"
 content="Watch Any Movies"
+
+
+
+
+<meta
+property="og"
+content="video.movie"
 
 
 
@@ -243,8 +224,8 @@ content="${safePoster}"
 
 
 <meta
-property="og"
-content="video.movie"
+property="og:image"
+content="${safeTitle}"
 
 
 
@@ -252,13 +233,6 @@ content="video.movie"
 <meta
 property="og"
 content="${safeUrl}"
-
-
-
-
-<meta
-property="og:image"
-content="${safeTitle}"
 
 
 
@@ -322,7 +296,7 @@ content="${safeTitle}"
 <link rel="canonical" href="${safeUrl}" > `;
 
     // =====================================================
-    // INSERT BEFORE </head>
+    // INSERT METADATA
     // =====================================================
 
     html = html.replace(
@@ -339,19 +313,20 @@ content="${safeTitle}"
         "text/html; charset=utf-8"
     );
 
+    // Don't cache movie metadata while testing.
     res.setHeader(
         "Cache-Control",
         "no-store, no-cache, must-revalidate, proxy-revalidate"
     );
 
     res.setHeader(
-        "CDN-Cache-Control",
-        "no-store"
+        "Pragma",
+        "no-cache"
     );
 
     res.setHeader(
-        "Vercel-CDN-Cache-Control",
-        "no-store"
+        "Expires",
+        "0"
     );
 
     return res
