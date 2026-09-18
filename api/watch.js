@@ -5,15 +5,13 @@ export default function handler(req, res) {
 const id = req.query.id;
 
 if (!id || Array.isArray(id)) {
-    return res.status(400).send(
-        "Movie ID missing"
-    );
+    return res.status(400).send("Movie ID missing");
 }
 
 try {
-    // =================================================
+    // =====================================================
     // LOAD MOVIES.JSON
-    // =================================================
+    // =====================================================
 
     const moviesPath = path.join(
         process.cwd(),
@@ -33,15 +31,14 @@ try {
             ? json
             : json.data || [];
 
-    // =================================================
+    // =====================================================
     // FIND MOVIE
-    // =================================================
+    // =====================================================
 
     const movie = movies.find(
         (item) =>
-            String(
-                item["IMDB ID"]
-            ) === String(id)
+            String(item["IMDB ID"]) ===
+            String(id)
     );
 
     if (!movie) {
@@ -50,9 +47,9 @@ try {
         );
     }
 
-    // =================================================
+    // =====================================================
     // MOVIE DATA
-    // =================================================
+    // =====================================================
 
     const title =
         movie["Movie Name"] ||
@@ -65,7 +62,7 @@ try {
         movie.Description ||
         `Watch ${title} online.`;
 
-    let poster =
+    const poster =
         movie.Poster || "";
 
     const siteUrl =
@@ -74,48 +71,21 @@ try {
     const movieUrl =
         `${siteUrl}/watch/${encodeURIComponent(id)}`;
 
-    // =================================================
-    // ABSOLUTE POSTER URL
-    // =================================================
+    const fullTitle =
+        `${title}${year ? ` (${year})` : ""} - Watch Any Movies`;
 
-    if (
-        poster &&
-        poster.startsWith("/")
-    ) {
-        poster =
-            `${siteUrl}${poster}`;
-    }
-
-    // =================================================
-    // ESCAPE HTML
-    // =================================================
+    // =====================================================
+    // ESCAPE
+    // =====================================================
 
     function escapeHtml(value) {
         return String(value)
-            .replace(
-                /&/g,
-                "&amp;"
-            )
-            .replace(
-                /</g,
-                "&lt;"
-            )
-            .replace(
-                />/g,
-                "&gt;"
-            )
-            .replace(
-                /"/g,
-                "&quot;"
-            )
-            .replace(
-                /'/g,
-                "&#039;"
-            );
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
     }
-
-    const fullTitle =
-        `${title}${year ? ` (${year})` : ""} - Watch Any Movies`;
 
     const safeTitle =
         escapeHtml(fullTitle);
@@ -129,9 +99,9 @@ try {
     const safeUrl =
         escapeHtml(movieUrl);
 
-    // =================================================
-    // READ VITE BUILD
-    // =================================================
+    // =====================================================
+    // READ VITE BUILD INDEX
+    // =====================================================
 
     const indexPath = path.join(
         process.cwd(),
@@ -141,8 +111,7 @@ try {
 
     if (!fs.existsSync(indexPath)) {
         console.error(
-            "dist/index.html not found:",
-            indexPath
+            "dist/index.html not found"
         );
 
         return res.status(500).send(
@@ -156,40 +125,85 @@ try {
             "utf8"
         );
 
-    // =================================================
-    // REMOVE OLD METADATA
-    // =================================================
+    // =====================================================
+    // REMOVE OLD TITLE
+    // =====================================================
 
     html = html.replace(
-        /<title>[\s\S]*?<\/title>/i,
+        /<title>[\s\S]*?<\/title>/gi,
         ""
     );
 
+    // =====================================================
+    // REMOVE OLD DESCRIPTION
+    // =====================================================
+
     html = html.replace(
-        /<meta\s+name=["']description["'][^>]*>\s*/gi,
+        /<meta\s+name=["']description["'][^>]*>/gi,
         ""
     );
 
+    // =====================================================
+    // REMOVE ALL OG TAGS
+    // =====================================================
+
     html = html.replace(
-        /<meta\s+property=["']og:[^>]*>\s*/gi,
+        /<meta\s+property=["']og:[^>]*>/gi,
         ""
     );
 
+    // =====================================================
+    // REMOVE ALL TWITTER TAGS
+    // =====================================================
+
     html = html.replace(
-        /<meta\s+name=["']twitter:[^>]*>\s*/gi,
+        /<meta\s+name=["']twitter:[^>]*>/gi,
         ""
     );
 
+    // =====================================================
+    // REMOVE CANONICAL
+    // =====================================================
+
     html = html.replace(
-        /<link\s+rel=["']canonical["'][^>]*>\s*/gi,
+        /<link\s+rel=["']canonical["'][^>]*>/gi,
         ""
     );
 
-    // =================================================
+    // =====================================================
+    // REMOVE ANY BADLY GENERATED META TAGS
+    // =====================================================
+
+    html = html.replace(
+        /<meta\s+property=["'][^"']*["']\s+content=["'][^"']*["']\s*>/gi,
+        (tag) => {
+            const propertyMatch =
+                tag.match(
+                    /property=["']([^"']+)["']/i
+                );
+
+            if (!propertyMatch) {
+                return tag;
+            }
+
+            const property =
+                propertyMatch[1];
+
+            if (
+                property.startsWith("og:")
+            ) {
+                return "";
+            }
+
+            return tag;
+        }
+    );
+
+    // =====================================================
     // MOVIE METADATA
-    // =================================================
+    // =====================================================
 
-    const meta = `
+    const metadata = `
 
 <title>${safeTitle}</title>
 
@@ -202,7 +216,7 @@ content="${safeDescription}"
 
 <meta
 property="og"
-content="video.movie"
+content="Watch Any Movies"
 
 
 
@@ -229,8 +243,8 @@ content="${safePoster}"
 
 
 <meta
-property="og:image"
-content="${safeTitle}"
+property="og"
+content="video.movie"
 
 
 
@@ -243,8 +257,8 @@ content="${safeUrl}"
 
 
 <meta
-property="og"
-content="Watch Any Movies"
+property="og:image"
+content="${safeTitle}"
 
 
 
@@ -307,18 +321,18 @@ content="${safeTitle}"
 
 <link rel="canonical" href="${safeUrl}" > `;
 
-    // =================================================
-    // INSERT METADATA
-    // =================================================
+    // =====================================================
+    // INSERT BEFORE </head>
+    // =====================================================
 
     html = html.replace(
         /<\/head>/i,
-        `${meta}\n</head>`
+        `${metadata}\n</head>`
     );
 
-    // =================================================
-    // CACHE
-    // =================================================
+    // =====================================================
+    // RESPONSE
+    // =====================================================
 
     res.setHeader(
         "Content-Type",
@@ -331,18 +345,14 @@ content="${safeTitle}"
     );
 
     res.setHeader(
-        "Pragma",
-        "no-cache"
+        "CDN-Cache-Control",
+        "no-store"
     );
 
     res.setHeader(
-        "Expires",
-        "0"
+        "Vercel-CDN-Cache-Control",
+        "no-store"
     );
-
-    // =================================================
-    // RETURN
-    // =================================================
 
     return res
         .status(200)
@@ -350,7 +360,7 @@ content="${safeTitle}"
 
 } catch (error) {
     console.error(
-        "Movie OG metadata error:",
+        "Movie metadata error:",
         error
     );
 
