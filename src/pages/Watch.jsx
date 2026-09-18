@@ -43,7 +43,7 @@ if (
 }
 
 // =================================================
-// PAGE TITLE
+// TITLE
 // =================================================
 
 document.title =
@@ -80,6 +80,11 @@ function setMeta(
     }
 
     element.setAttribute(
+        attribute,
+        value
+    );
+
+    element.setAttribute(
         "content",
         value
     );
@@ -98,6 +103,12 @@ setMeta(
 // =================================================
 // OPEN GRAPH
 // =================================================
+
+setMeta(
+    'meta[property="og:site_name"]',
+    "property",
+    "Watch Any Movies"
+);
 
 setMeta(
     'meta[property="og:type"]',
@@ -134,16 +145,6 @@ setMeta(
     "property",
     movieUrl
 );
-
-setMeta(
-    'meta[property="og:site_name"]',
-    "property",
-    "Watch Any Movies"
-);
-
-// =================================================
-// OG IMAGE
-// =================================================
 
 setMeta(
     'meta[property="og:image:type"]',
@@ -308,7 +309,10 @@ useEffect(() => {
                             ) !==
                             String(id)
                     )
-                    .slice(0, 20);
+                    .slice(
+                        0,
+                        20
+                    );
 
             setRandom(
                 randomMovies
@@ -358,7 +362,7 @@ useEffect(() => {
     );
 
     // =============================================
-    // UPDATE BROWSER METADATA
+    // UPDATE METADATA
     // =============================================
 
     if (currentMovie) {
@@ -381,14 +385,18 @@ useEffect(() => {
 
             let recent =
                 stored
-                    ? JSON.parse(stored)
+                    ? JSON.parse(
+                        stored
+                    )
                     : [];
 
             recent =
                 recent.filter(
                     (item) =>
                         String(
-                            item["IMDB ID"]
+                            item[
+                                "IMDB ID"
+                            ]
                         ) !==
                         String(
                             currentMovie[
@@ -486,8 +494,6 @@ return (
                 allowFullScreen
             />
 
-            {/* Movie Title */}
-
             <h1>
                 {
                     movie[
@@ -496,15 +502,11 @@ return (
                 }
             </h1>
 
-            {/* Year */}
-
             <p className="movie-year">
                 {movie.Year}
             </p>
 
             <div className="movie-description-actors-space"></div>
-
-            {/* Description */}
 
             {movie.Description && (
                 <p className="movie-description">
@@ -516,13 +518,8 @@ return (
 
             <div className="movie-description-actors-space"></div>
 
-            {/* ==================================
-                ACTORS
-            ================================== */}
-
             {movie.Actors &&
-                movie.Actors.length >
-                    0 && (
+                movie.Actors.length > 0 && (
 
                 <p className="movie-actors">
 
@@ -553,8 +550,7 @@ return (
                                 </Link>
 
                                 {index <
-                                    movie.Actors.length -
-                                        1 &&
+                                    movie.Actors.length - 1 &&
                                     ", "}
 
                             </span>
@@ -601,8 +597,6 @@ return (
                         }`}
                     >
 
-                        {/* Poster */}
-
                         <div className="poster-wrapper">
 
                             <img
@@ -629,8 +623,6 @@ return (
 
                         </div>
 
-                        {/* Information */}
-
                         <div className="side-info">
 
                             <h3>
@@ -640,8 +632,6 @@ return (
                                     ]
                                 }
                             </h3>
-
-                            {/* Actors */}
 
                             {item.Actors &&
                                 item.Actors.length >
@@ -677,8 +667,7 @@ return (
                                                 </Link>
 
                                                 {index <
-                                                    item.Actors.length -
-                                                        1 &&
+                                                    item.Actors.length - 1 &&
                                                     ", "}
 
                                             </span>
