@@ -1,232 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-// =====================================================
-// UPDATE MOVIE PAGE METADATA
-// =====================================================
-
-function updateMovieMetadata(movie, id) {
-    if (!movie || !id) return;
-
-    const title =
-        movie["Movie Name"] ||
-        "Watch Any Movies";
-
-    const year =
-        movie.Year || "";
-
-    const fullTitle =
-        `${title}${year ? ` (${year})` : ""} - Watch Any Movies`;
-
-    const description =
-        movie.Description ||
-        `Watch ${title} online.`;
-
-    const poster =
-        movie.Poster ||
-        "";
-
-    const movieUrl =
-        `${window.location.origin}/watch/${encodeURIComponent(id)}`;
-
-    // -----------------------------------------
-    // Browser title
-    // -----------------------------------------
-
-    document.title = fullTitle;
-
-    // -----------------------------------------
-    // Helper for meta tags
-    // -----------------------------------------
-
-    function setMeta(
-        selector,
-        attribute,
-        value
-    ) {
-        let element =
-            document.head.querySelector(
-                selector
-            );
-
-        if (!element) {
-            element =
-                document.createElement("meta");
-
-            element.setAttribute(
-                attribute,
-                value
-            );
-
-            document.head.appendChild(
-                element
-            );
-        }
-
-        element.setAttribute(
-            "content",
-            value
-        );
-    }
-
-    // -----------------------------------------
-    // Description
-    // -----------------------------------------
-
-    setMeta(
-        'meta[name="description"]',
-        "name",
-        description
-    );
-
-    // -----------------------------------------
-    // Open Graph
-    // -----------------------------------------
-
-    setMeta(
-        'meta[property="og:type"]',
-        "property",
-        "video.movie"
-    );
-
-    setMeta(
-        'meta[property="og:title"]',
-        "property",
-        fullTitle
-    );
-
-    setMeta(
-        'meta[property="og:description"]',
-        "property",
-        description
-    );
-
-    setMeta(
-        'meta[property="og:image"]',
-        "property",
-        poster
-    );
-
-    setMeta(
-        'meta[property="og:image:alt"]',
-        "property",
-        title
-    );
-
-    setMeta(
-        'meta[property="og:url"]',
-        "property",
-        movieUrl
-    );
-
-    setMeta(
-        'meta[property="og:site_name"]',
-        "property",
-        "Watch Any Movies"
-    );
-
-    // -----------------------------------------
-    // OG image information
-    // -----------------------------------------
-
-    setMeta(
-        'meta[property="og:image:type"]',
-        "property",
-        "image/jpeg"
-    );
-
-    setMeta(
-        'meta[property="og:image:width"]',
-        "property",
-        "500"
-    );
-
-    setMeta(
-        'meta[property="og:image:height"]',
-        "property",
-        "750"
-    );
-
-    // -----------------------------------------
-    // Twitter
-    // -----------------------------------------
-
-    setMeta(
-        'meta[name="twitter:card"]',
-        "name",
-        "summary_large_image"
-    );
-
-    setMeta(
-        'meta[name="twitter:title"]',
-        "name",
-        fullTitle
-    );
-
-    setMeta(
-        'meta[name="twitter:description"]',
-        "name",
-        description
-    );
-
-    setMeta(
-        'meta[name="twitter:image"]',
-        "name",
-        poster
-    );
-
-    setMeta(
-        'meta[name="twitter:image:alt"]',
-        "name",
-        title
-    );
-
-    // -----------------------------------------
-    // Canonical URL
-    // -----------------------------------------
-
-    let canonical =
-        document.head.querySelector(
-            'link[rel="canonical"]'
-        );
-
-    if (!canonical) {
-        canonical =
-            document.createElement("link");
-
-        canonical.setAttribute(
-            "rel",
-            "canonical"
-        );
-
-        document.head.appendChild(
-            canonical
-        );
-    }
-
-    canonical.setAttribute(
-        "href",
-        movieUrl
-    );
-}
-
 export default function Watch() {
     const { id } = useParams();
 
-    const [movies, setMovies] =
-        useState([]);
-
-    const [movie, setMovie] =
-        useState(null);
-
-    const [random, setRandom] =
-        useState([]);
-
-    const [loading, setLoading] =
-        useState(true);
+    const [movies, setMovies] = useState([]);
+    const [movie, setMovie] = useState(null);
+    const [random, setRandom] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     // =====================================================
-    // LOAD MOVIES + RANDOM RECOMMENDATIONS
+    // LOAD MOVIES + RANDOM RECOMMENDATIONS ONLY ONCE
     // =====================================================
 
     useEffect(() => {
@@ -235,12 +19,7 @@ export default function Watch() {
                 setLoading(true);
 
                 const response =
-                    await fetch(
-                        "/movies.json",
-                        {
-                            cache: "no-cache"
-                        }
-                    );
+                    await fetch("/movies.json");
 
                 if (!response.ok) {
                     throw new Error(
@@ -251,37 +30,28 @@ export default function Watch() {
                 const json =
                     await response.json();
 
-                const data =
-                    Array.isArray(json)
-                        ? json
-                        : json.data || [];
+                const data = Array.isArray(json)
+                    ? json
+                    : json.data || [];
 
                 setMovies(data);
 
-                // -----------------------------------------
-                // Random recommendations
-                // -----------------------------------------
+                // Generate random recommendations
+                // ONLY when Watch page loads
 
-                const shuffled =
-                    [...data].sort(
-                        () =>
-                            Math.random() -
-                            0.5
-                    );
+                const shuffled = [...data].sort(
+                    () => Math.random() - 0.5
+                );
 
                 const randomMovies =
                     shuffled
                         .filter(
                             (item) =>
-                                item[
-                                    "IMDB ID"
-                                ] !== id
+                                item["IMDB ID"] !== id
                         )
                         .slice(0, 20);
 
-                setRandom(
-                    randomMovies
-                );
+                setRandom(randomMovies);
 
             } catch (error) {
                 console.error(
@@ -309,25 +79,9 @@ export default function Watch() {
                     item["IMDB ID"] === id
             );
 
-        setMovie(
-            currentMovie || null
-        );
+        setMovie(currentMovie || null);
 
-        // -----------------------------------------
-        // IMPORTANT:
-        // Update metadata immediately
-        // -----------------------------------------
-
-        if (currentMovie) {
-            updateMovieMetadata(
-                currentMovie,
-                id
-            );
-        }
-
-        // -----------------------------------------
         // Recently watched
-        // -----------------------------------------
 
         if (currentMovie) {
             try {
@@ -336,37 +90,24 @@ export default function Watch() {
                         "recently_watched"
                     );
 
-                let recent =
-                    stored
-                        ? JSON.parse(stored)
-                        : [];
+                let recent = stored
+                    ? JSON.parse(stored)
+                    : [];
 
-                recent =
-                    recent.filter(
-                        (item) =>
-                            item[
-                                "IMDB ID"
-                            ] !==
-                            currentMovie[
-                                "IMDB ID"
-                            ]
-                    );
-
-                recent.unshift(
-                    currentMovie
+                recent = recent.filter(
+                    (item) =>
+                        item["IMDB ID"] !==
+                        currentMovie["IMDB ID"]
                 );
 
+                recent.unshift(currentMovie);
+
                 recent =
-                    recent.slice(
-                        0,
-                        7
-                    );
+                    recent.slice(0, 7);
 
                 localStorage.setItem(
                     "recently_watched",
-                    JSON.stringify(
-                        recent
-                    )
+                    JSON.stringify(recent)
                 );
 
             } catch (error) {
@@ -389,7 +130,7 @@ export default function Watch() {
             (item) =>
                 item["IMDB ID"] !==
                 movie?.["IMDB ID"]
-        )
+        ),
     ].filter(Boolean);
 
     // =====================================================
@@ -416,10 +157,6 @@ export default function Watch() {
         );
     }
 
-    // =====================================================
-    // RENDER
-    // =====================================================
-
     return (
         <div className="watch-container">
 
@@ -431,22 +168,14 @@ export default function Watch() {
 
                 <iframe
                     src={`https://slast430did.com/play/${id}`}
-                    title={
-                        movie[
-                            "Movie Name"
-                        ]
-                    }
+                    title={movie["Movie Name"]}
                     allowFullScreen
                 />
 
                 {/* Movie Title */}
 
                 <h1>
-                    {
-                        movie[
-                            "Movie Name"
-                        ]
-                    }
+                    {movie["Movie Name"]}
                 </h1>
 
                 {/* Year */}
@@ -461,9 +190,7 @@ export default function Watch() {
 
                 {movie.Description && (
                     <p className="movie-description">
-                        {
-                            movie.Description
-                        }
+                        {movie.Description}
                     </p>
                 )}
 
@@ -474,8 +201,7 @@ export default function Watch() {
                 ================================== */}
 
                 {movie.Actors &&
-                    movie.Actors.length >
-                        0 && (
+                    movie.Actors.length > 0 && (
 
                     <p className="movie-actors">
 
@@ -484,32 +210,23 @@ export default function Watch() {
                         </strong>{" "}
 
                         {movie.Actors.map(
-                            (
-                                actor,
-                                index
-                            ) => (
+                            (actor, index) => (
                                 <span
-                                    key={
-                                        actor
-                                    }
+                                    key={actor}
                                 >
-
                                     <Link
                                         to={`/actor/${encodeURIComponent(
                                             actor
                                         )}`}
                                         className="actor-link"
                                     >
-                                        {
-                                            actor
-                                        }
+                                        {actor}
                                     </Link>
 
                                     {index <
                                         movie.Actors.length -
                                             1 &&
                                         ", "}
-
                                 </span>
                             )
                         )}
@@ -535,15 +252,11 @@ export default function Watch() {
                     (item) => (
                         <Link
                             key={
-                                item[
-                                    "IMDB ID"
-                                ]
+                                item["IMDB ID"]
                             }
                             to={`/watch/${item["IMDB ID"]}`}
                             className={`side-card ${
-                                item[
-                                    "IMDB ID"
-                                ] === id
+                                item["IMDB ID"] === id
                                     ? "active"
                                     : ""
                             }`}
@@ -554,9 +267,7 @@ export default function Watch() {
                             <div className="poster-wrapper">
 
                                 <img
-                                    src={
-                                        item.Poster
-                                    }
+                                    src={item.Poster}
                                     alt={
                                         item[
                                             "Movie Name"
@@ -604,7 +315,6 @@ export default function Watch() {
                                                         actor
                                                     }
                                                 >
-
                                                     <Link
                                                         to={`/actor/${encodeURIComponent(
                                                             actor
@@ -622,10 +332,11 @@ export default function Watch() {
                                                     </Link>
 
                                                     {index <
-                                                        item.Actors.length -
+                                                        item
+                                                            .Actors
+                                                            .length -
                                                             1 &&
                                                         ", "}
-
                                                 </span>
                                             )
                                         )}
@@ -634,9 +345,7 @@ export default function Watch() {
                                 )}
 
                                 <p>
-                                    {
-                                        item.Year
-                                    }
+                                    {item.Year}
                                 </p>
 
                             </div>
