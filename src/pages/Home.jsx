@@ -10,7 +10,13 @@ import Recent from "../components/Recent";
 export default function Home({ search }) {
 
     /*
-     * Detect mobile first
+     * =====================================================
+     * INITIAL HELPERS
+     * =====================================================
+     */
+
+    /*
+     * Detect mobile.
      */
     const [isMobile, setIsMobile] =
         useState(
@@ -18,8 +24,7 @@ export default function Home({ search }) {
         );
 
     /*
-     * Restore previously loaded mobile
-     * batch immediately.
+     * Restore mobile loaded count.
      */
     const getInitialMobileCount = () => {
         try {
@@ -45,9 +50,7 @@ export default function Home({ search }) {
     };
 
     /*
-     * Restore movies immediately from cache.
-     * This prevents "Loading Movies..." from
-     * flashing when returning from Watch page.
+     * Restore cached movies.
      */
     const getInitialMovies = () => {
         try {
@@ -71,6 +74,38 @@ export default function Home({ search }) {
         return [];
     };
 
+    /*
+     * Restore desktop page.
+     */
+    const getInitialPage = () => {
+        try {
+            const saved =
+                sessionStorage.getItem(
+                    "home_desktop_page"
+                );
+
+            const page =
+                Number(saved);
+
+            if (
+                Number.isFinite(page) &&
+                page >= 1
+            ) {
+                return page;
+            }
+        } catch {
+            // Ignore
+        }
+
+        return 1;
+    };
+
+    /*
+     * =====================================================
+     * INITIAL DATA
+     * =====================================================
+     */
+
     const initialMovies =
         getInitialMovies();
 
@@ -86,24 +121,29 @@ export default function Home({ search }) {
         useState([]);
 
     /*
-     * If cached movies exist, don't show
-     * the loading screen.
+     * If cached movies exist,
+     * don't show loading.
      */
     const [loading, setLoading] =
         useState(
             initialMovies.length === 0
         );
 
+    /*
+     * Restore desktop page number.
+     */
     const [page, setPage] =
-        useState(1);
+        useState(getInitialPage);
 
     const [trending, setTrending] =
         useState([]);
 
     /*
-     * Disable browser's automatic
-     * scroll restoration.
+     * =====================================================
+     * DISABLE BROWSER SCROLL RESTORATION
+     * =====================================================
      */
+
     useEffect(() => {
         if (
             "scrollRestoration" in
@@ -125,8 +165,11 @@ export default function Home({ search }) {
     }, []);
 
     /*
-     * Mobile / desktop detection
+     * =====================================================
+     * MOBILE / DESKTOP DETECTION
+     * =====================================================
      */
+
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(
@@ -148,8 +191,11 @@ export default function Home({ search }) {
     }, []);
 
     /*
-     * Load movies
+     * =====================================================
+     * LOAD MOVIES
+     * =====================================================
      */
+
     useEffect(() => {
         async function loadMovies() {
             try {
@@ -170,13 +216,13 @@ export default function Home({ search }) {
                 const movieData =
                     json.data || json;
 
+                /*
+                 * Update movies.
+                 */
                 setMovies(movieData);
 
                 /*
-                 * IMPORTANT:
-                 * Cache movies so Home can render
-                 * immediately when returning from
-                 * the Watch page.
+                 * Cache movies.
                  */
                 try {
                     sessionStorage.setItem(
@@ -190,7 +236,7 @@ export default function Home({ search }) {
                 }
 
                 /*
-                 * Random 5 Hero movies
+                 * Random 5 Hero movies.
                  */
                 setHeroMovies(
                     [...movieData]
@@ -211,8 +257,8 @@ export default function Home({ search }) {
                 );
 
                 /*
-                 * If cached movies exist, keep
-                 * showing them.
+                 * Cached movies, if any,
+                 * remain visible.
                  */
                 setLoading(false);
             }
@@ -222,9 +268,11 @@ export default function Home({ search }) {
     }, []);
 
     /*
-     * If cached movies already exist,
-     * create Hero movies immediately.
+     * =====================================================
+     * HERO FROM CACHED MOVIES
+     * =====================================================
      */
+
     useEffect(() => {
         if (
             movies.length > 0 &&
@@ -240,30 +288,57 @@ export default function Home({ search }) {
                     .slice(0, 5)
             );
         }
-    }, [movies, heroMovies.length]);
+    }, [
+        movies,
+        heroMovies.length
+    ]);
 
     /*
-     * Search changed
+     * =====================================================
+     * SEARCH CHANGED
+     * =====================================================
      */
+
     useEffect(() => {
-        setPage(1);
 
         /*
-         * Only reset mobile count
-         * for a new search.
+         * Search is a new view,
+         * therefore page starts at 1.
+         */
+        setPage(1);
+
+        try {
+            sessionStorage.setItem(
+                "home_desktop_page",
+                "1"
+            );
+        } catch {
+            // Ignore
+        }
+
+        /*
+         * Reset mobile count for search.
          */
         if (search.trim() !== "") {
             setMobileCount(40);
 
-            sessionStorage.removeItem(
-                "home_mobile_count"
-            );
+            try {
+                sessionStorage.removeItem(
+                    "home_mobile_count"
+                );
+            } catch {
+                // Ignore
+            }
         }
+
     }, [search]);
 
     /*
-     * Filter movies
+     * =====================================================
+     * FILTER MOVIES
+     * =====================================================
      */
+
     const filtered =
         movies.filter((movie) =>
             String(
@@ -280,8 +355,11 @@ export default function Home({ search }) {
         search.trim() !== "";
 
     /*
-     * Latest
+     * =====================================================
+     * LATEST
+     * =====================================================
      */
+
     const latest =
         filtered
             .filter(
@@ -293,8 +371,11 @@ export default function Home({ search }) {
             .slice(0, 14);
 
     /*
-     * Trending
+     * =====================================================
+     * TRENDING
+     * =====================================================
      */
+
     useEffect(() => {
         if (!filtered.length) {
             setTrending([]);
@@ -310,11 +391,18 @@ export default function Home({ search }) {
                 )
                 .slice(0, 14)
         );
-    }, [movies, search]);
+
+    }, [
+        movies,
+        search
+    ]);
 
     /*
-     * Desktop pagination
+     * =====================================================
+     * DESKTOP PAGINATION
+     * =====================================================
      */
+
     const DESKTOP_PER_PAGE = 35;
 
     const totalPages =
@@ -322,6 +410,33 @@ export default function Home({ search }) {
             filtered.length /
                 DESKTOP_PER_PAGE
         );
+
+    /*
+     * Make sure restored page is
+     * within available pages.
+     */
+    useEffect(() => {
+
+        if (
+            totalPages > 0 &&
+            page > totalPages
+        ) {
+            setPage(totalPages);
+
+            try {
+                sessionStorage.setItem(
+                    "home_desktop_page",
+                    String(totalPages)
+                );
+            } catch {
+                // Ignore
+            }
+        }
+
+    }, [
+        totalPages,
+        page
+    ]);
 
     const desktopMovies =
         filtered.slice(
@@ -333,8 +448,11 @@ export default function Home({ search }) {
         );
 
     /*
-     * Mobile movies
+     * =====================================================
+     * MOBILE MOVIES
+     * =====================================================
      */
+
     const mobileMovies =
         filtered.slice(
             0,
@@ -342,9 +460,13 @@ export default function Home({ search }) {
         );
 
     /*
+     * =====================================================
      * MOBILE INFINITE SCROLL
+     * =====================================================
      */
+
     useEffect(() => {
+
         if (!isMobile) return;
 
         if (isSearching) return;
@@ -359,11 +481,16 @@ export default function Home({ search }) {
                 document.documentElement
                     .scrollHeight;
 
+            /*
+             * Load next batch
+             * 500px before bottom.
+             */
             if (
                 documentHeight -
                     scrollPosition <
                 500
             ) {
+
                 setMobileCount(
                     (current) => {
 
@@ -420,9 +547,107 @@ export default function Home({ search }) {
     ]);
 
     /*
-     * RESTORE SCROLL POSITION
+     * =====================================================
+     * SAVE DESKTOP PAGE
+     * =====================================================
      */
+
     useEffect(() => {
+
+        if (loading) return;
+
+        /*
+         * Don't save search page as the
+         * normal home page.
+         */
+        if (isSearching) return;
+
+        try {
+            sessionStorage.setItem(
+                "home_desktop_page",
+                String(page)
+            );
+        } catch {
+            // Ignore
+        }
+
+    }, [
+        page,
+        loading,
+        isSearching
+    ]);
+
+    /*
+     * =====================================================
+     * SAVE SCROLL POSITION
+     * =====================================================
+     *
+     * Works for both desktop and mobile.
+     */
+
+    useEffect(() => {
+
+        const saveScrollPosition = () => {
+
+            /*
+             * Don't overwrite saved position
+             * while the page is restoring it.
+             */
+            if (
+                window.__restoringHomeScroll
+            ) {
+                return;
+            }
+
+            try {
+                sessionStorage.setItem(
+                    "home_scroll_position",
+                    String(
+                        window.scrollY
+                    )
+                );
+            } catch {
+                // Ignore
+            }
+        };
+
+        window.addEventListener(
+            "scroll",
+            saveScrollPosition,
+            {
+                passive: true
+            }
+        );
+
+        /*
+         * Save when leaving page.
+         */
+        return () => {
+
+            saveScrollPosition();
+
+            window.removeEventListener(
+                "scroll",
+                saveScrollPosition
+            );
+        };
+
+    }, []);
+
+    /*
+     * =====================================================
+     * RESTORE SCROLL POSITION
+     * =====================================================
+     *
+     * Important:
+     * page is included in dependencies.
+     *
+     * Therefore desktop page is rendered first,
+     * then exact scroll position is restored.
+     */
+
+    useEffect(() => {
+
         if (loading) return;
 
         const savedPosition =
@@ -450,6 +675,12 @@ export default function Home({ search }) {
 
         let attempts = 0;
 
+        /*
+         * Mark that restoration is in progress.
+         */
+        window.__restoringHomeScroll =
+            true;
+
         const restore = () => {
 
             attempts++;
@@ -462,11 +693,15 @@ export default function Home({ search }) {
                         window.innerHeight
                 );
 
+            /*
+             * Wait until enough content exists.
+             */
             if (
                 maxScroll <
                     position &&
-                attempts < 30
+                attempts < 60
             ) {
+
                 requestAnimationFrame(
                     restore
                 );
@@ -475,27 +710,47 @@ export default function Home({ search }) {
             }
 
             window.scrollTo({
-                top: position,
+                top: Math.min(
+                    position,
+                    maxScroll
+                ),
                 left: 0,
                 behavior: "instant"
             });
 
-            sessionStorage.removeItem(
-                "home_scroll_position"
-            );
+            /*
+             * Allow scroll saving again
+             * after restoration.
+             */
+            requestAnimationFrame(() => {
+                window.__restoringHomeScroll =
+                    false;
+            });
         };
 
+        /*
+         * Wait for React to finish rendering.
+         */
         requestAnimationFrame(() => {
+
             requestAnimationFrame(
                 restore
             );
+
         });
 
-    }, [loading, mobileCount]);
+    }, [
+        loading,
+        page,
+        mobileCount
+    ]);
 
     /*
-     * Loading
+     * =====================================================
+     * LOADING
+     * =====================================================
      */
+
     if (
         loading &&
         movies.length === 0
@@ -506,6 +761,12 @@ export default function Home({ search }) {
             </div>
         );
     }
+
+    /*
+     * =====================================================
+     * RENDER
+     * =====================================================
+     */
 
     return (
         <>
@@ -572,7 +833,9 @@ export default function Home({ search }) {
                             />
                         </div>
 
-                        {/* Desktop pagination */}
+                        {/* =================================================
+                            DESKTOP PAGINATION
+                        ================================================= */}
 
                         {!isMobile &&
                             !isSearching &&
@@ -584,11 +847,47 @@ export default function Home({ search }) {
                                             page ===
                                             1
                                         }
-                                        onClick={() =>
+                                        onClick={() => {
+
+                                            const newPage =
+                                                page -
+                                                1;
+
                                             setPage(
-                                                page - 1
-                                            )
-                                        }
+                                                newPage
+                                            );
+
+                                            try {
+                                                sessionStorage.setItem(
+                                                    "home_desktop_page",
+                                                    String(
+                                                        newPage
+                                                    )
+                                                );
+
+                                                /*
+                                                 * When manually changing page,
+                                                 * clear old scroll position.
+                                                 */
+                                                sessionStorage.setItem(
+                                                    "home_scroll_position",
+                                                    "0"
+                                                );
+                                            } catch {
+                                                // Ignore
+                                            }
+
+                                            /*
+                                             * New page starts at top.
+                                             */
+                                            window.scrollTo({
+                                                top: 0,
+                                                left: 0,
+                                                behavior:
+                                                    "instant"
+                                            });
+
+                                        }}
                                     >
                                         Previous
                                     </button>
@@ -605,11 +904,43 @@ export default function Home({ search }) {
                                             page ===
                                             totalPages
                                         }
-                                        onClick={() =>
+                                        onClick={() => {
+
+                                            const newPage =
+                                                page +
+                                                1;
+
                                             setPage(
-                                                page + 1
-                                            )
-                                        }
+                                                newPage
+                                            );
+
+                                            try {
+                                                sessionStorage.setItem(
+                                                    "home_desktop_page",
+                                                    String(
+                                                        newPage
+                                                    )
+                                                );
+
+                                                /*
+                                                 * New page starts at top.
+                                                 */
+                                                sessionStorage.setItem(
+                                                    "home_scroll_position",
+                                                    "0"
+                                                );
+                                            } catch {
+                                                // Ignore
+                                            }
+
+                                            window.scrollTo({
+                                                top: 0,
+                                                left: 0,
+                                                behavior:
+                                                    "instant"
+                                            });
+
+                                        }}
                                     >
                                         Next
                                     </button>
@@ -617,7 +948,9 @@ export default function Home({ search }) {
                                 </div>
                             )}
 
-                        {/* Mobile loading */}
+                        {/* =================================================
+                            MOBILE LOADING
+                        ================================================= */}
 
                         {isMobile &&
                             !isSearching &&
