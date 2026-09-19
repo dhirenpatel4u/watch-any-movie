@@ -4,85 +4,91 @@ import { Link, useParams } from "react-router-dom";
 export default function Watch() {
     const { id } = useParams();
 
-    const [movies, setMovies] = useState([]);
-    const [movie, setMovie] = useState(null);
-    const [random, setRandom] = useState([]);
-    const [loading, setLoading] = useState(true);
+    /*
+     * Get cached movies from Home.
+     */
+    const getCachedMovies = () => {
+        try {
+            const saved =
+                sessionStorage.getItem(
+                    "home_movies"
+                );
 
-    // =====================================================
-    // LOAD MOVIES + RANDOM RECOMMENDATIONS ONLY ONCE
-    // =====================================================
+            if (saved) {
+                const parsed =
+                    JSON.parse(saved);
 
-    useEffect(() => {
-        async function loadMovies() {
-            try {
-                setLoading(true);
-
-                const response =
-                    await fetch("/movies.json");
-
-                if (!response.ok) {
-                    throw new Error(
-                        `Failed to load movies.json: ${response.status}`
-                    );
+                if (Array.isArray(parsed)) {
+                    return parsed;
                 }
-
-                const json =
-                    await response.json();
-
-                const data = Array.isArray(json)
-                    ? json
-                    : json.data || [];
-
-                setMovies(data);
-
-                // Generate random recommendations
-                // ONLY when Watch page loads
-
-                const shuffled = [...data].sort(
-                    () => Math.random() - 0.5
-                );
-
-                const randomMovies =
-                    shuffled
-                        .filter(
-                            (item) =>
-                                item["IMDB ID"] !== id
-                        )
-                        .slice(0, 20);
-
-                setRandom(randomMovies);
-
-            } catch (error) {
-                console.error(
-                    "Failed to load movies:",
-                    error
-                );
-            } finally {
-                setLoading(false);
             }
+        } catch {
+            // Ignore cache errors
         }
 
-        loadMovies();
-    }, []);
+        return [];
+    };
+
+    const initialMovies =
+        getCachedMovies();
+
+    const [movies, setMovies] =
+        useState(initialMovies);
+
+    const [movie, setMovie] =
+        useState(null);
+
+    const [random, setRandom] =
+        useState([]);
+
+    /*
+     * Only show loading when we don't
+     * already have cached movie data.
+     */
+    const [loading, setLoading] =
+        useState(
+            initialMovies.length === 0
+        );
+
+    /*
+     * Prevent false "Movie Not Found".
+     */
+    const [movieResolved, setMovieResolved] =
+        useState(
+            initialMovies.length > 0
+        );
 
     // =====================================================
-    // CHANGE CURRENT MOVIE WHEN ID CHANGES
+    // FIND CURRENT MOVIE
     // =====================================================
 
     useEffect(() => {
-        if (!movies.length) return;
+        if (!movies.length) {
+            return;
+        }
 
         const currentMovie =
             movies.find(
                 (item) =>
-                    item["IMDB ID"] === id
+                    String(
+                        item["IMDB ID"]
+                    ) ===
+                    String(id)
             );
 
-        setMovie(currentMovie || null);
+        setMovie(
+            currentMovie || null
+        );
 
-        // Recently watched
+        /*
+         * We have now actually searched
+         * the movie list.
+         */
+        setMovieResolved(true);
 
+        /*
+         * Recently watched
+         */
         if (currentMovie) {
             try {
                 const stored =
@@ -94,20 +100,35 @@ export default function Watch() {
                     ? JSON.parse(stored)
                     : [];
 
-                recent = recent.filter(
-                    (item) =>
-                        item["IMDB ID"] !==
-                        currentMovie["IMDB ID"]
-                );
+                if (!Array.isArray(recent)) {
+                    recent = [];
+                }
 
-                recent.unshift(currentMovie);
+                recent =
+                    recent.filter(
+                        (item) =>
+                            String(
+                                item["IMDB ID"]
+                            ) !==
+                            String(
+                                currentMovie[
+                                    "IMDB ID"
+                                ]
+                            )
+                    );
+
+                recent.unshift(
+                    currentMovie
+                );
 
                 recent =
                     recent.slice(0, 7);
 
                 localStorage.setItem(
                     "recently_watched",
-                    JSON.stringify(recent)
+                    JSON.stringify(
+                        recent
+                    )
                 );
 
             } catch (error) {
@@ -118,7 +139,101 @@ export default function Watch() {
             }
         }
 
+        /*
+         * Generate random recommendations.
+         */
+        const shuffled =
+            [...movies].sort(
+                () =>
+                    Math.random() -
+                    0.5
+            );
+
+        const randomMovies =
+            shuffled
+                .filter(
+                    (item) =>
+                        String(
+                            item["IMDB ID"]
+                        ) !==
+                        String(id)
+                )
+                .slice(0, 20);
+
+        setRandom(
+            randomMovies
+        );
+
     }, [id, movies]);
+
+    // =====================================================
+    // LOAD FRESH MOVIES
+    // =====================================================
+
+    useEffect(() => {
+
+        async function loadMovies() {
+            try {
+
+                const response =
+                    await fetch(
+                        "/movies.json"
+                    );
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Failed to load movies.json: ${response.status}`
+                    );
+                }
+
+                const json =
+                    await response.json();
+
+                const data =
+                    Array.isArray(json)
+                        ? json
+                        : json.data || [];
+
+                /*
+                 * Update movie list.
+                 *
+                 * If cache was already present,
+                 * this happens silently.
+                 */
+                setMovies(data);
+
+                /*
+                 * Keep Home and Watch cache
+                 * synchronized.
+                 */
+                try {
+                    sessionStorage.setItem(
+                        "home_movies",
+                        JSON.stringify(
+                            data
+                        )
+                    );
+                } catch {
+                    // Ignore storage errors
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Failed to load movies:",
+                    error
+                );
+
+            } finally {
+
+                setLoading(false);
+
+            }
+        }
+
+        loadMovies();
+
+    }, []);
 
     // =====================================================
     // SIDEBAR
@@ -137,7 +252,14 @@ export default function Watch() {
     // LOADING
     // =====================================================
 
-    if (loading) {
+    /*
+     * Only show loading when there is
+     * genuinely no data yet.
+     */
+    if (
+        loading &&
+        !movieResolved
+    ) {
         return (
             <div className="loading">
                 Loading Movies...
@@ -149,10 +271,29 @@ export default function Watch() {
     // NOT FOUND
     // =====================================================
 
-    if (!movie) {
+    /*
+     * Movie Not Found is displayed only
+     * after the movie list has actually
+     * been searched.
+     */
+    if (
+        movieResolved &&
+        !movie
+    ) {
         return (
             <div className="loading">
                 Movie Not Found
+            </div>
+        );
+    }
+
+    /*
+     * Safety fallback.
+     */
+    if (!movie) {
+        return (
+            <div className="loading">
+                Loading Movies...
             </div>
         );
     }
@@ -256,7 +397,9 @@ export default function Watch() {
                             }
                             to={`/watch/${item["IMDB ID"]}`}
                             className={`side-card ${
-                                item["IMDB ID"] === id
+                                String(
+                                    item["IMDB ID"]
+                                ) === String(id)
                                     ? "active"
                                     : ""
                             }`}
@@ -275,9 +418,9 @@ export default function Watch() {
                                     }
                                 />
 
-                                {item[
-                                    "IMDB ID"
-                                ] === id && (
+                                {String(
+                                    item["IMDB ID"]
+                                ) === String(id) && (
                                     <div className="play-icon">
                                         ▶
                                     </div>
