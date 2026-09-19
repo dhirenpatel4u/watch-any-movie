@@ -20,14 +20,6 @@ export default function Home({ search }) {
     /*
      * Restore previously loaded mobile
      * batch immediately.
-     *
-     * Example:
-     * user loaded 120 movies
-     * then opened a movie
-     * then came back
-     *
-     * mobileCount starts at 120
-     * instead of 40.
      */
     const getInitialMobileCount = () => {
         try {
@@ -52,19 +44,55 @@ export default function Home({ search }) {
         return 40;
     };
 
+    /*
+     * Restore movies immediately from cache.
+     * This prevents "Loading Movies..." from
+     * flashing when returning from Watch page.
+     */
+    const getInitialMovies = () => {
+        try {
+            const saved =
+                sessionStorage.getItem(
+                    "home_movies"
+                );
+
+            if (saved) {
+                const parsed =
+                    JSON.parse(saved);
+
+                if (Array.isArray(parsed)) {
+                    return parsed;
+                }
+            }
+        } catch {
+            // Ignore
+        }
+
+        return [];
+    };
+
+    const initialMovies =
+        getInitialMovies();
+
     const [mobileCount, setMobileCount] =
         useState(
             getInitialMobileCount
         );
 
     const [movies, setMovies] =
-        useState([]);
+        useState(initialMovies);
 
     const [heroMovies, setHeroMovies] =
         useState([]);
 
+    /*
+     * If cached movies exist, don't show
+     * the loading screen.
+     */
     const [loading, setLoading] =
-        useState(true);
+        useState(
+            initialMovies.length === 0
+        );
 
     const [page, setPage] =
         useState(1);
@@ -145,6 +173,23 @@ export default function Home({ search }) {
                 setMovies(movieData);
 
                 /*
+                 * IMPORTANT:
+                 * Cache movies so Home can render
+                 * immediately when returning from
+                 * the Watch page.
+                 */
+                try {
+                    sessionStorage.setItem(
+                        "home_movies",
+                        JSON.stringify(
+                            movieData
+                        )
+                    );
+                } catch {
+                    // Ignore storage errors
+                }
+
+                /*
                  * Random 5 Hero movies
                  */
                 setHeroMovies(
@@ -165,12 +210,37 @@ export default function Home({ search }) {
                     error
                 );
 
+                /*
+                 * If cached movies exist, keep
+                 * showing them.
+                 */
                 setLoading(false);
             }
         }
 
         loadMovies();
     }, []);
+
+    /*
+     * If cached movies already exist,
+     * create Hero movies immediately.
+     */
+    useEffect(() => {
+        if (
+            movies.length > 0 &&
+            heroMovies.length === 0
+        ) {
+            setHeroMovies(
+                [...movies]
+                    .sort(
+                        () =>
+                            Math.random() -
+                            0.5
+                    )
+                    .slice(0, 5)
+            );
+        }
+    }, [movies, heroMovies.length]);
 
     /*
      * Search changed
@@ -181,10 +251,6 @@ export default function Home({ search }) {
         /*
          * Only reset mobile count
          * for a new search.
-         *
-         * When simply returning from
-         * Watch page, search has not
-         * changed, so count remains.
          */
         if (search.trim() !== "") {
             setMobileCount(40);
@@ -215,9 +281,6 @@ export default function Home({ search }) {
 
     /*
      * Latest
-     *
-     * First 12 from JSON
-     * having Year 2026.
      */
     const latest =
         filtered
@@ -231,8 +294,6 @@ export default function Home({ search }) {
 
     /*
      * Trending
-     *
-     * Random 12.
      */
     useEffect(() => {
         if (!filtered.length) {
@@ -253,8 +314,6 @@ export default function Home({ search }) {
 
     /*
      * Desktop pagination
-     *
-     * 35 per page.
      */
     const DESKTOP_PER_PAGE = 35;
 
@@ -275,12 +334,6 @@ export default function Home({ search }) {
 
     /*
      * Mobile movies
-     *
-     * Example:
-     * 40
-     * 80
-     * 120
-     * 160
      */
     const mobileMovies =
         filtered.slice(
@@ -289,9 +342,7 @@ export default function Home({ search }) {
         );
 
     /*
-     * =========================
      * MOBILE INFINITE SCROLL
-     * =========================
      */
     useEffect(() => {
         if (!isMobile) return;
@@ -308,10 +359,6 @@ export default function Home({ search }) {
                 document.documentElement
                     .scrollHeight;
 
-            /*
-             * Load next batch
-             * 500px before bottom.
-             */
             if (
                 documentHeight -
                     scrollPosition <
@@ -334,16 +381,16 @@ export default function Home({ search }) {
                                 filtered.length
                             );
 
-                        /*
-                         * IMPORTANT:
-                         * Save loaded batch.
-                         */
-                        sessionStorage.setItem(
-                            "home_mobile_count",
-                            String(
-                                nextCount
-                            )
-                        );
+                        try {
+                            sessionStorage.setItem(
+                                "home_mobile_count",
+                                String(
+                                    nextCount
+                                )
+                            );
+                        } catch {
+                            // Ignore
+                        }
 
                         return nextCount;
                     }
@@ -373,12 +420,7 @@ export default function Home({ search }) {
     ]);
 
     /*
-     * =========================
      * RESTORE SCROLL POSITION
-     * =========================
-     *
-     * This runs only after movies
-     * have loaded.
      */
     useEffect(() => {
         if (loading) return;
@@ -420,10 +462,6 @@ export default function Home({ search }) {
                         window.innerHeight
                 );
 
-            /*
-             * If the page is not tall enough
-             * yet, wait.
-             */
             if (
                 maxScroll <
                     position &&
@@ -436,27 +474,17 @@ export default function Home({ search }) {
                 return;
             }
 
-            /*
-             * Restore exact position.
-             */
             window.scrollTo({
                 top: position,
                 left: 0,
                 behavior: "instant"
             });
 
-            /*
-             * Remove saved position
-             * after restoration.
-             */
             sessionStorage.removeItem(
                 "home_scroll_position"
             );
         };
 
-        /*
-         * Start after React has rendered.
-         */
         requestAnimationFrame(() => {
             requestAnimationFrame(
                 restore
@@ -468,7 +496,10 @@ export default function Home({ search }) {
     /*
      * Loading
      */
-    if (loading) {
+    if (
+        loading &&
+        movies.length === 0
+    ) {
         return (
             <div className="loading">
                 Loading Movies...
@@ -555,8 +586,7 @@ export default function Home({ search }) {
                                         }
                                         onClick={() =>
                                             setPage(
-                                                page -
-                                                    1
+                                                page - 1
                                             )
                                         }
                                     >
@@ -577,8 +607,7 @@ export default function Home({ search }) {
                                         }
                                         onClick={() =>
                                             setPage(
-                                                page +
-                                                    1
+                                                page + 1
                                             )
                                         }
                                     >
