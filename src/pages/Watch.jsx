@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import "./Watch.css";
 
 export default function Watch() {
     const { id } = useParams();
@@ -41,14 +42,31 @@ export default function Watch() {
 
     /*
      * Controls iframe visibility.
-     *
-     * The external player can briefly show its own
-     * loading/error screen while it initializes.
-     *
-     * Keeping it hidden until the iframe loads prevents
-     * that initial flash from being visible.
      */
     const [playerLoaded, setPlayerLoaded] = useState(false);
+
+    /*
+     * Controls fullscreen state.
+     */
+    const [isFullscreen, setIsFullscreen] =
+        useState(false);
+
+    /*
+     * Controls mobile landscape state.
+     */
+    const [isLandscape, setIsLandscape] =
+        useState(
+            typeof window !== "undefined"
+                ? window.innerWidth >
+                      window.innerHeight
+                : false
+        );
+
+    /*
+     * Controls recommendation panel.
+     */
+    const [showRecommendations, setShowRecommendations] =
+        useState(false);
 
     // =====================================================
     // RESET PLAYER WHEN MOVIE CHANGES
@@ -56,7 +74,137 @@ export default function Watch() {
 
     useEffect(() => {
         setPlayerLoaded(false);
+        setShowRecommendations(false);
     }, [id]);
+
+    // =====================================================
+    // FULLSCREEN DETECTION
+    // =====================================================
+
+    useEffect(() => {
+        const handleFullscreenChange = () => {
+            const fullscreenElement =
+                document.fullscreenElement ||
+                document.webkitFullscreenElement;
+
+            const fullscreen = !!fullscreenElement;
+
+            setIsFullscreen(fullscreen);
+
+            /*
+             * Automatically close recommendations
+             * when fullscreen ends.
+             */
+            if (!fullscreen) {
+                setShowRecommendations(false);
+            }
+        };
+
+        document.addEventListener(
+            "fullscreenchange",
+            handleFullscreenChange
+        );
+
+        document.addEventListener(
+            "webkitfullscreenchange",
+            handleFullscreenChange
+        );
+
+        return () => {
+            document.removeEventListener(
+                "fullscreenchange",
+                handleFullscreenChange
+            );
+
+            document.removeEventListener(
+                "webkitfullscreenchange",
+                handleFullscreenChange
+            );
+        };
+    }, []);
+
+    // =====================================================
+    // MOBILE ORIENTATION DETECTION
+    // =====================================================
+
+    useEffect(() => {
+        const handleOrientation = () => {
+            setIsLandscape(
+                window.innerWidth >
+                    window.innerHeight
+            );
+        };
+
+        handleOrientation();
+
+        window.addEventListener(
+            "resize",
+            handleOrientation
+        );
+
+        window.addEventListener(
+            "orientationchange",
+            handleOrientation
+        );
+
+        return () => {
+            window.removeEventListener(
+                "resize",
+                handleOrientation
+            );
+
+            window.removeEventListener(
+                "orientationchange",
+                handleOrientation
+            );
+        };
+    }, []);
+
+    // =====================================================
+    // ESCAPE KEY
+    // =====================================================
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === "Escape") {
+                setShowRecommendations(false);
+            }
+        };
+
+        document.addEventListener(
+            "keydown",
+            handleKeyDown
+        );
+
+        return () => {
+            document.removeEventListener(
+                "keydown",
+                handleKeyDown
+            );
+        };
+    }, []);
+
+    // =====================================================
+    // DETERMINE WHETHER BUTTON SHOULD SHOW
+    // =====================================================
+
+    const isMobile =
+        typeof window !== "undefined" &&
+        window.matchMedia(
+            "(max-width: 768px)"
+        ).matches;
+
+    /*
+     * Desktop:
+     *   Fullscreen = show
+     *
+     * Mobile:
+     *   Fullscreen + landscape = show
+     *   Fullscreen + portrait = hide
+     */
+    const showFullscreenRecommendation =
+        isFullscreen &&
+        (!isMobile || isLandscape);
 
     // =====================================================
     // FIND CURRENT MOVIE
@@ -69,7 +217,8 @@ export default function Watch() {
 
         const currentMovie = movies.find(
             (item) =>
-                String(item["IMDB ID"]) === String(id)
+                String(item["IMDB ID"]) ===
+                String(id)
         );
 
         setMovie(currentMovie || null);
@@ -216,7 +365,7 @@ export default function Watch() {
     ].filter(Boolean);
 
     // =====================================================
-    // LOADING / NOT FOUND
+    // LOADING
     // =====================================================
 
     if (loading) {
@@ -226,6 +375,10 @@ export default function Watch() {
             </div>
         );
     }
+
+    // =====================================================
+    // MOVIE NOT FOUND
+    // =====================================================
 
     if (!movie) {
         return (
@@ -248,31 +401,23 @@ export default function Watch() {
 
             <div className="player-section">
 
-                {/* Player wrapper */}
-
                 <div
-                    style={{
-                        position: "relative",
-                        width: "100%",
-                        aspectRatio: "16 / 9",
-                        backgroundColor: "#000",
-                        overflow: "hidden",
-                    }}
+                    className="watch-player-wrapper"
                 >
 
-                    {/* Black screen while external
-                        player initializes */}
+                    {/* ==================================
+                        BLACK LOADING SCREEN
+                    ================================== */}
 
                     {!playerLoaded && (
                         <div
-                            style={{
-                                position: "absolute",
-                                inset: 0,
-                                backgroundColor: "#000",
-                                zIndex: 2,
-                            }}
+                            className="watch-player-loading"
                         />
                     )}
+
+                    {/* ==================================
+                        EXTERNAL PLAYER
+                    ================================== */}
 
                     <iframe
                         key={id}
@@ -282,23 +427,161 @@ export default function Watch() {
                         onLoad={() =>
                             setPlayerLoaded(true)
                         }
-                        style={{
-                            width: "100%",
-                            height: "100%",
-                            border: "none",
-                            display: "block",
-                        }}
+                        className="watch-player-iframe"
                     />
+
+                    {/* ==================================
+                        YOU MAY ALSO LIKE BUTTON
+
+                        Desktop:
+                        Fullscreen only
+
+                        Mobile:
+                        Fullscreen + landscape only
+                    ================================== */}
+
+                    {showFullscreenRecommendation && (
+                        <button
+                            type="button"
+                            className="fullscreen-recommendation-button"
+                            onClick={() =>
+                                setShowRecommendations(
+                                    (value) =>
+                                        !value
+                                )
+                            }
+                        >
+                            <span>
+                                ♡
+                            </span>
+
+                            <span>
+                                You May Also Like
+                            </span>
+                        </button>
+                    )}
+
+                    {/* ==================================
+                        FULLSCREEN RECOMMENDATION PANEL
+                    ================================== */}
+
+                    {showFullscreenRecommendation &&
+                        showRecommendations && (
+                            <>
+                                {/* Transparent area
+                                    behind panel */}
+
+                                <div
+                                    className="recommendation-overlay"
+                                    onClick={() =>
+                                        setShowRecommendations(
+                                            false
+                                        )
+                                    }
+                                />
+
+                                {/* Right panel */}
+
+                                <aside
+                                    className="fullscreen-recommendation-panel"
+                                >
+
+                                    {/* Header */}
+
+                                    <div className="recommendation-panel-header">
+
+                                        <h2>
+                                            You May Also Like
+                                        </h2>
+
+                                        <button
+                                            type="button"
+                                            className="recommendation-close"
+                                            onClick={() =>
+                                                setShowRecommendations(
+                                                    false
+                                                )
+                                            }
+                                            aria-label="Close recommendations"
+                                        >
+                                            ×
+                                        </button>
+
+                                    </div>
+
+                                    {/* Movies */}
+
+                                    <div className="recommendation-panel-list">
+
+                                        {random.map(
+                                            (item) => (
+                                                <Link
+                                                    key={
+                                                        item[
+                                                            "IMDB ID"
+                                                        ]
+                                                    }
+                                                    to={`/watch/${item["IMDB ID"]}`}
+                                                    className="fullscreen-recommendation-card"
+                                                    onClick={() =>
+                                                        setShowRecommendations(
+                                                            false
+                                                        )
+                                                    }
+                                                >
+
+                                                    <img
+                                                        src={
+                                                            item.Poster
+                                                        }
+                                                        alt={
+                                                            item[
+                                                                "Movie Name"
+                                                            ]
+                                                        }
+                                                    />
+
+                                                    <div className="fullscreen-recommendation-info">
+
+                                                        <h3>
+                                                            {
+                                                                item[
+                                                                    "Movie Name"
+                                                                ]
+                                                            }
+                                                        </h3>
+
+                                                        <p>
+                                                            {
+                                                                item.Year
+                                                            }
+                                                        </p>
+
+                                                    </div>
+
+                                                </Link>
+                                            )
+                                        )}
+
+                                    </div>
+
+                                </aside>
+                            </>
+                        )}
 
                 </div>
 
-                {/* Movie Title */}
+                {/* ==========================================
+                    MOVIE TITLE
+                ========================================== */}
 
                 <h1>
                     {movie["Movie Name"]}
                 </h1>
 
-                {/* Year */}
+                {/* ==========================================
+                    YEAR
+                ========================================== */}
 
                 <p className="movie-year">
                     {movie.Year}
@@ -306,7 +589,9 @@ export default function Watch() {
 
                 <div className="movie-description-actors-space"></div>
 
-                {/* Description */}
+                {/* ==========================================
+                    DESCRIPTION
+                ========================================== */}
 
                 {movie.Description && (
                     <p className="movie-description">
@@ -316,9 +601,9 @@ export default function Watch() {
 
                 <div className="movie-description-actors-space"></div>
 
-                {/* ==================================
+                {/* ==========================================
                     ACTORS
-                ================================== */}
+                ========================================== */}
 
                 {movie.Actors &&
                     movie.Actors.length > 0 && (
@@ -329,10 +614,14 @@ export default function Watch() {
                             </strong>{" "}
 
                             {movie.Actors.map(
-                                (actor, index) => (
+                                (
+                                    actor,
+                                    index
+                                ) => (
                                     <span
                                         key={actor}
                                     >
+
                                         <Link
                                             to={`/actor/${encodeURIComponent(
                                                 actor
@@ -346,6 +635,7 @@ export default function Watch() {
                                             movie.Actors.length -
                                                 1 &&
                                             ", "}
+
                                     </span>
                                 )
                             )}
@@ -358,7 +648,7 @@ export default function Watch() {
             </div>
 
             {/* ==========================================
-                YOU MAY ALSO LIKE
+                NORMAL PAGE SIDEBAR
             ========================================== */}
 
             <div className="sidebar">
@@ -418,7 +708,7 @@ export default function Watch() {
                                     }
                                 </h3>
 
-                                {/* Clickable Actors */}
+                                {/* Actors */}
 
                                 {item.Actors &&
                                     item.Actors.length >
@@ -435,6 +725,7 @@ export default function Watch() {
                                                             actor
                                                         }
                                                     >
+
                                                         <Link
                                                             to={`/actor/${encodeURIComponent(
                                                                 actor
@@ -457,6 +748,7 @@ export default function Watch() {
                                                                 .length -
                                                                 1 &&
                                                             ", "}
+
                                                     </span>
                                                 )
                                             )}
