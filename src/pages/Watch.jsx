@@ -10,13 +10,10 @@ export default function Watch() {
     const getCachedMovies = () => {
         try {
             const saved =
-                sessionStorage.getItem(
-                    "home_movies"
-                );
+                sessionStorage.getItem("home_movies");
 
             if (saved) {
-                const parsed =
-                    JSON.parse(saved);
+                const parsed = JSON.parse(saved);
 
                 if (Array.isArray(parsed)) {
                     return parsed;
@@ -29,62 +26,41 @@ export default function Watch() {
         return [];
     };
 
-    const initialMovies =
-        getCachedMovies();
+    const initialMovies = getCachedMovies();
 
-    const [movies, setMovies] =
-        useState(initialMovies);
-
-    const [movie, setMovie] =
-        useState(null);
-
-    const [random, setRandom] =
-        useState([]);
+    const [movies, setMovies] = useState(initialMovies);
+    const [movie, setMovie] = useState(null);
+    const [random, setRandom] = useState([]);
 
     /*
-     * Only show loading when we don't
-     * already have cached movie data.
+     * If cached movies exist, we don't need to
+     * wait before showing the movie.
+     *
+     * If there is no cache, loading starts as true.
      */
-    const [loading, setLoading] =
-        useState(
-            initialMovies.length === 0
-        );
-
-    /*
-     * Prevent false "Movie Not Found".
-     */
-    const [movieResolved, setMovieResolved] =
-        useState(
-            initialMovies.length > 0
-        );
+    const [loading, setLoading] = useState(
+        initialMovies.length === 0
+    );
 
     // =====================================================
     // FIND CURRENT MOVIE
     // =====================================================
 
     useEffect(() => {
+        /*
+         * Don't try to find the movie until we
+         * actually have movie data.
+         */
         if (!movies.length) {
             return;
         }
 
-        const currentMovie =
-            movies.find(
-                (item) =>
-                    String(
-                        item["IMDB ID"]
-                    ) ===
-                    String(id)
-            );
-
-        setMovie(
-            currentMovie || null
+        const currentMovie = movies.find(
+            (item) =>
+                String(item["IMDB ID"]) === String(id)
         );
 
-        /*
-         * We have now actually searched
-         * the movie list.
-         */
-        setMovieResolved(true);
+        setMovie(currentMovie || null);
 
         /*
          * Recently watched
@@ -104,33 +80,24 @@ export default function Watch() {
                     recent = [];
                 }
 
-                recent =
-                    recent.filter(
-                        (item) =>
-                            String(
-                                item["IMDB ID"]
-                            ) !==
-                            String(
-                                currentMovie[
-                                    "IMDB ID"
-                                ]
-                            )
-                    );
-
-                recent.unshift(
-                    currentMovie
+                recent = recent.filter(
+                    (item) =>
+                        String(
+                            item["IMDB ID"]
+                        ) !==
+                        String(
+                            currentMovie["IMDB ID"]
+                        )
                 );
 
-                recent =
-                    recent.slice(0, 7);
+                recent.unshift(currentMovie);
+
+                recent = recent.slice(0, 7);
 
                 localStorage.setItem(
                     "recently_watched",
-                    JSON.stringify(
-                        recent
-                    )
+                    JSON.stringify(recent)
                 );
-
             } catch (error) {
                 console.error(
                     "Failed to save recently watched:",
@@ -142,28 +109,20 @@ export default function Watch() {
         /*
          * Generate random recommendations.
          */
-        const shuffled =
-            [...movies].sort(
-                () =>
-                    Math.random() -
-                    0.5
-            );
-
-        const randomMovies =
-            shuffled
-                .filter(
-                    (item) =>
-                        String(
-                            item["IMDB ID"]
-                        ) !==
-                        String(id)
-                )
-                .slice(0, 20);
-
-        setRandom(
-            randomMovies
+        const shuffled = [...movies].sort(
+            () => Math.random() - 0.5
         );
 
+        const randomMovies = shuffled
+            .filter(
+                (item) =>
+                    String(
+                        item["IMDB ID"]
+                    ) !== String(id)
+            )
+            .slice(0, 20);
+
+        setRandom(randomMovies);
     }, [id, movies]);
 
     // =====================================================
@@ -171,14 +130,13 @@ export default function Watch() {
     // =====================================================
 
     useEffect(() => {
+        let cancelled = false;
 
         async function loadMovies() {
             try {
-
-                const response =
-                    await fetch(
-                        "/movies.json"
-                    );
+                const response = await fetch(
+                    "/movies.json"
+                );
 
                 if (!response.ok) {
                     throw new Error(
@@ -195,9 +153,17 @@ export default function Watch() {
                         : json.data || [];
 
                 /*
+                 * Don't update state if the component
+                 * has already unmounted.
+                 */
+                if (cancelled) {
+                    return;
+                }
+
+                /*
                  * Update movie list.
                  *
-                 * If cache was already present,
+                 * If cached data already exists,
                  * this happens silently.
                  */
                 setMovies(data);
@@ -209,30 +175,36 @@ export default function Watch() {
                 try {
                     sessionStorage.setItem(
                         "home_movies",
-                        JSON.stringify(
-                            data
-                        )
+                        JSON.stringify(data)
                     );
                 } catch {
                     // Ignore storage errors
                 }
-
             } catch (error) {
-
-                console.error(
-                    "Failed to load movies:",
-                    error
-                );
-
+                if (!cancelled) {
+                    console.error(
+                        "Failed to load movies:",
+                        error
+                    );
+                }
             } finally {
-
-                setLoading(false);
-
+                if (!cancelled) {
+                    /*
+                     * IMPORTANT:
+                     * Only after movies.json has finished
+                     * loading do we allow "Movie Not Found"
+                     * to appear.
+                     */
+                    setLoading(false);
+                }
             }
         }
 
         loadMovies();
 
+        return () => {
+            cancelled = true;
+        };
     }, []);
 
     // =====================================================
@@ -249,17 +221,19 @@ export default function Watch() {
     ].filter(Boolean);
 
     // =====================================================
-    // LOADING
+    // LOADING / NOT FOUND
     // =====================================================
 
     /*
-     * Only show loading when there is
-     * genuinely no data yet.
+     * IMPORTANT:
+     *
+     * While movies.json is loading, NEVER show
+     * "Movie Not Found".
+     *
+     * This prevents the fake error from flashing
+     * before the movie data is available.
      */
-    if (
-        loading &&
-        !movieResolved
-    ) {
+    if (loading) {
         return (
             <div className="loading">
                 Loading Movies...
@@ -267,19 +241,13 @@ export default function Watch() {
         );
     }
 
-    // =====================================================
-    // NOT FOUND
-    // =====================================================
-
     /*
-     * Movie Not Found is displayed only
-     * after the movie list has actually
-     * been searched.
+     * At this point movies.json has finished loading.
+     *
+     * If the movie still doesn't exist, it is a
+     * genuine "Movie Not Found" situation.
      */
-    if (
-        movieResolved &&
-        !movie
-    ) {
+    if (!movie) {
         return (
             <div className="loading">
                 Movie Not Found
@@ -287,16 +255,9 @@ export default function Watch() {
         );
     }
 
-    /*
-     * Safety fallback.
-     */
-    if (!movie) {
-        return (
-            <div className="loading">
-                Loading Movies...
-            </div>
-        );
-    }
+    // =====================================================
+    // WATCH PAGE
+    // =====================================================
 
     return (
         <div className="watch-container">
@@ -343,37 +304,36 @@ export default function Watch() {
 
                 {movie.Actors &&
                     movie.Actors.length > 0 && (
+                        <p className="movie-actors">
 
-                    <p className="movie-actors">
+                            <strong>
+                                Actors:
+                            </strong>{" "}
 
-                        <strong>
-                            Actors:
-                        </strong>{" "}
-
-                        {movie.Actors.map(
-                            (actor, index) => (
-                                <span
-                                    key={actor}
-                                >
-                                    <Link
-                                        to={`/actor/${encodeURIComponent(
-                                            actor
-                                        )}`}
-                                        className="actor-link"
+                            {movie.Actors.map(
+                                (actor, index) => (
+                                    <span
+                                        key={actor}
                                     >
-                                        {actor}
-                                    </Link>
+                                        <Link
+                                            to={`/actor/${encodeURIComponent(
+                                                actor
+                                            )}`}
+                                            className="actor-link"
+                                        >
+                                            {actor}
+                                        </Link>
 
-                                    {index <
-                                        movie.Actors.length -
-                                            1 &&
-                                        ", "}
-                                </span>
-                            )
-                        )}
+                                        {index <
+                                            movie.Actors.length -
+                                                1 &&
+                                            ", "}
+                                    </span>
+                                )
+                            )}
 
-                    </p>
-                )}
+                        </p>
+                    )}
 
                 <div className="movie-actors-bottom-space"></div>
 
@@ -445,47 +405,46 @@ export default function Watch() {
                                 {item.Actors &&
                                     item.Actors.length >
                                         0 && (
+                                        <span className="side-actors">
 
-                                    <span className="side-actors">
-
-                                        {item.Actors.map(
-                                            (
-                                                actor,
-                                                index
-                                            ) => (
-                                                <span
-                                                    key={
-                                                        actor
-                                                    }
-                                                >
-                                                    <Link
-                                                        to={`/actor/${encodeURIComponent(
+                                            {item.Actors.map(
+                                                (
+                                                    actor,
+                                                    index
+                                                ) => (
+                                                    <span
+                                                        key={
                                                             actor
-                                                        )}`}
-                                                        className="actor-link"
-                                                        onClick={(
-                                                            e
-                                                        ) =>
-                                                            e.stopPropagation()
                                                         }
                                                     >
-                                                        {
-                                                            actor
-                                                        }
-                                                    </Link>
+                                                        <Link
+                                                            to={`/actor/${encodeURIComponent(
+                                                                actor
+                                                            )}`}
+                                                            className="actor-link"
+                                                            onClick={(
+                                                                e
+                                                            ) =>
+                                                                e.stopPropagation()
+                                                            }
+                                                        >
+                                                            {
+                                                                actor
+                                                            }
+                                                        </Link>
 
-                                                    {index <
-                                                        item
-                                                            .Actors
-                                                            .length -
-                                                            1 &&
-                                                        ", "}
-                                                </span>
-                                            )
-                                        )}
+                                                        {index <
+                                                            item
+                                                                .Actors
+                                                                .length -
+                                                                1 &&
+                                                            ", "}
+                                                    </span>
+                                                )
+                                            )}
 
-                                    </span>
-                                )}
+                                        </span>
+                                    )}
 
                                 <p>
                                     {item.Year}
