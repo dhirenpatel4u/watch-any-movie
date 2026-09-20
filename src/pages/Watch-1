@@ -4,85 +4,79 @@ import { Link, useParams } from "react-router-dom";
 export default function Watch() {
     const { id } = useParams();
 
-    const [movies, setMovies] = useState([]);
-    const [movie, setMovie] = useState(null);
-    const [random, setRandom] = useState([]);
-    const [loading, setLoading] = useState(true);
+    /*
+     * Get cached movies from Home.
+     */
+    const getCachedMovies = () => {
+        try {
+            const saved =
+                sessionStorage.getItem("home_movies");
 
-    // =====================================================
-    // LOAD MOVIES + RANDOM RECOMMENDATIONS ONLY ONCE
-    // =====================================================
+            if (saved) {
+                const parsed = JSON.parse(saved);
 
-    useEffect(() => {
-        async function loadMovies() {
-            try {
-                setLoading(true);
-
-                const response =
-                    await fetch("/movies.json");
-
-                if (!response.ok) {
-                    throw new Error(
-                        `Failed to load movies.json: ${response.status}`
-                    );
+                if (Array.isArray(parsed)) {
+                    return parsed;
                 }
-
-                const json =
-                    await response.json();
-
-                const data = Array.isArray(json)
-                    ? json
-                    : json.data || [];
-
-                setMovies(data);
-
-                // Generate random recommendations
-                // ONLY when Watch page loads
-
-                const shuffled = [...data].sort(
-                    () => Math.random() - 0.5
-                );
-
-                const randomMovies =
-                    shuffled
-                        .filter(
-                            (item) =>
-                                item["IMDB ID"] !== id
-                        )
-                        .slice(0, 20);
-
-                setRandom(randomMovies);
-
-            } catch (error) {
-                console.error(
-                    "Failed to load movies:",
-                    error
-                );
-            } finally {
-                setLoading(false);
             }
+        } catch {
+            // Ignore cache errors
         }
 
-        loadMovies();
-    }, []);
+        return [];
+    };
+
+    const initialMovies = getCachedMovies();
+
+    const [movies, setMovies] = useState(initialMovies);
+    const [movie, setMovie] = useState(null);
+    const [random, setRandom] = useState([]);
+
+    /*
+     * Controls movies.json loading.
+     */
+    const [loading, setLoading] = useState(
+        initialMovies.length === 0
+    );
+
+    /*
+     * Controls iframe visibility.
+     *
+     * The external player can briefly show its own
+     * loading/error screen while it initializes.
+     *
+     * Keeping it hidden until the iframe loads prevents
+     * that initial flash from being visible.
+     */
+    const [playerLoaded, setPlayerLoaded] = useState(false);
 
     // =====================================================
-    // CHANGE CURRENT MOVIE WHEN ID CHANGES
+    // RESET PLAYER WHEN MOVIE CHANGES
     // =====================================================
 
     useEffect(() => {
-        if (!movies.length) return;
+        setPlayerLoaded(false);
+    }, [id]);
 
-        const currentMovie =
-            movies.find(
-                (item) =>
-                    item["IMDB ID"] === id
-            );
+    // =====================================================
+    // FIND CURRENT MOVIE
+    // =====================================================
+
+    useEffect(() => {
+        if (!movies.length) {
+            return;
+        }
+
+        const currentMovie = movies.find(
+            (item) =>
+                String(item["IMDB ID"]) === String(id)
+        );
 
         setMovie(currentMovie || null);
 
-        // Recently watched
-
+        /*
+         * Recently watched
+         */
         if (currentMovie) {
             try {
                 const stored =
@@ -94,22 +88,28 @@ export default function Watch() {
                     ? JSON.parse(stored)
                     : [];
 
+                if (!Array.isArray(recent)) {
+                    recent = [];
+                }
+
                 recent = recent.filter(
                     (item) =>
-                        item["IMDB ID"] !==
-                        currentMovie["IMDB ID"]
+                        String(
+                            item["IMDB ID"]
+                        ) !==
+                        String(
+                            currentMovie["IMDB ID"]
+                        )
                 );
 
                 recent.unshift(currentMovie);
 
-                recent =
-                    recent.slice(0, 7);
+                recent = recent.slice(0, 7);
 
                 localStorage.setItem(
                     "recently_watched",
                     JSON.stringify(recent)
                 );
-
             } catch (error) {
                 console.error(
                     "Failed to save recently watched:",
@@ -118,7 +118,89 @@ export default function Watch() {
             }
         }
 
+        /*
+         * Generate random recommendations.
+         */
+        const shuffled = [...movies].sort(
+            () => Math.random() - 0.5
+        );
+
+        const randomMovies = shuffled
+            .filter(
+                (item) =>
+                    String(
+                        item["IMDB ID"]
+                    ) !== String(id)
+            )
+            .slice(0, 20);
+
+        setRandom(randomMovies);
     }, [id, movies]);
+
+    // =====================================================
+    // LOAD FRESH MOVIES
+    // =====================================================
+
+    useEffect(() => {
+        let cancelled = false;
+
+        async function loadMovies() {
+            try {
+                const response = await fetch(
+                    "/movies.json"
+                );
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Failed to load movies.json: ${response.status}`
+                    );
+                }
+
+                const json =
+                    await response.json();
+
+                const data =
+                    Array.isArray(json)
+                        ? json
+                        : json.data || [];
+
+                if (cancelled) {
+                    return;
+                }
+
+                setMovies(data);
+
+                /*
+                 * Keep Home and Watch cache synchronized.
+                 */
+                try {
+                    sessionStorage.setItem(
+                        "home_movies",
+                        JSON.stringify(data)
+                    );
+                } catch {
+                    // Ignore storage errors
+                }
+            } catch (error) {
+                if (!cancelled) {
+                    console.error(
+                        "Failed to load movies:",
+                        error
+                    );
+                }
+            } finally {
+                if (!cancelled) {
+                    setLoading(false);
+                }
+            }
+        }
+
+        loadMovies();
+
+        return () => {
+            cancelled = true;
+        };
+    }, []);
 
     // =====================================================
     // SIDEBAR
@@ -134,7 +216,7 @@ export default function Watch() {
     ].filter(Boolean);
 
     // =====================================================
-    // LOADING
+    // LOADING / NOT FOUND
     // =====================================================
 
     if (loading) {
@@ -145,10 +227,6 @@ export default function Watch() {
         );
     }
 
-    // =====================================================
-    // NOT FOUND
-    // =====================================================
-
     if (!movie) {
         return (
             <div className="loading">
@@ -156,6 +234,10 @@ export default function Watch() {
             </div>
         );
     }
+
+    // =====================================================
+    // WATCH PAGE
+    // =====================================================
 
     return (
         <div className="watch-container">
@@ -166,11 +248,49 @@ export default function Watch() {
 
             <div className="player-section">
 
-                <iframe
-                    src={`https://slast430did.com/play/${id}`}
-                    title={movie["Movie Name"]}
-                    allowFullScreen
-                />
+                {/* Player wrapper */}
+
+                <div
+                    style={{
+                        position: "relative",
+                        width: "100%",
+                        aspectRatio: "16 / 9",
+                        backgroundColor: "#000",
+                        overflow: "hidden",
+                    }}
+                >
+
+                    {/* Black screen while external
+                        player initializes */}
+
+                    {!playerLoaded && (
+                        <div
+                            style={{
+                                position: "absolute",
+                                inset: 0,
+                                backgroundColor: "#000",
+                                zIndex: 2,
+                            }}
+                        />
+                    )}
+
+                    <iframe
+                        key={id}
+                        src={`https://slast430did.com/play/${id}`}
+                        title={movie["Movie Name"]}
+                        allowFullScreen
+                        onLoad={() =>
+                            setPlayerLoaded(true)
+                        }
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            border: "none",
+                            display: "block",
+                        }}
+                    />
+
+                </div>
 
                 {/* Movie Title */}
 
@@ -202,37 +322,36 @@ export default function Watch() {
 
                 {movie.Actors &&
                     movie.Actors.length > 0 && (
+                        <p className="movie-actors">
 
-                    <p className="movie-actors">
+                            <strong>
+                                Actors:
+                            </strong>{" "}
 
-                        <strong>
-                            Actors:
-                        </strong>{" "}
-
-                        {movie.Actors.map(
-                            (actor, index) => (
-                                <span
-                                    key={actor}
-                                >
-                                    <Link
-                                        to={`/actor/${encodeURIComponent(
-                                            actor
-                                        )}`}
-                                        className="actor-link"
+                            {movie.Actors.map(
+                                (actor, index) => (
+                                    <span
+                                        key={actor}
                                     >
-                                        {actor}
-                                    </Link>
+                                        <Link
+                                            to={`/actor/${encodeURIComponent(
+                                                actor
+                                            )}`}
+                                            className="actor-link"
+                                        >
+                                            {actor}
+                                        </Link>
 
-                                    {index <
-                                        movie.Actors.length -
-                                            1 &&
-                                        ", "}
-                                </span>
-                            )
-                        )}
+                                        {index <
+                                            movie.Actors.length -
+                                                1 &&
+                                            ", "}
+                                    </span>
+                                )
+                            )}
 
-                    </p>
-                )}
+                        </p>
+                    )}
 
                 <div className="movie-actors-bottom-space"></div>
 
@@ -256,7 +375,9 @@ export default function Watch() {
                             }
                             to={`/watch/${item["IMDB ID"]}`}
                             className={`side-card ${
-                                item["IMDB ID"] === id
+                                String(
+                                    item["IMDB ID"]
+                                ) === String(id)
                                     ? "active"
                                     : ""
                             }`}
@@ -275,9 +396,9 @@ export default function Watch() {
                                     }
                                 />
 
-                                {item[
-                                    "IMDB ID"
-                                ] === id && (
+                                {String(
+                                    item["IMDB ID"]
+                                ) === String(id) && (
                                     <div className="play-icon">
                                         ▶
                                     </div>
@@ -302,47 +423,46 @@ export default function Watch() {
                                 {item.Actors &&
                                     item.Actors.length >
                                         0 && (
+                                        <span className="side-actors">
 
-                                    <span className="side-actors">
-
-                                        {item.Actors.map(
-                                            (
-                                                actor,
-                                                index
-                                            ) => (
-                                                <span
-                                                    key={
-                                                        actor
-                                                    }
-                                                >
-                                                    <Link
-                                                        to={`/actor/${encodeURIComponent(
+                                            {item.Actors.map(
+                                                (
+                                                    actor,
+                                                    index
+                                                ) => (
+                                                    <span
+                                                        key={
                                                             actor
-                                                        )}`}
-                                                        className="actor-link"
-                                                        onClick={(
-                                                            e
-                                                        ) =>
-                                                            e.stopPropagation()
                                                         }
                                                     >
-                                                        {
-                                                            actor
-                                                        }
-                                                    </Link>
+                                                        <Link
+                                                            to={`/actor/${encodeURIComponent(
+                                                                actor
+                                                            )}`}
+                                                            className="actor-link"
+                                                            onClick={(
+                                                                e
+                                                            ) =>
+                                                                e.stopPropagation()
+                                                            }
+                                                        >
+                                                            {
+                                                                actor
+                                                            }
+                                                        </Link>
 
-                                                    {index <
-                                                        item
-                                                            .Actors
-                                                            .length -
-                                                            1 &&
-                                                        ", "}
-                                                </span>
-                                            )
-                                        )}
+                                                        {index <
+                                                            item
+                                                                .Actors
+                                                                .length -
+                                                                1 &&
+                                                            ", "}
+                                                    </span>
+                                                )
+                                            )}
 
-                                    </span>
-                                )}
+                                        </span>
+                                    )}
 
                                 <p>
                                     {item.Year}
