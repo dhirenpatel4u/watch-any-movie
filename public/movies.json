@@ -1,6 +1,189 @@
 {
   "data": [
     {
+      "Movie Name": "Hari Ka Om",
+      "IMDB ID": "tt36853476",
+      "Poster": "https://image.tmdb.org/t/p/w500/3iYiVdesjcaWfOa2DbzGTeWEAAP.jpg",
+      "Year": 2026,
+      "Description": "Hari Prasad and his son Om are separated because of ideological differences. When Hari suffers a heart attack one morning and announces that he is going to die in six days, his wish to take his last breath at Kashi (Varanasi) with his elder son Om sets them on a destined journey to heal their dysfunctional relationship.",
+      "Actors": [
+        "Raghubir Yadav",
+        "Anshuman Jha",
+        "Soni Razdan",
+        "Ayesha Kapoor",
+        "Samta Sudiksha",
+        "Shivani Tanksale",
+        "Jagat Rawat"
+      ],
+      "TMDB ID": 1453317,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-09-18",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 2.0184,
+      "Runtime": 128,
+      "Genres": [
+        "Drama"
+      ],
+      "Director": [
+        "Harish Vyas"
+      ]
+    },
+    {
+      "Movie Name": "Daayra",
+      "IMDB ID": "tt32634611",
+      "Poster": "https://image.tmdb.org/t/p/w500/qQ6ORv3AfsV6m1ERL8Muk5jKpbu.jpg",
+      "Year": 2026,
+      "Description": "Raman, who has had a shady record with staged encounters and police brutality, finds himself cornered as Ajooni challenges him on every step.",
+      "Actors": [
+        "Kareena Kapoor Khan",
+        "Prithviraj Sukumaran",
+        "Kshitee Jog",
+        "Jitendra Joshi",
+        "Biswapati Sarkar",
+        "Sandesh Kulkarni",
+        "Pragati Mishra",
+        "Brij Bhushan Shukla",
+        "Upendra Chauhan",
+        "Ipshita Chakraborty Singh",
+        "Trupti Khamkar",
+        "Saksham Dayma",
+        "Ram Naresh Diwakar",
+        "Achint Kaur",
+        "Kanwaljit Singh"
+      ],
+      "TMDB ID": 1215889,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-09-18",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 5.3467,
+      "Runtime": 141,
+      "Genres": [
+        "Crime",
+        "Drama"
+      ],
+      "Director": [
+        "Meghna Gulzar"
+      ]
+    },
+    {
+      "Movie Name": "Vibe",
+      "IMDB ID": "tt40856286",
+      "Poster": "https://image.tmdb.org/t/p/w500/1K2cYaK42vcQkg1iITxF6xcbJrs.jpg",
+      "Year": 2026,
+      "Description": "Two inseparable friends' ordinary, unassuming lives spiral into an unpredictable, high-energy adventure that pushes their survival instincts and friendship to the limit.",
+      "Actors": [
+        "Preity Zinta",
+        "Kunal Kemmu",
+        "Sparsh Shrivastava",
+        "Vanshika Dhir",
+        "Dinesh Lal Yadav Nirahua",
+        "Yashpal Sharma",
+        "Sharmila Tagore",
+        "Aditya Kulshreshtha",
+        "Salem Kali",
+        "Hiten Paintal",
+        "Mark Bennington",
+        "Pradeep Kabra",
+        "Rajesh Krishnan",
+        "Uorfi Javed",
+        "Akshat Jain"
+      ],
+      "TMDB ID": 1654566,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-09-18",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 5.9633,
+      "Runtime": 145,
+      "Genres": [
+        "Action",
+        "Comedy",
+        "Drama"
+      ],
+      "Director": [
+        "Kunal Kemmu"
+      ]
+    },
+    {
+      "Movie Name": "Zakir Khan: Papa Yaar",
+      "IMDB ID": "tt43679244",
+      "Poster": "https://image.tmdb.org/t/p/w500/layTkFN24JouxXQpYyMIn8WxBrB.jpg",
+      "Year": 2026,
+      "Description": "Zakir Khan reflects on his childhood and the special bond he shares with his father, turning personal memories and family experiences into heartfelt comedy. With his signature blend of observational humour, poetry and emotional storytelling, he explores the unspoken sides of fatherhood and the relationship between a father and son.",
+      "Actors": [
+        "Zakir Khan"
+      ],
+      "TMDB ID": 1760576,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-09-18",
+      "Rating": 10.0,
+      "Votes": 1,
+      "Popularity": 5.9655,
+      "Runtime": 78,
+      "Genres": [
+        "Comedy"
+      ],
+      "Director": [
+        "Karan Asnani"
+      ]
+    },
+    {
+      "Movie Name": "Resident Evil",
+      "IMDB ID": "tt35538033",
+      "Poster": "https://image.tmdb.org/t/p/w500/i7UyjfPio0VFHB9rBUZSFyhOoM8.jpg",
+      "Year": 2026,
+      "Description": "Medical courier Bryan unwittingly finds himself fighting for survival as one fateful, horrifying night collapses around him in chaos.",
+      "Actors": [
+        "Austin Abrams",
+        "Zach Cherry",
+        "Kali Reis",
+        "Paul Walter Hauser",
+        "Johnno Wilson",
+        "Shaun W. Loeser",
+        "Zach Cregger",
+        "Emily Piggford",
+        "Will Merrick",
+        "Zoé Bellas",
+        "Chris Lew Kum Hoi",
+        "Griffin Newman",
+        "Magdalena Šittová",
+        "Andrea Miltner",
+        "Sara Paxton"
+      ],
+      "TMDB ID": 1423191,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-09-16",
+      "Rating": 7.3,
+      "Votes": 160,
+      "Popularity": 556.6877,
+      "Runtime": 95,
+      "Genres": [
+        "Horror",
+        "Science Fiction",
+        "Adventure"
+      ],
+      "Director": [
+        "Zach Cregger"
+      ]
+    },
+    {
       "Movie Name": "Waiting Hai",
       "IMDB ID": "tt40617568",
       "Poster": "https://image.tmdb.org/t/p/w500/6jBdFWwgKgkcrAGaDfTC9bpudaN.jpg",
@@ -642,6 +825,48 @@
       ],
       "Director": [
         "Abhishek Dogra"
+      ]
+    },
+    {
+      "Movie Name": "Mayday",
+      "IMDB ID": "tt28014327",
+      "Poster": "https://image.tmdb.org/t/p/w500/hVXjX1jLZ1ljFSNGXpjJfbTUOa7.jpg",
+      "Year": 2026,
+      "Description": "When a U.S. Navy pilot on a top-secret mission during the Cold War gets trapped behind enemy lines, his only chance at survival is to form an alliance with an eccentric ex-KGB agent.",
+      "Actors": [
+        "Ryan Reynolds",
+        "Kenneth Branagh",
+        "Marcin Dorociński",
+        "Maria Bakalova",
+        "David Morse",
+        "Clark Johnson",
+        "Wendy Crewson",
+        "Louis Cancelmi",
+        "Josh Hamilton",
+        "Alex Mallari Jr.",
+        "Alden Adair",
+        "Lovell Adams-Gray",
+        "John Francis Daley",
+        "Robert Crooks",
+        "Lorrie Odom"
+      ],
+      "TMDB ID": 1137844,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-09-03",
+      "Rating": 8.014,
+      "Votes": 692,
+      "Popularity": 119.6787,
+      "Runtime": 111,
+      "Genres": [
+        "Action",
+        "Comedy"
+      ],
+      "Director": [
+        "Jonathan Goldstein",
+        "John Francis Daley"
       ]
     },
     {
@@ -1470,6 +1695,47 @@
         "Drama"
       ],
       "Director": []
+    },
+    {
+      "Movie Name": "Spa Weekend",
+      "IMDB ID": "tt33305867",
+      "Poster": "https://image.tmdb.org/t/p/w500/i3I19SbOyz6AIl0cSYdyVJRucMr.jpg",
+      "Year": 2026,
+      "Description": "Four lifelong friends realize that somewhere between careers, relationships, families, and everyday responsibilities, they’ve forgotten how to take care of themselves and each other. Burned out and overdue for a break, the women escape to a luxury spa retreat for an unforgettable weekend dedicated to fun, laughter, and a lot of really bad decisions.",
+      "Actors": [
+        "Leslie Mann",
+        "Michelle Buteau",
+        "Anna Faris",
+        "Isla Fisher",
+        "Adam Demos",
+        "Dominic Ona-Ariki",
+        "Erika Heynatz",
+        "Courtney Clarke",
+        "Quinn Aune",
+        "Sierra Rose",
+        "Juliet Sargent",
+        "Everly Graves",
+        "Kate Lister",
+        "Yasmin Kassim",
+        "Damian Walshe-Howling"
+      ],
+      "TMDB ID": 1341138,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-08-20",
+      "Rating": 6.656,
+      "Votes": 32,
+      "Popularity": 17.3993,
+      "Runtime": 97,
+      "Genres": [
+        "Comedy"
+      ],
+      "Director": [
+        "Scott Moore",
+        "Jon Lucas"
+      ]
     },
     {
       "Movie Name": "Coyote vs. Acme",
@@ -2567,6 +2833,40 @@
       "Banner": "Big"
     },
     {
+      "Movie Name": "Karmakhya",
+      "IMDB ID": "tt43056433",
+      "Poster": "https://image.tmdb.org/t/p/w500/sGVN0bh4xQtJIHiXFy2JyWVOiMd.jpg",
+      "Year": 2026,
+      "Description": "A mysterious visit to a grieving family pulls a young woman into a terrifying world of secrets, black magic, and haunting illusions. As disturbing events begin to blur the line between reality and nightmare, Kaamakhya finds herself trapped in a chilling chain of events rooted in a dark past that refuses to stay buried.",
+      "Actors": [
+        "Samaira Sri",
+        "Samuthirakani",
+        "Abhirami",
+        "Saranya Pradeep",
+        "Madhunandan",
+        "Dhanraj Sukhram",
+        "Gaddam Naveen"
+      ],
+      "TMDB ID": 1741770,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-07-31",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 5.9118,
+      "Runtime": 126,
+      "Genres": [
+        "Thriller",
+        "Mystery",
+        "Horror"
+      ],
+      "Director": [
+        "Abhinaya Krishna"
+      ]
+    },
+    {
       "Movie Name": "Newton's 3rd Law",
       "IMDB ID": "tt39818587",
       "Poster": "https://image.tmdb.org/t/p/w500/xwktbz1EQrNTJVNkbXFrycBCIj4.jpg",
@@ -3520,6 +3820,50 @@
         "Lauren Montgomery"
       ],
       "Banner": "Big"
+    },
+    {
+      "Movie Name": "PAW Patrol: The Dino Movie",
+      "IMDB ID": "tt29356163",
+      "Poster": "https://image.tmdb.org/t/p/w500/qnin56Syy5rbG7KCaxWY7SPuy6p.jpg",
+      "Year": 2026,
+      "Description": "The Paw Patrol lands on a mysterious dinosaur island after a storm, where they meet Rex, a stranded pup. When Humdinger's reckless mining triggers a volcano, the team faces their biggest rescue mission yet to save the island.",
+      "Actors": [
+        "Carter Young",
+        "Mckenna Grace",
+        "Terry Crews",
+        "Meredith MacNeill",
+        "Ron Pardo",
+        "Jennifer Hudson",
+        "Hayden Chemberlen",
+        "Fortune Feimster",
+        "Jameela Jamil",
+        "Rain Janjua",
+        "Bill Nye",
+        "Paris Hilton",
+        "Snoop Dogg",
+        "Henry Bolan",
+        "Lucien Duncan-Reid"
+      ],
+      "TMDB ID": 1185806,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-07-23",
+      "Rating": 7.877,
+      "Votes": 122,
+      "Popularity": 101.4491,
+      "Runtime": 88,
+      "Genres": [
+        "Animation",
+        "Adventure",
+        "Family",
+        "Fantasy",
+        "Comedy"
+      ],
+      "Director": [
+        "Cal Brunker"
+      ]
     },
     {
       "Movie Name": "Motor City",
@@ -5036,6 +5380,42 @@
         "Jayesh Vrushiraj"
       ],
       "Banner": "Small"
+    },
+    {
+      "Movie Name": "Navya Chakra - Psycon World",
+      "IMDB ID": "tt41475167",
+      "Poster": "https://image.tmdb.org/t/p/w500/ipuz8BTKkOoLmVTwAUHNGdeGP3A.jpg",
+      "Year": 2026,
+      "Description": "A series of brutal murders across different states throws the country into fear and confusion. The crimes appear completely unrelated, with no clear connection between the victims or the killers, making the investigation more disturbing with every passing day. As pressure builds on the authorities, the mystery continues to deepen and spread panic everywhere, attracting nationwide media attention and creating fear among ordinary people across the country.",
+      "Actors": [
+        "Tushar Kawale",
+        "Jitendra Bohara",
+        "Pratiksha Singh",
+        "Sandhya Gemawat",
+        "Sandeep Rawal",
+        "Kailash Choudhary",
+        "Kshitij Pawar",
+        "Jessica Yadav"
+      ],
+      "TMDB ID": 1721640,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-06-26",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 1.0207,
+      "Runtime": 100,
+      "Genres": [
+        "Crime",
+        "Drama",
+        "Fantasy",
+        "Thriller"
+      ],
+      "Director": [
+        "Amit Dixit"
+      ]
     },
     {
       "Movie Name": "Angikaaram",
@@ -10421,6 +10801,45 @@
       "Banner": "Medium"
     },
     {
+      "Movie Name": "Brothers Under Fire",
+      "IMDB ID": "tt32394984",
+      "Poster": "https://image.tmdb.org/t/p/w500/e5EKqk9V7N3w0WvYFhl6wSVrMp0.jpg",
+      "Year": 2026,
+      "Description": "Captain Jordan Wright's squadron on leave for a wedding in Mexico encounters a murderous cartel. As Jordan tries to lead survivors to safety, war erupts between his squad and the cartel, forcing him into a battle to save his men.",
+      "Actors": [
+        "Kiefer Sutherland",
+        "Tommy Martinez",
+        "Ashton Sanders",
+        "Solly McLeod",
+        "Laura Osma",
+        "Omar Chaparro",
+        "Orlando Pineda",
+        "Laird Akeo",
+        "Flora Martínez",
+        "Sebastián sierra",
+        "Gabriel Camero"
+      ],
+      "TMDB ID": 1414413,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-04-15",
+      "Rating": 5.698,
+      "Votes": 48,
+      "Popularity": 16.0329,
+      "Runtime": 99,
+      "Genres": [
+        "Action",
+        "Thriller",
+        "Mystery",
+        "Drama"
+      ],
+      "Director": [
+        "Justin Chadwick"
+      ]
+    },
+    {
       "Movie Name": "Balls Up",
       "IMDB ID": "tt26735622",
       "Poster": "https://image.tmdb.org/t/p/w500/xwvJ3WzdJ1OCuDoY8LAxBUlQyig.jpg",
@@ -13855,6 +14274,47 @@
       ],
       "Director": [
         "Gopi Atchara"
+      ]
+    },
+    {
+      "Movie Name": "How to Make a Killing",
+      "IMDB ID": "tt4357198",
+      "Poster": "https://image.tmdb.org/t/p/w500/vxMeKC7o5Gi8IHMi6lUgsdprTqv.jpg",
+      "Year": 2026,
+      "Description": "Disowned at birth by his obscenely wealthy family, blue-collar Becket Redfellow will stop at nothing to reclaim his inheritance, no matter how many relatives stand in his way.",
+      "Actors": [
+        "Glen Powell",
+        "Margaret Qualley",
+        "Jessica Henwick",
+        "Bill Camp",
+        "Zach Woods",
+        "Topher Grace",
+        "Ed Harris",
+        "Raff Law",
+        "Nell Williams",
+        "Alexander Hanson",
+        "James Frecheville",
+        "Adrian Lukis",
+        "Damien Wantenaar",
+        "Sean Cameron Michael",
+        "Grady Wilson"
+      ],
+      "TMDB ID": 467905,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-02-16",
+      "Rating": 6.97,
+      "Votes": 744,
+      "Popularity": 17.3597,
+      "Runtime": 105,
+      "Genres": [
+        "Comedy",
+        "Thriller"
+      ],
+      "Director": [
+        "John Patton Ford"
       ]
     },
     {
