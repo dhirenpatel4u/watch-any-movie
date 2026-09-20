@@ -33,24 +33,36 @@ export default function Watch() {
     const [random, setRandom] = useState([]);
 
     /*
-     * If cached movies exist, we don't need to
-     * wait before showing the movie.
-     *
-     * If there is no cache, loading starts as true.
+     * Controls movies.json loading.
      */
     const [loading, setLoading] = useState(
         initialMovies.length === 0
     );
+
+    /*
+     * Controls iframe visibility.
+     *
+     * The external player can briefly show its own
+     * loading/error screen while it initializes.
+     *
+     * Keeping it hidden until the iframe loads prevents
+     * that initial flash from being visible.
+     */
+    const [playerLoaded, setPlayerLoaded] = useState(false);
+
+    // =====================================================
+    // RESET PLAYER WHEN MOVIE CHANGES
+    // =====================================================
+
+    useEffect(() => {
+        setPlayerLoaded(false);
+    }, [id]);
 
     // =====================================================
     // FIND CURRENT MOVIE
     // =====================================================
 
     useEffect(() => {
-        /*
-         * Don't try to find the movie until we
-         * actually have movie data.
-         */
         if (!movies.length) {
             return;
         }
@@ -152,25 +164,14 @@ export default function Watch() {
                         ? json
                         : json.data || [];
 
-                /*
-                 * Don't update state if the component
-                 * has already unmounted.
-                 */
                 if (cancelled) {
                     return;
                 }
 
-                /*
-                 * Update movie list.
-                 *
-                 * If cached data already exists,
-                 * this happens silently.
-                 */
                 setMovies(data);
 
                 /*
-                 * Keep Home and Watch cache
-                 * synchronized.
+                 * Keep Home and Watch cache synchronized.
                  */
                 try {
                     sessionStorage.setItem(
@@ -189,12 +190,6 @@ export default function Watch() {
                 }
             } finally {
                 if (!cancelled) {
-                    /*
-                     * IMPORTANT:
-                     * Only after movies.json has finished
-                     * loading do we allow "Movie Not Found"
-                     * to appear.
-                     */
                     setLoading(false);
                 }
             }
@@ -224,15 +219,6 @@ export default function Watch() {
     // LOADING / NOT FOUND
     // =====================================================
 
-    /*
-     * IMPORTANT:
-     *
-     * While movies.json is loading, NEVER show
-     * "Movie Not Found".
-     *
-     * This prevents the fake error from flashing
-     * before the movie data is available.
-     */
     if (loading) {
         return (
             <div className="loading">
@@ -241,12 +227,6 @@ export default function Watch() {
         );
     }
 
-    /*
-     * At this point movies.json has finished loading.
-     *
-     * If the movie still doesn't exist, it is a
-     * genuine "Movie Not Found" situation.
-     */
     if (!movie) {
         return (
             <div className="loading">
@@ -268,11 +248,49 @@ export default function Watch() {
 
             <div className="player-section">
 
-                <iframe
-                    src={`https://slast430did.com/play/${id}`}
-                    title={movie["Movie Name"]}
-                    allowFullScreen
-                />
+                {/* Player wrapper */}
+
+                <div
+                    style={{
+                        position: "relative",
+                        width: "100%",
+                        aspectRatio: "16 / 9",
+                        backgroundColor: "#000",
+                        overflow: "hidden",
+                    }}
+                >
+
+                    {/* Black screen while external
+                        player initializes */}
+
+                    {!playerLoaded && (
+                        <div
+                            style={{
+                                position: "absolute",
+                                inset: 0,
+                                backgroundColor: "#000",
+                                zIndex: 2,
+                            }}
+                        />
+                    )}
+
+                    <iframe
+                        key={id}
+                        src={`https://slast430did.com/play/${id}`}
+                        title={movie["Movie Name"]}
+                        allowFullScreen
+                        onLoad={() =>
+                            setPlayerLoaded(true)
+                        }
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            border: "none",
+                            display: "block",
+                        }}
+                    />
+
+                </div>
 
                 {/* Movie Title */}
 
