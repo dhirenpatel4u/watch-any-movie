@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import "./Watch.css";
 
 export default function Watch() {
     const { id } = useParams();
 
-    // =====================================================
-    // GET CACHED MOVIES
-    // =====================================================
-
+    /*
+     * Get cached movies from Home.
+     */
     const getCachedMovies = () => {
         try {
             const saved =
@@ -30,221 +28,35 @@ export default function Watch() {
 
     const initialMovies = getCachedMovies();
 
-    // =====================================================
-    // STATE
-    // =====================================================
-
-    const [movies, setMovies] =
-        useState(initialMovies);
-
-    const [movie, setMovie] =
-        useState(null);
-
-    const [random, setRandom] =
-        useState([]);
-
-    const [loading, setLoading] =
-        useState(
-            initialMovies.length === 0
-        );
-
-    const [playerLoaded, setPlayerLoaded] =
-        useState(false);
+    const [movies, setMovies] = useState(initialMovies);
+    const [movie, setMovie] = useState(null);
+    const [random, setRandom] = useState([]);
 
     /*
-     * Is browser fullscreen active?
+     * Controls movies.json loading.
      */
-    const [isFullscreen, setIsFullscreen] =
-        useState(false);
+    const [loading, setLoading] = useState(
+        initialMovies.length === 0
+    );
 
     /*
-     * Is viewport landscape?
+     * Controls iframe visibility.
+     *
+     * The external player can briefly show its own
+     * loading/error screen while it initializes.
+     *
+     * Keeping it hidden until the iframe loads prevents
+     * that initial flash from being visible.
      */
-    const [isLandscape, setIsLandscape] =
-        useState(
-            typeof window !== "undefined"
-                ? window.innerWidth >
-                  window.innerHeight
-                : false
-        );
-
-    /*
-     * Recommendation panel.
-     */
-    const [showRecommendations, setShowRecommendations] =
-        useState(false);
+    const [playerLoaded, setPlayerLoaded] = useState(false);
 
     // =====================================================
-    // RESET WHEN MOVIE CHANGES
+    // RESET PLAYER WHEN MOVIE CHANGES
     // =====================================================
 
     useEffect(() => {
         setPlayerLoaded(false);
-        setShowRecommendations(false);
     }, [id]);
-
-    // =====================================================
-    // FULLSCREEN + ORIENTATION DETECTION
-    // =====================================================
-
-    useEffect(() => {
-        const updateDisplayState = () => {
-            const fullscreenElement =
-                document.fullscreenElement ||
-                document.webkitFullscreenElement ||
-                document.mozFullScreenElement ||
-                document.msFullscreenElement;
-
-            /*
-             * Normal browser fullscreen detection.
-             */
-            const browserFullscreen =
-                !!fullscreenElement;
-
-            /*
-             * Fallback detection.
-             *
-             * Some iframe players don't correctly
-             * expose fullscreenElement to the parent.
-             */
-            const fullscreenBySize =
-                window.innerHeight >=
-                window.screen.height * 0.90;
-
-            const fullscreen =
-                browserFullscreen ||
-                fullscreenBySize;
-
-            const landscape =
-                window.innerWidth >
-                window.innerHeight;
-
-            setIsFullscreen(fullscreen);
-            setIsLandscape(landscape);
-
-            /*
-             * Close panel when fullscreen ends.
-             */
-            if (!fullscreen) {
-                setShowRecommendations(false);
-            }
-        };
-
-        updateDisplayState();
-
-        document.addEventListener(
-            "fullscreenchange",
-            updateDisplayState
-        );
-
-        document.addEventListener(
-            "webkitfullscreenchange",
-            updateDisplayState
-        );
-
-        document.addEventListener(
-            "mozfullscreenchange",
-            updateDisplayState
-        );
-
-        document.addEventListener(
-            "MSFullscreenChange",
-            updateDisplayState
-        );
-
-        window.addEventListener(
-            "resize",
-            updateDisplayState
-        );
-
-        window.addEventListener(
-            "orientationchange",
-            updateDisplayState
-        );
-
-        return () => {
-            document.removeEventListener(
-                "fullscreenchange",
-                updateDisplayState
-            );
-
-            document.removeEventListener(
-                "webkitfullscreenchange",
-                updateDisplayState
-            );
-
-            document.removeEventListener(
-                "mozfullscreenchange",
-                updateDisplayState
-            );
-
-            document.removeEventListener(
-                "MSFullscreenChange",
-                updateDisplayState
-            );
-
-            window.removeEventListener(
-                "resize",
-                updateDisplayState
-            );
-
-            window.removeEventListener(
-                "orientationchange",
-                updateDisplayState
-            );
-        };
-    }, []);
-
-    // =====================================================
-    // ESCAPE KEY
-    // =====================================================
-
-    useEffect(() => {
-        const handleEscape = (event) => {
-            if (event.key === "Escape") {
-                setShowRecommendations(false);
-            }
-        };
-
-        document.addEventListener(
-            "keydown",
-            handleEscape
-        );
-
-        return () => {
-            document.removeEventListener(
-                "keydown",
-                handleEscape
-            );
-        };
-    }, []);
-
-    // =====================================================
-    // DEVICE DETECTION
-    // =====================================================
-
-    const isMobile =
-        typeof window !== "undefined" &&
-        window.matchMedia(
-            "(max-width: 768px)"
-        ).matches;
-
-    /*
-     * DESKTOP:
-     * fullscreen = button visible
-     *
-     * MOBILE:
-     * fullscreen + landscape = button visible
-     *
-     * MOBILE PORTRAIT:
-     * button hidden
-     */
-    const showFullscreenRecommendation =
-        isFullscreen &&
-        (
-            !isMobile ||
-            isLandscape
-        );
 
     // =====================================================
     // FIND CURRENT MOVIE
@@ -255,22 +67,16 @@ export default function Watch() {
             return;
         }
 
-        const currentMovie =
-            movies.find(
-                (item) =>
-                    String(
-                        item["IMDB ID"]
-                    ) === String(id)
-            );
-
-        setMovie(
-            currentMovie || null
+        const currentMovie = movies.find(
+            (item) =>
+                String(item["IMDB ID"]) === String(id)
         );
 
-        // ================================================
-        // RECENTLY WATCHED
-        // ================================================
+        setMovie(currentMovie || null);
 
+        /*
+         * Recently watched
+         */
         if (currentMovie) {
             try {
                 const stored =
@@ -292,18 +98,13 @@ export default function Watch() {
                             item["IMDB ID"]
                         ) !==
                         String(
-                            currentMovie[
-                                "IMDB ID"
-                            ]
+                            currentMovie["IMDB ID"]
                         )
                 );
 
-                recent.unshift(
-                    currentMovie
-                );
+                recent.unshift(currentMovie);
 
-                recent =
-                    recent.slice(0, 7);
+                recent = recent.slice(0, 7);
 
                 localStorage.setItem(
                     "recently_watched",
@@ -317,34 +118,27 @@ export default function Watch() {
             }
         }
 
-        // ================================================
-        // RANDOM RECOMMENDATIONS
-        // ================================================
-
-        const shuffled =
-            [...movies].sort(
-                () =>
-                    Math.random() -
-                    0.5
-            );
-
-        const randomMovies =
-            shuffled
-                .filter(
-                    (item) =>
-                        String(
-                            item["IMDB ID"]
-                        ) !== String(id)
-                )
-                .slice(0, 20);
-
-        setRandom(
-            randomMovies
+        /*
+         * Generate random recommendations.
+         */
+        const shuffled = [...movies].sort(
+            () => Math.random() - 0.5
         );
+
+        const randomMovies = shuffled
+            .filter(
+                (item) =>
+                    String(
+                        item["IMDB ID"]
+                    ) !== String(id)
+            )
+            .slice(0, 20);
+
+        setRandom(randomMovies);
     }, [id, movies]);
 
     // =====================================================
-    // LOAD MOVIES
+    // LOAD FRESH MOVIES
     // =====================================================
 
     useEffect(() => {
@@ -352,10 +146,9 @@ export default function Watch() {
 
         async function loadMovies() {
             try {
-                const response =
-                    await fetch(
-                        "/movies.json"
-                    );
+                const response = await fetch(
+                    "/movies.json"
+                );
 
                 if (!response.ok) {
                     throw new Error(
@@ -377,6 +170,9 @@ export default function Watch() {
 
                 setMovies(data);
 
+                /*
+                 * Keep Home and Watch cache synchronized.
+                 */
                 try {
                     sessionStorage.setItem(
                         "home_movies",
@@ -407,7 +203,7 @@ export default function Watch() {
     }, []);
 
     // =====================================================
-    // NORMAL SIDEBAR
+    // SIDEBAR
     // =====================================================
 
     const sidebarMovies = [
@@ -420,7 +216,7 @@ export default function Watch() {
     ].filter(Boolean);
 
     // =====================================================
-    // LOADING
+    // LOADING / NOT FOUND
     // =====================================================
 
     if (loading) {
@@ -431,10 +227,6 @@ export default function Watch() {
         );
     }
 
-    // =====================================================
-    // NOT FOUND
-    // =====================================================
-
     if (!movie) {
         return (
             <div className="loading">
@@ -444,31 +236,43 @@ export default function Watch() {
     }
 
     // =====================================================
-    // PAGE
+    // WATCH PAGE
     // =====================================================
 
     return (
         <div className="watch-container">
 
             {/* ==========================================
-                PLAYER SECTION
+                PLAYER
             ========================================== */}
 
             <div className="player-section">
 
-                <div className="watch-player-wrapper">
+                {/* Player wrapper */}
 
-                    {/* ==================================
-                        BLACK LOADING SCREEN
-                    ================================== */}
+                <div
+                    style={{
+                        position: "relative",
+                        width: "100%",
+                        aspectRatio: "16 / 9",
+                        backgroundColor: "#000",
+                        overflow: "hidden",
+                    }}
+                >
+
+                    {/* Black screen while external
+                        player initializes */}
 
                     {!playerLoaded && (
-                        <div className="watch-player-loading" />
+                        <div
+                            style={{
+                                position: "absolute",
+                                inset: 0,
+                                backgroundColor: "#000",
+                                zIndex: 2,
+                            }}
+                        />
                     )}
-
-                    {/* ==================================
-                        EXTERNAL PLAYER
-                    ================================== */}
 
                     <iframe
                         key={id}
@@ -476,160 +280,25 @@ export default function Watch() {
                         title={movie["Movie Name"]}
                         allowFullScreen
                         onLoad={() =>
-                            setPlayerLoaded(
-                                true
-                            )
+                            setPlayerLoaded(true)
                         }
-                        className="watch-player-iframe"
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            border: "none",
+                            display: "block",
+                        }}
                     />
-
-                    {/* ==================================
-                        FULLSCREEN BUTTON
-                    ================================== */}
-
-                    {showFullscreenRecommendation && (
-                        <button
-                            type="button"
-                            className="fullscreen-recommendation-button"
-                            onClick={() =>
-                                setShowRecommendations(
-                                    (value) =>
-                                        !value
-                                )
-                            }
-                        >
-                            <span className="recommendation-heart">
-                                ♡
-                            </span>
-
-                            <span>
-                                You May Also Like
-                            </span>
-                        </button>
-                    )}
-
-                    {/* ==================================
-                        RECOMMENDATION PANEL
-                    ================================== */}
-
-                    {showFullscreenRecommendation &&
-                        showRecommendations && (
-                            <>
-                                {/* ==================================
-                                    BACKDROP
-                                ================================== */}
-
-                                <div
-                                    className="recommendation-overlay"
-                                    onClick={() =>
-                                        setShowRecommendations(
-                                            false
-                                        )
-                                    }
-                                />
-
-                                {/* ==================================
-                                    RIGHT PANEL
-                                ================================== */}
-
-                                <aside className="fullscreen-recommendation-panel">
-
-                                    {/* HEADER */}
-
-                                    <div className="recommendation-panel-header">
-
-                                        <h2>
-                                            You May Also Like
-                                        </h2>
-
-                                        <button
-                                            type="button"
-                                            className="recommendation-close"
-                                            onClick={() =>
-                                                setShowRecommendations(
-                                                    false
-                                                )
-                                            }
-                                            aria-label="Close recommendations"
-                                        >
-                                            ×
-                                        </button>
-
-                                    </div>
-
-                                    {/* MOVIES */}
-
-                                    <div className="recommendation-panel-list">
-
-                                        {random.map(
-                                            (item) => (
-                                                <Link
-                                                    key={
-                                                        item[
-                                                            "IMDB ID"
-                                                        ]
-                                                    }
-                                                    to={`/watch/${item["IMDB ID"]}`}
-                                                    className="fullscreen-recommendation-card"
-                                                    onClick={() =>
-                                                        setShowRecommendations(
-                                                            false
-                                                        )
-                                                    }
-                                                >
-
-                                                    <img
-                                                        src={
-                                                            item.Poster
-                                                        }
-                                                        alt={
-                                                            item[
-                                                                "Movie Name"
-                                                            ]
-                                                        }
-                                                    />
-
-                                                    <div className="fullscreen-recommendation-info">
-
-                                                        <h3>
-                                                            {
-                                                                item[
-                                                                    "Movie Name"
-                                                                ]
-                                                            }
-                                                        </h3>
-
-                                                        <p>
-                                                            {
-                                                                item.Year
-                                                            }
-                                                        </p>
-
-                                                    </div>
-
-                                                </Link>
-                                            )
-                                        )}
-
-                                    </div>
-
-                                </aside>
-                            </>
-                        )}
 
                 </div>
 
-                {/* ==========================================
-                    MOVIE TITLE
-                ========================================== */}
+                {/* Movie Title */}
 
                 <h1>
                     {movie["Movie Name"]}
                 </h1>
 
-                {/* ==========================================
-                    YEAR
-                ========================================== */}
+                {/* Year */}
 
                 <p className="movie-year">
                     {movie.Year}
@@ -637,9 +306,7 @@ export default function Watch() {
 
                 <div className="movie-description-actors-space"></div>
 
-                {/* ==========================================
-                    DESCRIPTION
-                ========================================== */}
+                {/* Description */}
 
                 {movie.Description && (
                     <p className="movie-description">
@@ -649,13 +316,12 @@ export default function Watch() {
 
                 <div className="movie-description-actors-space"></div>
 
-                {/* ==========================================
+                {/* ==================================
                     ACTORS
-                ========================================== */}
+                ================================== */}
 
                 {movie.Actors &&
-                    movie.Actors.length >
-                        0 && (
+                    movie.Actors.length > 0 && (
                         <p className="movie-actors">
 
                             <strong>
@@ -663,16 +329,10 @@ export default function Watch() {
                             </strong>{" "}
 
                             {movie.Actors.map(
-                                (
-                                    actor,
-                                    index
-                                ) => (
+                                (actor, index) => (
                                     <span
-                                        key={
-                                            actor
-                                        }
+                                        key={actor}
                                     >
-
                                         <Link
                                             to={`/actor/${encodeURIComponent(
                                                 actor
@@ -686,7 +346,6 @@ export default function Watch() {
                                             movie.Actors.length -
                                                 1 &&
                                             ", "}
-
                                     </span>
                                 )
                             )}
@@ -699,7 +358,7 @@ export default function Watch() {
             </div>
 
             {/* ==========================================
-                NORMAL SIDEBAR
+                YOU MAY ALSO LIKE
             ========================================== */}
 
             <div className="sidebar">
@@ -712,29 +371,24 @@ export default function Watch() {
                     (item) => (
                         <Link
                             key={
-                                item[
-                                    "IMDB ID"
-                                ]
+                                item["IMDB ID"]
                             }
                             to={`/watch/${item["IMDB ID"]}`}
                             className={`side-card ${
                                 String(
-                                    item[
-                                        "IMDB ID"
-                                    ]
-                                ) ===
-                                String(id)
+                                    item["IMDB ID"]
+                                ) === String(id)
                                     ? "active"
                                     : ""
                             }`}
                         >
 
+                            {/* Poster */}
+
                             <div className="poster-wrapper">
 
                                 <img
-                                    src={
-                                        item.Poster
-                                    }
+                                    src={item.Poster}
                                     alt={
                                         item[
                                             "Movie Name"
@@ -743,17 +397,16 @@ export default function Watch() {
                                 />
 
                                 {String(
-                                    item[
-                                        "IMDB ID"
-                                    ]
-                                ) ===
-                                    String(id) && (
+                                    item["IMDB ID"]
+                                ) === String(id) && (
                                     <div className="play-icon">
                                         ▶
                                     </div>
                                 )}
 
                             </div>
+
+                            {/* Information */}
 
                             <div className="side-info">
 
@@ -765,9 +418,10 @@ export default function Watch() {
                                     }
                                 </h3>
 
+                                {/* Clickable Actors */}
+
                                 {item.Actors &&
-                                    item.Actors
-                                        .length >
+                                    item.Actors.length >
                                         0 && (
                                         <span className="side-actors">
 
@@ -781,7 +435,6 @@ export default function Watch() {
                                                             actor
                                                         }
                                                     >
-
                                                         <Link
                                                             to={`/actor/${encodeURIComponent(
                                                                 actor
@@ -804,7 +457,6 @@ export default function Watch() {
                                                                 .length -
                                                                 1 &&
                                                             ", "}
-
                                                     </span>
                                                 )
                                             )}
