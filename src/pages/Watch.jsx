@@ -5,9 +5,10 @@ import "./Watch.css";
 export default function Watch() {
     const { id } = useParams();
 
-    /*
-     * Get cached movies from Home.
-     */
+    // =====================================================
+    // GET CACHED MOVIES
+    // =====================================================
+
     const getCachedMovies = () => {
         try {
             const saved =
@@ -29,47 +30,52 @@ export default function Watch() {
 
     const initialMovies = getCachedMovies();
 
-    const [movies, setMovies] = useState(initialMovies);
-    const [movie, setMovie] = useState(null);
-    const [random, setRandom] = useState([]);
+    // =====================================================
+    // STATE
+    // =====================================================
+
+    const [movies, setMovies] =
+        useState(initialMovies);
+
+    const [movie, setMovie] =
+        useState(null);
+
+    const [random, setRandom] =
+        useState([]);
+
+    const [loading, setLoading] =
+        useState(
+            initialMovies.length === 0
+        );
+
+    const [playerLoaded, setPlayerLoaded] =
+        useState(false);
 
     /*
-     * Controls movies.json loading.
-     */
-    const [loading, setLoading] = useState(
-        initialMovies.length === 0
-    );
-
-    /*
-     * Controls iframe visibility.
-     */
-    const [playerLoaded, setPlayerLoaded] = useState(false);
-
-    /*
-     * Controls fullscreen state.
+     * Is browser fullscreen active?
      */
     const [isFullscreen, setIsFullscreen] =
         useState(false);
 
     /*
-     * Controls mobile landscape state.
+     * Is viewport landscape?
      */
     const [isLandscape, setIsLandscape] =
         useState(
             typeof window !== "undefined"
                 ? window.innerWidth >
-                      window.innerHeight
+                  window.innerHeight
                 : false
         );
 
     /*
-     * Controls recommendation panel.
+     * Recommendation panel.
      */
     const [showRecommendations, setShowRecommendations] =
         useState(false);
 
     // =====================================================
-    // RESET PLAYER WHEN MOVIE CHANGES
+    // RESET WHEN MOVIE CHANGES
     // =====================================================
 
     useEffect(() => {
@@ -78,84 +84,113 @@ export default function Watch() {
     }, [id]);
 
     // =====================================================
-    // FULLSCREEN DETECTION
+    // FULLSCREEN + ORIENTATION DETECTION
     // =====================================================
 
     useEffect(() => {
-        const handleFullscreenChange = () => {
+        const updateDisplayState = () => {
             const fullscreenElement =
                 document.fullscreenElement ||
-                document.webkitFullscreenElement;
-
-            const fullscreen = !!fullscreenElement;
-
-            setIsFullscreen(fullscreen);
+                document.webkitFullscreenElement ||
+                document.mozFullScreenElement ||
+                document.msFullscreenElement;
 
             /*
-             * Automatically close recommendations
-             * when fullscreen ends.
+             * Normal browser fullscreen detection.
+             */
+            const browserFullscreen =
+                !!fullscreenElement;
+
+            /*
+             * Fallback detection.
+             *
+             * Some iframe players don't correctly
+             * expose fullscreenElement to the parent.
+             */
+            const fullscreenBySize =
+                window.innerHeight >=
+                window.screen.height * 0.90;
+
+            const fullscreen =
+                browserFullscreen ||
+                fullscreenBySize;
+
+            const landscape =
+                window.innerWidth >
+                window.innerHeight;
+
+            setIsFullscreen(fullscreen);
+            setIsLandscape(landscape);
+
+            /*
+             * Close panel when fullscreen ends.
              */
             if (!fullscreen) {
                 setShowRecommendations(false);
             }
         };
 
+        updateDisplayState();
+
         document.addEventListener(
             "fullscreenchange",
-            handleFullscreenChange
+            updateDisplayState
         );
 
         document.addEventListener(
             "webkitfullscreenchange",
-            handleFullscreenChange
+            updateDisplayState
+        );
+
+        document.addEventListener(
+            "mozfullscreenchange",
+            updateDisplayState
+        );
+
+        document.addEventListener(
+            "MSFullscreenChange",
+            updateDisplayState
+        );
+
+        window.addEventListener(
+            "resize",
+            updateDisplayState
+        );
+
+        window.addEventListener(
+            "orientationchange",
+            updateDisplayState
         );
 
         return () => {
             document.removeEventListener(
                 "fullscreenchange",
-                handleFullscreenChange
+                updateDisplayState
             );
 
             document.removeEventListener(
                 "webkitfullscreenchange",
-                handleFullscreenChange
+                updateDisplayState
             );
-        };
-    }, []);
 
-    // =====================================================
-    // MOBILE ORIENTATION DETECTION
-    // =====================================================
-
-    useEffect(() => {
-        const handleOrientation = () => {
-            setIsLandscape(
-                window.innerWidth >
-                    window.innerHeight
+            document.removeEventListener(
+                "mozfullscreenchange",
+                updateDisplayState
             );
-        };
 
-        handleOrientation();
+            document.removeEventListener(
+                "MSFullscreenChange",
+                updateDisplayState
+            );
 
-        window.addEventListener(
-            "resize",
-            handleOrientation
-        );
-
-        window.addEventListener(
-            "orientationchange",
-            handleOrientation
-        );
-
-        return () => {
             window.removeEventListener(
                 "resize",
-                handleOrientation
+                updateDisplayState
             );
 
             window.removeEventListener(
                 "orientationchange",
-                handleOrientation
+                updateDisplayState
             );
         };
     }, []);
@@ -165,7 +200,7 @@ export default function Watch() {
     // =====================================================
 
     useEffect(() => {
-        const handleKeyDown = (event) => {
+        const handleEscape = (event) => {
             if (event.key === "Escape") {
                 setShowRecommendations(false);
             }
@@ -173,19 +208,19 @@ export default function Watch() {
 
         document.addEventListener(
             "keydown",
-            handleKeyDown
+            handleEscape
         );
 
         return () => {
             document.removeEventListener(
                 "keydown",
-                handleKeyDown
+                handleEscape
             );
         };
     }, []);
 
     // =====================================================
-    // DETERMINE WHETHER BUTTON SHOULD SHOW
+    // DEVICE DETECTION
     // =====================================================
 
     const isMobile =
@@ -195,16 +230,21 @@ export default function Watch() {
         ).matches;
 
     /*
-     * Desktop:
-     *   Fullscreen = show
+     * DESKTOP:
+     * fullscreen = button visible
      *
-     * Mobile:
-     *   Fullscreen + landscape = show
-     *   Fullscreen + portrait = hide
+     * MOBILE:
+     * fullscreen + landscape = button visible
+     *
+     * MOBILE PORTRAIT:
+     * button hidden
      */
     const showFullscreenRecommendation =
         isFullscreen &&
-        (!isMobile || isLandscape);
+        (
+            !isMobile ||
+            isLandscape
+        );
 
     // =====================================================
     // FIND CURRENT MOVIE
@@ -215,17 +255,22 @@ export default function Watch() {
             return;
         }
 
-        const currentMovie = movies.find(
-            (item) =>
-                String(item["IMDB ID"]) ===
-                String(id)
+        const currentMovie =
+            movies.find(
+                (item) =>
+                    String(
+                        item["IMDB ID"]
+                    ) === String(id)
+            );
+
+        setMovie(
+            currentMovie || null
         );
 
-        setMovie(currentMovie || null);
+        // ================================================
+        // RECENTLY WATCHED
+        // ================================================
 
-        /*
-         * Recently watched
-         */
         if (currentMovie) {
             try {
                 const stored =
@@ -247,13 +292,18 @@ export default function Watch() {
                             item["IMDB ID"]
                         ) !==
                         String(
-                            currentMovie["IMDB ID"]
+                            currentMovie[
+                                "IMDB ID"
+                            ]
                         )
                 );
 
-                recent.unshift(currentMovie);
+                recent.unshift(
+                    currentMovie
+                );
 
-                recent = recent.slice(0, 7);
+                recent =
+                    recent.slice(0, 7);
 
                 localStorage.setItem(
                     "recently_watched",
@@ -267,27 +317,34 @@ export default function Watch() {
             }
         }
 
-        /*
-         * Generate random recommendations.
-         */
-        const shuffled = [...movies].sort(
-            () => Math.random() - 0.5
+        // ================================================
+        // RANDOM RECOMMENDATIONS
+        // ================================================
+
+        const shuffled =
+            [...movies].sort(
+                () =>
+                    Math.random() -
+                    0.5
+            );
+
+        const randomMovies =
+            shuffled
+                .filter(
+                    (item) =>
+                        String(
+                            item["IMDB ID"]
+                        ) !== String(id)
+                )
+                .slice(0, 20);
+
+        setRandom(
+            randomMovies
         );
-
-        const randomMovies = shuffled
-            .filter(
-                (item) =>
-                    String(
-                        item["IMDB ID"]
-                    ) !== String(id)
-            )
-            .slice(0, 20);
-
-        setRandom(randomMovies);
     }, [id, movies]);
 
     // =====================================================
-    // LOAD FRESH MOVIES
+    // LOAD MOVIES
     // =====================================================
 
     useEffect(() => {
@@ -295,9 +352,10 @@ export default function Watch() {
 
         async function loadMovies() {
             try {
-                const response = await fetch(
-                    "/movies.json"
-                );
+                const response =
+                    await fetch(
+                        "/movies.json"
+                    );
 
                 if (!response.ok) {
                     throw new Error(
@@ -319,9 +377,6 @@ export default function Watch() {
 
                 setMovies(data);
 
-                /*
-                 * Keep Home and Watch cache synchronized.
-                 */
                 try {
                     sessionStorage.setItem(
                         "home_movies",
@@ -352,7 +407,7 @@ export default function Watch() {
     }, []);
 
     // =====================================================
-    // SIDEBAR
+    // NORMAL SIDEBAR
     // =====================================================
 
     const sidebarMovies = [
@@ -377,7 +432,7 @@ export default function Watch() {
     }
 
     // =====================================================
-    // MOVIE NOT FOUND
+    // NOT FOUND
     // =====================================================
 
     if (!movie) {
@@ -389,30 +444,26 @@ export default function Watch() {
     }
 
     // =====================================================
-    // WATCH PAGE
+    // PAGE
     // =====================================================
 
     return (
         <div className="watch-container">
 
             {/* ==========================================
-                PLAYER
+                PLAYER SECTION
             ========================================== */}
 
             <div className="player-section">
 
-                <div
-                    className="watch-player-wrapper"
-                >
+                <div className="watch-player-wrapper">
 
                     {/* ==================================
                         BLACK LOADING SCREEN
                     ================================== */}
 
                     {!playerLoaded && (
-                        <div
-                            className="watch-player-loading"
-                        />
+                        <div className="watch-player-loading" />
                     )}
 
                     {/* ==================================
@@ -425,19 +476,15 @@ export default function Watch() {
                         title={movie["Movie Name"]}
                         allowFullScreen
                         onLoad={() =>
-                            setPlayerLoaded(true)
+                            setPlayerLoaded(
+                                true
+                            )
                         }
                         className="watch-player-iframe"
                     />
 
                     {/* ==================================
-                        YOU MAY ALSO LIKE BUTTON
-
-                        Desktop:
-                        Fullscreen only
-
-                        Mobile:
-                        Fullscreen + landscape only
+                        FULLSCREEN BUTTON
                     ================================== */}
 
                     {showFullscreenRecommendation && (
@@ -451,7 +498,7 @@ export default function Watch() {
                                 )
                             }
                         >
-                            <span>
+                            <span className="recommendation-heart">
                                 ♡
                             </span>
 
@@ -462,14 +509,15 @@ export default function Watch() {
                     )}
 
                     {/* ==================================
-                        FULLSCREEN RECOMMENDATION PANEL
+                        RECOMMENDATION PANEL
                     ================================== */}
 
                     {showFullscreenRecommendation &&
                         showRecommendations && (
                             <>
-                                {/* Transparent area
-                                    behind panel */}
+                                {/* ==================================
+                                    BACKDROP
+                                ================================== */}
 
                                 <div
                                     className="recommendation-overlay"
@@ -480,13 +528,13 @@ export default function Watch() {
                                     }
                                 />
 
-                                {/* Right panel */}
+                                {/* ==================================
+                                    RIGHT PANEL
+                                ================================== */}
 
-                                <aside
-                                    className="fullscreen-recommendation-panel"
-                                >
+                                <aside className="fullscreen-recommendation-panel">
 
-                                    {/* Header */}
+                                    {/* HEADER */}
 
                                     <div className="recommendation-panel-header">
 
@@ -509,7 +557,7 @@ export default function Watch() {
 
                                     </div>
 
-                                    {/* Movies */}
+                                    {/* MOVIES */}
 
                                     <div className="recommendation-panel-list">
 
@@ -606,7 +654,8 @@ export default function Watch() {
                 ========================================== */}
 
                 {movie.Actors &&
-                    movie.Actors.length > 0 && (
+                    movie.Actors.length >
+                        0 && (
                         <p className="movie-actors">
 
                             <strong>
@@ -619,7 +668,9 @@ export default function Watch() {
                                     index
                                 ) => (
                                     <span
-                                        key={actor}
+                                        key={
+                                            actor
+                                        }
                                     >
 
                                         <Link
@@ -648,7 +699,7 @@ export default function Watch() {
             </div>
 
             {/* ==========================================
-                NORMAL PAGE SIDEBAR
+                NORMAL SIDEBAR
             ========================================== */}
 
             <div className="sidebar">
@@ -661,24 +712,29 @@ export default function Watch() {
                     (item) => (
                         <Link
                             key={
-                                item["IMDB ID"]
+                                item[
+                                    "IMDB ID"
+                                ]
                             }
                             to={`/watch/${item["IMDB ID"]}`}
                             className={`side-card ${
                                 String(
-                                    item["IMDB ID"]
-                                ) === String(id)
+                                    item[
+                                        "IMDB ID"
+                                    ]
+                                ) ===
+                                String(id)
                                     ? "active"
                                     : ""
                             }`}
                         >
 
-                            {/* Poster */}
-
                             <div className="poster-wrapper">
 
                                 <img
-                                    src={item.Poster}
+                                    src={
+                                        item.Poster
+                                    }
                                     alt={
                                         item[
                                             "Movie Name"
@@ -687,16 +743,17 @@ export default function Watch() {
                                 />
 
                                 {String(
-                                    item["IMDB ID"]
-                                ) === String(id) && (
+                                    item[
+                                        "IMDB ID"
+                                    ]
+                                ) ===
+                                    String(id) && (
                                     <div className="play-icon">
                                         ▶
                                     </div>
                                 )}
 
                             </div>
-
-                            {/* Information */}
 
                             <div className="side-info">
 
@@ -708,10 +765,9 @@ export default function Watch() {
                                     }
                                 </h3>
 
-                                {/* Actors */}
-
                                 {item.Actors &&
-                                    item.Actors.length >
+                                    item.Actors
+                                        .length >
                                         0 && (
                                         <span className="side-actors">
 
