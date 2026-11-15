@@ -1,13 +1,20 @@
+
 import { Link } from "react-router-dom";
 
 export default function MovieCard({ movie }) {
+
     const handleClick = () => {
-        /*
-         * Save exact Home scroll position
-         */
+
+        // Save exact Home scroll position
         sessionStorage.setItem(
             "home_scroll_position",
             String(window.scrollY)
+        );
+
+        // Enable Home scroll restoration
+        sessionStorage.setItem(
+            "restore_home_scroll",
+            "true"
         );
     };
 
