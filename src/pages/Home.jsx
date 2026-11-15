@@ -77,6 +77,84 @@ export default function Home({ search }) {
         useState([]);
 
     /*
+     * CHECK NAVIGATION TYPE
+     */
+    const isReload =
+        performance.getEntriesByType("navigation")[0]?.type === "reload";
+
+    /*
+     * RESET PAGE ON RELOAD
+     */
+    useEffect(() => {
+
+        if (isReload) {
+
+            sessionStorage.removeItem(
+                "home_desktop_page"
+            );
+
+            sessionStorage.removeItem(
+                "restore_home_scroll"
+            );
+
+            sessionStorage.removeItem(
+                "home_scroll_position"
+            );
+
+            setPage(1);
+        }
+
+    }, []);
+
+    /*
+     * RESTORE DESKTOP PAGE
+     */
+    useEffect(() => {
+
+        if (isReload) return;
+
+        const shouldRestore =
+            sessionStorage.getItem(
+                "restore_home_scroll"
+            );
+
+        if (shouldRestore !== "true") {
+            return;
+        }
+
+        const savedPage = Number(
+            sessionStorage.getItem(
+                "home_desktop_page"
+            )
+        );
+
+        if (
+            Number.isFinite(savedPage) &&
+            savedPage >= 1
+        ) {
+            setPage(savedPage);
+        }
+
+    }, []);
+
+    /*
+     * SAVE DESKTOP PAGE NUMBER
+     */
+    useEffect(() => {
+
+        if (
+            window.location.pathname === "/" &&
+            !isReload
+        ) {
+            sessionStorage.setItem(
+                "home_desktop_page",
+                String(page)
+            );
+        }
+
+    }, [page]);
+
+    /*
      * DISABLE BROWSER AUTOMATIC RESTORATION
      */
     useEffect(() => {
@@ -237,6 +315,10 @@ export default function Home({ search }) {
 
         setPage(1);
 
+        sessionStorage.removeItem(
+            "home_desktop_page"
+        );
+
         if (search.trim() !== "") {
 
             setMobileCount(40);
@@ -379,6 +461,9 @@ export default function Home({ search }) {
 
         if (loading) return;
 
+        // Never restore scroll after a browser reload
+        if (isReload) return;
+
         const shouldRestore =
             sessionStorage.getItem(
                 "restore_home_scroll"
@@ -467,7 +552,7 @@ export default function Home({ search }) {
             cancelAnimationFrame(frame);
         };
 
-    }, [loading]);
+    }, [loading, page]);
 
     /*
      * LOADING
