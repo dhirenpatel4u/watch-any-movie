@@ -1,6 +1,3428 @@
 {
   "data": [
     {
+      "Movie Name": "Allen",
+      "IMDB ID": "tt37675123",
+      "Poster": "https://image.tmdb.org/t/p/w500/alhhrpj1PSAn5bfz4Os1k7Bweoj.jpg",
+      "Year": 2026,
+      "Description": "20 years after his encounter with an alien, Petey never moved on. Now his old friend has returned, and the reason why is complicated — and unexpected.",
+      "Actors": [
+        "T.J. Power",
+        "Charlotte Nicdao",
+        "Josh Helman",
+        "Emily Barclay",
+        "Benedict Hardie",
+        "Elijah Tamati",
+        "Edward A O'Sullivan",
+        "Caitlin Niemotko",
+        "Tommy Broadmore",
+        "Kelly Butler",
+        "Mark Doggett",
+        "Christopher Sommers",
+        "Kaipo Heke",
+        "Chaydon Jay",
+        "Steven Bonutto"
+      ],
+      "TMDB ID": 1518204,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-11-12",
+      "Rating": 6.9,
+      "Votes": 28,
+      "Popularity": 72.9964,
+      "Runtime": 105,
+      "Genres": [
+        "Science Fiction",
+        "Adventure",
+        "Comedy"
+      ],
+      "Director": [
+        "Daley Pearson",
+        "Jeffrey Walker"
+      ]
+    },
+    {
+      "Movie Name": "Itllu Arjuna",
+      "IMDB ID": "tt39131708",
+      "Poster": "https://image.tmdb.org/t/p/w500/305TOBJYCjuZriRu9FrbRHOprPX.jpg",
+      "Year": 2026,
+      "Description": "A mute man with exceptional skills falls in love, proving that true feelings do not always need words.",
+      "Actors": [
+        "Aniesh",
+        "Anaswara Rajan",
+        "Vennela Kishore",
+        "Mukesh Rishi",
+        "Kalaiyarasan",
+        "Elango Kumaravel",
+        "Brahmaji",
+        "Getup Srinu",
+        "Raghu Babu",
+        "Aruna Bhikshu",
+        "Mime Gopi",
+        "Praveena Lalithabai",
+        "G Rohan Roy"
+      ],
+      "TMDB ID": 1440539,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-11-12",
+      "Rating": 6.0,
+      "Votes": 1,
+      "Popularity": 4.1974,
+      "Runtime": 164,
+      "Genres": [
+        "Action",
+        "Romance",
+        "Thriller"
+      ],
+      "Director": [
+        "Mahesh Uppala"
+      ]
+    },
+    {
+      "Movie Name": "DNK",
+      "IMDB ID": "tt43738410",
+      "Poster": "https://image.tmdb.org/t/p/w500/gi22AKV54XFUpbD06ROphN02A8a.jpg",
+      "Year": 2026,
+      "Description": "A young man with a compulsive stealing habit brings trouble upon his family, who must deal with the consequences of his actions.",
+      "Actors": [
+        "Mouli",
+        "Sushmita Shetty",
+        "Ali",
+        "Raghu Babu",
+        "Rajitha",
+        "Bhadram",
+        "Gundu Sudarshan",
+        "Ramana Bhargava"
+      ],
+      "TMDB ID": 1641520,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-11-12",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 18.2644,
+      "Runtime": 136,
+      "Genres": [
+        "Comedy",
+        "Crime"
+      ],
+      "Director": [
+        "Sreenu Kambala"
+      ]
+    },
+    {
+      "Movie Name": "Victorian Psycho",
+      "IMDB ID": "tt34374553",
+      "Poster": "https://image.tmdb.org/t/p/w500/9LHVZevgdsdbjJdkFr6bk9EwX7q.jpg",
+      "Year": 2026,
+      "Description": "When eccentric young governess Winifred Notty arrives at a remote Gothic manor, a string of unsettling events leads the household to suspect she isn't who she claims to be—but the truth may be far more dangerous than they imagine.",
+      "Actors": [
+        "Maika Monroe",
+        "Thomasin McKenzie",
+        "Ruth Wilson",
+        "Jason Isaacs",
+        "Evie Templeton",
+        "Jacobi Jupe",
+        "Amy De Bhrún",
+        "Katherine Moran",
+        "Dagmar Döring",
+        "Kate Brady",
+        "Elishka Lane",
+        "Guillaume Doradoux",
+        "Barry O'Connor",
+        "Paul Reid",
+        "Alan Devally"
+      ],
+      "TMDB ID": 1379486,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-11-11",
+      "Rating": 5.5,
+      "Votes": 2,
+      "Popularity": 26.6485,
+      "Runtime": 102,
+      "Genres": [
+        "Horror",
+        "Thriller"
+      ],
+      "Director": [
+        "Zachary Wigon"
+      ]
+    },
+    {
+      "Movie Name": "Ebenezer",
+      "IMDB ID": "tt38773219",
+      "Poster": "https://image.tmdb.org/t/p/w500/6H2N59jJW1hZEzn2ZdrMvJw5vNI.jpg",
+      "Year": 2026,
+      "Description": "An elderly miser embarks on a supernatural journey after visits from the ghost of his former business partner and the Spirits of Christmas Past, Present, and Yet to Come force him to confront his past and fight for a second chance at happiness.",
+      "Actors": [
+        "Johnny Depp",
+        "Rupert Grint",
+        "Ian McKellen",
+        "Andrea Riseborough",
+        "Tramell Tillman",
+        "Sam Claflin",
+        "Daisy Ridley",
+        "Ellie Bamber",
+        "Arthur Conti",
+        "Charlie Murphy",
+        "Robert Strange",
+        "Alfie Buck",
+        "Ian Midlane",
+        "Matt Brewer",
+        "Nicholas Day"
+      ],
+      "TMDB ID": 1567605,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-11-11",
+      "Rating": 7.8,
+      "Votes": 60,
+      "Popularity": 121.7855,
+      "Runtime": 115,
+      "Genres": [
+        "Fantasy",
+        "Comedy"
+      ],
+      "Director": [
+        "Ti West"
+      ]
+    },
+    {
+      "Movie Name": "How to Rob a Bank",
+      "IMDB ID": "tt35866986",
+      "Poster": "https://image.tmdb.org/t/p/w500/ifYDZkr2qkHFz87TNVvlxajOxl5.jpg",
+      "Year": 2026,
+      "Description": "A crew of social media-savvy bank robbers broadcasts their daring heists, unaware that their growing viral fame has put them in the crosshairs of a veteran FBI agent and a brilliant software engineer. Despite the unlikely duo closing in, the crime ring pushes past their limits, putting everything on the line for their most ambitious heist yet.",
+      "Actors": [
+        "Nicholas Hoult",
+        "Zoë Kravitz",
+        "Pete Davidson",
+        "John C. Reilly",
+        "Anna Sawai",
+        "Rhenzy Feliz",
+        "Christian Slater",
+        "Tati Gabrielle",
+        "Paul Sparks",
+        "Young Mazino",
+        "Alessandra Frugoli",
+        "Gloria Laino",
+        "Andrew Schulz",
+        "AlexxMedia",
+        "Akaash Singh"
+      ],
+      "TMDB ID": 1437511,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-11-10",
+      "Rating": 6.7,
+      "Votes": 24,
+      "Popularity": 62.9004,
+      "Runtime": 122,
+      "Genres": [
+        "Action",
+        "Crime",
+        "Thriller"
+      ],
+      "Director": [
+        "David Leitch"
+      ]
+    },
+    {
+      "Movie Name": "Jimmy",
+      "IMDB ID": "tt31179962",
+      "Poster": "https://image.tmdb.org/t/p/w500/xcMiTqj4kvSnUHhSLZ1WUvI9rzH.jpg",
+      "Year": 2026,
+      "Description": "A look into the life of American actor James Stewart, whose inspiring tale of valor, purpose and faith will win over everyone.",
+      "Actors": [
+        "KJ Apa",
+        "Jason Alexander",
+        "Max Casella",
+        "Sarah Drew",
+        "Julian Works",
+        "Jen Lilley",
+        "Christopher McDonald",
+        "Kara Killmer",
+        "Neal McDonough",
+        "Rob Riggle",
+        "Jemma Donovan",
+        "Aidan Thornton",
+        "Seán Condon",
+        "Ian Dillon",
+        "Conor Thornton"
+      ],
+      "TMDB ID": 1241478,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-11-06",
+      "Rating": 9.333,
+      "Votes": 3,
+      "Popularity": 31.8953,
+      "Runtime": 120,
+      "Genres": [
+        "Drama",
+        "History"
+      ],
+      "Director": [
+        "Aaron Burns"
+      ]
+    },
+    {
+      "Movie Name": "Being Heumann",
+      "IMDB ID": "tt15095848",
+      "Poster": "https://image.tmdb.org/t/p/w500/ouGH1PS0xjDyfTQOhppn7QzJqQZ.jpg",
+      "Year": 2026,
+      "Description": "Scrappy, defiant, and done being treated like a burden, Judy Heumann turns her outrage into a revolution. In 1977, she and more than 100 disability rights protestors send a very loud message: The system is broken—not us.",
+      "Actors": [
+        "Ruth Madeley",
+        "Mark Ruffalo",
+        "Dylan O'Brien",
+        "Madeline Delp",
+        "Roberta Colindrez",
+        "Jon Beavers",
+        "Antwan Tolliver",
+        "Ray Fisher",
+        "Andrew Pilkington",
+        "Michael Patrick Thornton",
+        "Russell Harvard",
+        "Daniel Durant",
+        "Charlie Rush-Reese",
+        "Rio Finnegan",
+        "D'Arcee Charington Neal"
+      ],
+      "TMDB ID": 1050981,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-11-06",
+      "Rating": 6.192,
+      "Votes": 13,
+      "Popularity": 32.8554,
+      "Runtime": 127,
+      "Genres": [
+        "Drama",
+        "History"
+      ],
+      "Director": [
+        "Sian Heder"
+      ]
+    },
+    {
+      "Movie Name": "Nooru Kodi Vaanavil",
+      "IMDB ID": "tt18933846",
+      "Poster": "https://image.tmdb.org/t/p/w500/gSJodOp12s5qFU3pO9Cz1sjQSYZ.jpg",
+      "Year": 2026,
+      "Description": "Vino and Fenny's lives intertwine in a poignant tale of love, hope, and heartbreak.",
+      "Actors": [
+        "Harish Kalyan",
+        "Siddhi Idnani",
+        "Kovai Sarala",
+        "Thambi Ramaiah",
+        "Chinni Jayanth",
+        "M. Rinil",
+        "VJ Parvathy"
+      ],
+      "TMDB ID": 926867,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-11-06",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 2.6847,
+      "Runtime": 118,
+      "Genres": [
+        "Romance",
+        "Drama"
+      ],
+      "Director": [
+        "Sasi"
+      ]
+    },
+    {
+      "Movie Name": "Mookuthi Amman 2",
+      "IMDB ID": "tt32909364",
+      "Poster": "https://image.tmdb.org/t/p/w500/dNNzsstJeQxnESyH0hZcLGblLMz.jpg",
+      "Year": 2026,
+      "Description": "A queen sacrifices herself to protect her son, the prince, from invading enemies.Mookuthi Amman returns to protect the child and confronts a mysterious woman who embodies a new and dangerous evil.",
+      "Actors": [
+        "Nayanthara",
+        "Urvashi",
+        "Regena Cassandrra",
+        "Yogi Babu",
+        "Duniya Vijay",
+        "Myna Nandhini",
+        "Ramachandra Raju",
+        "Abhinaya",
+        "Singampuli",
+        "VR Suwaminathan Rajesh",
+        "Sivakumar",
+        "Sunil Varma",
+        "Varshini Venkat",
+        "Pazha Karuppaiah",
+        "Ananda Adhista Lakshmi"
+      ],
+      "TMDB ID": 1327835,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-11-06",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 37.8713,
+      "Runtime": 144,
+      "Genres": [
+        "Fantasy",
+        "Drama",
+        "Comedy"
+      ],
+      "Director": [
+        "Sundar C"
+      ]
+    },
+    {
+      "Movie Name": "Scene",
+      "IMDB ID": "tt38192494",
+      "Poster": "https://image.tmdb.org/t/p/w500/RtLW0aQ8sPk5lWH5nzHQmpiBu4.jpg",
+      "Year": 2026,
+      "Description": "Inbaraj, a police officer, is forced to come back from retirement when a new case resembles one he closed years ago. This time, he must solve it with a chaotic and troublesome team. As they struggle to work together and deal with the twists and turns of the case, the investigation takes them on a chaotic and unpredictable ride.",
+      "Actors": [
+        "Suriya",
+        "Nazriya Nazim",
+        "Naslen",
+        "Anandaraj",
+        "Suresh Mathiyalagan",
+        "Lal",
+        "Raj Priyan",
+        "Rajalakshmi",
+        "Thilagavathi",
+        "Gajaraj",
+        "Sudalaimani",
+        "Panneerselvam",
+        "Tanishka Mohan",
+        "Manisaran",
+        "Saranya Ar"
+      ],
+      "TMDB ID": 1402181,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-11-05",
+      "Rating": 8.447,
+      "Votes": 19,
+      "Popularity": 35.115,
+      "Runtime": 149,
+      "Genres": [
+        "Comedy",
+        "Crime",
+        "Action"
+      ],
+      "Director": [
+        "Jithu Madhavan"
+      ]
+    },
+    {
+      "Movie Name": "Dilwali Diwali",
+      "IMDB ID": "tt50107649",
+      "Poster": "https://image.tmdb.org/t/p/w500/cV31QO65DA6mk4Hd6S7QncVq85T.jpg",
+      "Year": 2026,
+      "Description": "Ansh Sikkha returns to his Punjabi family home for Diwali after years working abroad. As the Sikkas gather for the festival, their clashing views on what constitutes a fulfilling life create friction and connection.",
+      "Actors": [
+        "Mihir Ahuja",
+        "Manoj Pahwa",
+        "Neelu Kohli",
+        "Aura Bhatnagar Badoni",
+        "Manmeet Singh Sawhney"
+      ],
+      "TMDB ID": 1810711,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-11-05",
+      "Rating": 7.5,
+      "Votes": 2,
+      "Popularity": 2.2431,
+      "Runtime": 61,
+      "Genres": [
+        "Comedy"
+      ],
+      "Director": [
+        "Ritesh Menon"
+      ]
+    },
+    {
+      "Movie Name": "Ramayana: Rise of a Legend",
+      "IMDB ID": "tt27988879",
+      "Poster": "https://image.tmdb.org/t/p/w500/vBQ7wks68OhJKlb3RnXSl2yXBXK.jpg",
+      "Year": 2026,
+      "Description": "An ancient epic follows a young prince and princess whose marriage and subsequent exile mark the beginning of a legendary journey. Their story of love, duty and destiny sets the stage for greater challenges ahead.",
+      "Actors": [
+        "Ranbir Kapoor",
+        "Yash",
+        "Sai Pallavi",
+        "Ravi Dubey",
+        "Arun Govil",
+        "Lara Dutta",
+        "Rakul Preet Singh",
+        "Indira Krishnan",
+        "Sonal Jha",
+        "Adinath Kothare",
+        "Kajal Aggarwal",
+        "Nitish Sharma",
+        "Anupam Kher",
+        "Vivek Oberoi",
+        "Harish Uthaman"
+      ],
+      "TMDB ID": 656908,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-11-05",
+      "Rating": 7.5,
+      "Votes": 46,
+      "Popularity": 138.759,
+      "Runtime": 201,
+      "Genres": [
+        "Fantasy",
+        "Action",
+        "Adventure"
+      ],
+      "Director": [
+        "Nitesh Tiwari"
+      ]
+    },
+    {
+      "Movie Name": "A Dog's Perfect Christmas",
+      "IMDB ID": "tt38515310",
+      "Poster": "https://image.tmdb.org/t/p/w500/zvsNAohDHRWcGvbPSD7r3WojpKb.jpg",
+      "Year": 2026,
+      "Description": "When a medical emergency pulls the Goss family apart, determined dog Winstead will do all he can to bring his humans back together before Christmas Eve.",
+      "Actors": [
+        "Dennis Quaid",
+        "Milo Ventimiglia",
+        "Brooke Lena Johnson",
+        "Kathleen Rose Perkins",
+        "Jennifer Tilly",
+        "Thomas Haden Church",
+        "Mary Steenburgen",
+        "Ethan Loomis",
+        "Marissa Jaret Winokur",
+        "Cathryn Michon",
+        "W. Bruce Cameron",
+        "Karen LeBlanc",
+        "Rebecca Staab",
+        "Abel Neudorf",
+        "Oskar Neudorf"
+      ],
+      "TMDB ID": 1570488,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-11-04",
+      "Rating": 7.152,
+      "Votes": 56,
+      "Popularity": 95.905,
+      "Runtime": 102,
+      "Genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "Director": [
+        "Cathryn Michon"
+      ]
+    },
+    {
+      "Movie Name": "Model Citizen",
+      "IMDB ID": "tt13884466",
+      "Poster": "https://image.tmdb.org/t/p/w500/7SE0LBwgqiqZzkm9gKVbBAbcNQL.jpg",
+      "Year": 2026,
+      "Description": "With his memories gone and his past a blur, ex-cop Steven Bay seeks treatment for his amnesia while working on an isolated farm. Instead, he's met with rising hostility, strange surveillance, and instincts he can’t fully control. When the pressure becomes unbearable, Bay begins a desperate hunt for the truth behind his fractured reality.",
+      "Actors": [
+        "Aaron Eckhart",
+        "Emmanuelle Chriqui",
+        "Paul Braunstein",
+        "David Hewlett",
+        "Sebastian Pigott",
+        "Zion Forrest Lee",
+        "Avery Mendillo",
+        "Talia Asseraf",
+        "Nicolas Grimes",
+        "Caitlin McNerney",
+        "Michael O'Keefe",
+        "Houston Wong",
+        "Dana Fradkin",
+        "Jadyn Rylee Giles",
+        "Irin Harel"
+      ],
+      "TMDB ID": 1792170,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-11-03",
+      "Rating": 6.125,
+      "Votes": 32,
+      "Popularity": 29.7053,
+      "Runtime": 93,
+      "Genres": [
+        "Crime",
+        "Science Fiction",
+        "Thriller"
+      ],
+      "Director": [
+        "Tag Mendillo"
+      ]
+    },
+    {
+      "Movie Name": "Wild Horse Nine",
+      "IMDB ID": "tt15799564",
+      "Poster": "https://image.tmdb.org/t/p/w500/dNJFRtVg3xLQ7dbNIQ55cmmIniD.jpg",
+      "Year": 2026,
+      "Description": "Shortly before the 1973 Chilean coup, CIA agents Chris and Lee are dispatched from Santiago to Easter Island by their bureau chief, MJ. Amongst the Island's iconic statues, and as the longtime partners wrestle with their dark pasts and present conspiracies, Chris's newfound bond with a pair of rebellious students threatens to send everyone’s trip to this remote paradise sideways.",
+      "Actors": [
+        "John Malkovich",
+        "Sam Rockwell",
+        "Steve Buscemi",
+        "Mariana di Girolamo",
+        "Ailín Salas",
+        "Parker Posey",
+        "Tom Waits",
+        "Paola Giannini",
+        "Bastián Bodenhöfer",
+        "Sofía Chacón",
+        "Luciano Reinoso",
+        "Laura Villa",
+        "Djure Gasic",
+        "Isabel Noreiga Inzunza",
+        "Mireya Sotoconil"
+      ],
+      "TMDB ID": 891621,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-10-30",
+      "Rating": 7.956,
+      "Votes": 193,
+      "Popularity": 67.434,
+      "Runtime": 117,
+      "Genres": [
+        "Comedy",
+        "Crime",
+        "Thriller"
+      ],
+      "Director": [
+        "Martin McDonagh"
+      ]
+    },
+    {
+      "Movie Name": "#Cult",
+      "IMDB ID": "tt36915004",
+      "Poster": "https://image.tmdb.org/t/p/w500/8jPyjKZE2Bnm3esvDmWZyGA8mkr.jpg",
+      "Year": 2026,
+      "Description": "A group of young boys head to a party expecting a night of fun, but soon discover the reality is far darker than they imagined. What starts as excitement spirals into terror, pushing them into a brutal fight for survival.",
+      "Actors": [
+        "Vishwak Sen",
+        "Gayatri Bhardwaj",
+        "Tarak Ponnappa",
+        "Murali Sharma",
+        "Srikanth Iyengar",
+        "Karthikeya Dev",
+        "Anirudh Bhaskar",
+        "Yagnya Turlapati",
+        "Kabeer Bhartiya",
+        "Vishak Nair",
+        "Vivek Chepuri"
+      ],
+      "TMDB ID": 1637705,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-10-30",
+      "Rating": 5.0,
+      "Votes": 1,
+      "Popularity": 1.5149,
+      "Runtime": 152,
+      "Genres": [
+        "Horror",
+        "Action",
+        "Thriller"
+      ],
+      "Director": [
+        "Vishwak Sen"
+      ]
+    },
+    {
+      "Movie Name": "Aadarsha Kutumbam House No: 47 - AK47",
+      "IMDB ID": "tt30768979",
+      "Poster": "https://image.tmdb.org/t/p/w500/1Z0ypXqSRWjnjPRVU6YiHwawsLC.jpg",
+      "Year": 2026,
+      "Description": "A tight-knit family faces an unexpected crisis that threatens their bond, forcing them to re-evaluate their values and fight to stay united.",
+      "Actors": [
+        "Venkatesh",
+        "Srinidhi Shetty",
+        "Nara Rohith",
+        "Nivetha Pethuraj",
+        "Yuvina Parthavi",
+        "Raja Prajwal",
+        "Rao Ramesh",
+        "Satya",
+        "Brahmaji",
+        "Udaybir Sandhu",
+        "Vennela Kishore",
+        "Raghu Babu",
+        "Dimple Hayathi"
+      ],
+      "TMDB ID": 1496785,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-10-30",
+      "Rating": 5.5,
+      "Votes": 4,
+      "Popularity": 2.2274,
+      "Runtime": 149,
+      "Genres": [
+        "Family",
+        "Comedy",
+        "Action"
+      ],
+      "Director": [
+        "Trivikram Srinivas"
+      ]
+    },
+    {
+      "Movie Name": "Jhaad Phoonk",
+      "IMDB ID": "tt38047694",
+      "Poster": "https://image.tmdb.org/t/p/w500/1YP2UfkYtZP1n9O5fMZtZhFxmrO.jpg",
+      "Year": 2026,
+      "Description": "Jhaad Phoonk is a horror-drama directed by Rajan Ramgopal Verma. The movie features Padmini Kolhapure, Sumbul Touqeer, Yashpal Sharma, and Harsh Rajput in pivotal roles.",
+      "Actors": [
+        "Padmini Kolhapure",
+        "Sumbul Touqeer",
+        "Yashpal Sharma",
+        "Harsh Rajput"
+      ],
+      "TMDB ID": 1813349,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-30",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.9236,
+      "Runtime": 113,
+      "Genres": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ],
+      "Director": [
+        "Rajan Ramgopal Verma"
+      ]
+    },
+    {
+      "Movie Name": "Nakhrewaalii",
+      "IMDB ID": "tt27811608",
+      "Poster": "https://image.tmdb.org/t/p/w500/oC8kSyOdioegcXl8OfcG6uctyK2.jpg",
+      "Year": 2026,
+      "Description": "Sumit Mishra cross-dresses as a woman to win over his love interest, Paridhi.",
+      "Actors": [
+        "Ansh Duggal",
+        "Pragati Srivastava",
+        "Akash Makhija",
+        "Gopal Datt",
+        "Kumud Mishra",
+        "Aayush Verma",
+        "Kajol Bhadana",
+        "Rishi Raj Bhasin",
+        "Kanupriya Pandit",
+        "Rana Rudra Pratap Singh",
+        "Devika Singh"
+      ],
+      "TMDB ID": 1202167,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-30",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 1.0243,
+      "Runtime": 129,
+      "Genres": [
+        "Romance"
+      ],
+      "Director": [
+        "Rahul Shanklya"
+      ]
+    },
+    {
+      "Movie Name": "Pyre",
+      "IMDB ID": "tt26899139",
+      "Poster": "https://image.tmdb.org/t/p/w500/vnA3CaEYrXIHyxmyv8oegshSSgE.jpg",
+      "Year": 2026,
+      "Description": "In the Himalayan Mountain range, a rural village loses its inhabitants to the city’s allure while an elderly couple, Padam Singh and Tulsi, live in desolate isolation. Their days are filled with routine and occasional humour as they mask their loneliness. Their son’s absence gnaws at them, and when a letter arrives promising his return, it reignites their hearts with joy and anticipation. However, the reunion does not unfold as expected, shattering their hopes. As the film climaxes, the spectator is confronted with a more rueful plight, deeply engaging the audience’s empathy.",
+      "Actors": [
+        "Padam Singh",
+        "Hira Devi Mishra",
+        "Subhash Chandra",
+        "Shubham Chaudhary",
+        "Sadab Khan",
+        "Sadab Khan",
+        "Alok Verma",
+        "Jaya Shah",
+        "Gopa Nayal",
+        "Deewan Kanwal",
+        "Pushpa Pandey"
+      ],
+      "TMDB ID": 1374689,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-30",
+      "Rating": 6.0,
+      "Votes": 1,
+      "Popularity": 1.8725,
+      "Runtime": 111,
+      "Genres": [
+        "Drama"
+      ],
+      "Director": [
+        "Vinod Kapri"
+      ]
+    },
+    {
+      "Movie Name": "The Mongoose",
+      "IMDB ID": "tt13611778",
+      "Poster": "https://image.tmdb.org/t/p/w500/eSS5mvSG84UUuvtbHel5Yu3Wik4.jpg",
+      "Year": 2026,
+      "Description": "A falsely accused war hero with nothing to lose leads police on an epic televised cross-country car chase, helped by members of his former Special Forces Army battalion and closely monitored by a fascinated public rooting for his safe getaway.",
+      "Actors": [
+        "Liam Neeson",
+        "Marisa Tomei",
+        "Ving Rhames",
+        "Marcus Thomas",
+        "Michael Chiklis",
+        "Maurice Marvel Meredith",
+        "Brett Tucker",
+        "Ryan Morgan",
+        "Laura Coates",
+        "Geoff Morrell",
+        "Charles Allen",
+        "Jack Kenny",
+        "Stella Stocker",
+        "Aisha Aidara",
+        "Elias Anton"
+      ],
+      "TMDB ID": 1294189,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-10-29",
+      "Rating": 6.205,
+      "Votes": 166,
+      "Popularity": 139.9382,
+      "Runtime": 99,
+      "Genres": [
+        "Action",
+        "Thriller"
+      ],
+      "Director": [
+        "Mark Vanselow"
+      ]
+    },
+    {
+      "Movie Name": "Little Thomas",
+      "IMDB ID": "tt23472798",
+      "Poster": "https://image.tmdb.org/t/p/w500/6cByO46CKFlvQ9cgpv4RBQE6TnB.jpg",
+      "Year": 2026,
+      "Description": "In early 1990s Goa, seven year old Thomas and his family navigate thr ups and downs in their lives.",
+      "Actors": [
+        "Gulshan Devaiah",
+        "Rasika Dugal",
+        "Hridansh Parekh",
+        "Hridansh Gokani"
+      ],
+      "TMDB ID": 1416312,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-23",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.4987,
+      "Runtime": 125,
+      "Genres": [
+        "Drama",
+        "Comedy"
+      ],
+      "Director": [
+        "Kaushal Oza"
+      ]
+    },
+    {
+      "Movie Name": "Doosra",
+      "IMDB ID": "tt9123066",
+      "Poster": "https://image.tmdb.org/t/p/w500/lIY3gG1sO6KkXLgmv0o9d23ykBP.jpg",
+      "Year": 2026,
+      "Description": "The 2002 NatWest Final was more than a cricketing victory for India. It was a moment when a nation found its voice, and a young girl found the courage to speak her truth.",
+      "Actors": [
+        "Plabita Borthakur",
+        "Ankur Vikal",
+        "Samidha Guru",
+        "Twisha Joshi",
+        "Krishna Gokani",
+        "Sourav Ganguly"
+      ],
+      "TMDB ID": 1794929,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-23",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.4912,
+      "Runtime": 78,
+      "Genres": [
+        "Drama"
+      ],
+      "Director": [
+        "Abhinay Deo"
+      ]
+    },
+    {
+      "Movie Name": "Dhood (Sandstorm)",
+      "IMDB ID": "tt35697291",
+      "Poster": "https://image.tmdb.org/t/p/w500/8WHWC29DJvSV8woUwDinjFmuVLR.jpg",
+      "Year": 2026,
+      "Description": "Set against the vast expanse of the Thar desert, an isolated family's desperate wishes and psychological friction trigger a dark domestic countdown, threatening to reduce their household entirely into dust",
+      "Actors": [
+        "Yashpal Sharma",
+        "Alka Amin",
+        "Vivek Pareek",
+        "Bhavani Singh Chauhan",
+        "Parveen Choudhary"
+      ],
+      "TMDB ID": 1799668,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-23",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.6577,
+      "Runtime": 97,
+      "Genres": [
+        "Family",
+        "Drama"
+      ],
+      "Director": [
+        "Anand Singh Chouhan"
+      ]
+    },
+    {
+      "Movie Name": "Tum Mere Ho",
+      "IMDB ID": "tt46083105",
+      "Poster": "https://image.tmdb.org/t/p/w500/iQyd8w6xPjTrOeYImdt70EEQ0zv.jpg",
+      "Year": 2026,
+      "Description": "Tum Mere Ho is a heartfelt romance starring Gurmeet Choudhary and Isha Malviya, exploring love, emotions, and the unexpected turns that bring two hearts together.",
+      "Actors": [
+        "Gurmeet Choudhary",
+        "Isha Malviya",
+        "Shaan R Grover",
+        "Anushka Luhar",
+        "Romanch Mehta",
+        "Shreas Pardiwala",
+        "Nikhat Khan",
+        "Shalini Kapoor",
+        "Adhik Mehta",
+        "Saumya Uniyal",
+        "Vikas Verma"
+      ],
+      "TMDB ID": 1806232,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-23",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 1.093,
+      "Runtime": 134,
+      "Genres": [
+        "Drama",
+        "Romance"
+      ],
+      "Director": [
+        "Ashish Panda"
+      ]
+    },
+    {
+      "Movie Name": "Tu Hai Meri Kiran",
+      "IMDB ID": "tt33321821",
+      "Poster": "https://image.tmdb.org/t/p/w500/jjlqHKzDTPJXDl0eb77Q20Aipuc.jpg",
+      "Year": 2026,
+      "Description": "What starts as a real connection for her turns into his all-consuming obsession. As love darkens, the boundary between devotion and danger fades.",
+      "Actors": [
+        "Zaheer Iqbal",
+        "Sonakshi Sinha",
+        "Ankit Gupta",
+        "Sherlin Seth",
+        "Zarina Wahab",
+        "Purnendu Bhattacharya"
+      ],
+      "TMDB ID": 1785611,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-23",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 1.6161,
+      "Runtime": 140,
+      "Genres": [
+        "Romance",
+        "Thriller"
+      ],
+      "Director": [
+        "Karan Rawal"
+      ]
+    },
+    {
+      "Movie Name": "Pehla Pyaar Doosri Baar",
+      "IMDB ID": "tt46065968",
+      "Poster": "https://image.tmdb.org/t/p/w500/tGS4b47RIpF3DTAkezHBqfYNTm2.jpg",
+      "Year": 2026,
+      "Description": "Three friends attend their school reunion and enter into different relationships, discovering the trials, tribulations, allure, and absurdities of love.",
+      "Actors": [
+        "Alisha Chopra",
+        "Sparsh Walia",
+        "Sakshi Vaidya",
+        "Kunal Vaid",
+        "Sargun Kaur Luthra",
+        "Tushar Chhibber",
+        "Rajkummar Rao"
+      ],
+      "TMDB ID": 1772549,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-23",
+      "Rating": 6.0,
+      "Votes": 2,
+      "Popularity": 3.2492,
+      "Runtime": 150,
+      "Genres": [
+        "Romance",
+        "Comedy",
+        "Drama"
+      ],
+      "Director": [
+        "Anuj Saini"
+      ]
+    },
+    {
+      "Movie Name": "Udta Teer",
+      "IMDB ID": "tt31806773",
+      "Poster": "https://image.tmdb.org/t/p/w500/tvICKypVlW7Iio4KVs7NousbSKi.jpg",
+      "Year": 2026,
+      "Description": "An amnesiac Pakistani spy wakes up believing he is a patriotic Indian counter-terrorism officer.",
+      "Actors": [
+        "Ayushmann Khurrana",
+        "Sara Ali Khan",
+        "Rahul Bose",
+        "Supriya Pilgaonkar",
+        "Brijendra Kala",
+        "Ram Kapoor",
+        "Mukul Dev",
+        "Suhail Nayyar",
+        "Sandeep Anand",
+        "Gulshan Grover",
+        "Harish Chhabra",
+        "Smita Tambe",
+        "Kavya Kumar"
+      ],
+      "TMDB ID": 1375156,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-23",
+      "Rating": 6.25,
+      "Votes": 6,
+      "Popularity": 4.8481,
+      "Runtime": 137,
+      "Genres": [
+        "Comedy",
+        "Action"
+      ],
+      "Director": [
+        "Aakash Kaushik"
+      ]
+    },
+    {
+      "Movie Name": "Gajab Raat",
+      "IMDB ID": "tt39631280",
+      "Poster": "https://image.tmdb.org/t/p/w500/e4N7M52cBbyi24xLga8yI6yt1u1.jpg",
+      "Year": 2026,
+      "Description": "A corrupt, troubled cop's night spirals out of control when a reluctant act of mercy toward an injured girl pulls him into a deadly web of crime.",
+      "Actors": [
+        "Manoj Bajpayee",
+        "Divya Dutta",
+        "Akshay Oberoi",
+        "Saqib Saleem",
+        "Shraddha Das",
+        "Rajiv Gupta",
+        "Aditi Sandhya Sharma",
+        "Nushrratt Bharuccha",
+        "Kiku Sharda",
+        "Sunit Tandon",
+        "Sumit Gahlawat",
+        "Sachin Kathuria",
+        "Namit Khanna",
+        "Vikas Shrivastav",
+        "Alok Pandey"
+      ],
+      "TMDB ID": 1453407,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-23",
+      "Rating": 5.8,
+      "Votes": 19,
+      "Popularity": 48.2724,
+      "Runtime": 124,
+      "Genres": [
+        "Thriller",
+        "Crime"
+      ],
+      "Director": [
+        "Ritesh Shah"
+      ]
+    },
+    {
+      "Movie Name": "Ali G: Who Iz I?",
+      "IMDB ID": "tt43655467",
+      "Poster": "https://image.tmdb.org/t/p/w500/uTyVxPeWX8Ai30IQoyDDQONNcq.jpg",
+      "Year": 2026,
+      "Description": "After twenty years spent \"chillin', tokin' and bonin'\", Ali G is shocked to discover that his long-term girlfriend, Julie, is 8 months pregnant. Faced with an extra mouth to feed, he gets off his batty and heads to America to reclaim his former glory… but soon encounters adversaries who will ultimately threaten his and his child's very existence.",
+      "Actors": [
+        "Sacha Baron Cohen",
+        "Morgana Robinson",
+        "Alpha Miknas",
+        "Clive Russell",
+        "A$AP Rocky",
+        "Rihanna",
+        "Tiffany Haddish",
+        "DJ Jazzy Jeff",
+        "C. Stewart Rodeheaver",
+        "Allan Lichtman",
+        "George Santos",
+        "Newt Gingrich",
+        "Ralph Norman",
+        "Andy Harris",
+        "Joshua Loudermilk"
+      ],
+      "TMDB ID": 1727734,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-10-22",
+      "Rating": 5.591,
+      "Votes": 193,
+      "Popularity": 24.7457,
+      "Runtime": 89,
+      "Genres": [
+        "Comedy"
+      ],
+      "Director": [
+        "Sacha Baron Cohen"
+      ]
+    },
+    {
+      "Movie Name": "418",
+      "IMDB ID": "tt38984184",
+      "Poster": "https://image.tmdb.org/t/p/w500/aNPNi3qUdAzKdtd1fKwMdUdyUcz.jpg",
+      "Year": 2026,
+      "Description": "Set in a medical college in a dread-stricken village, the film confronts the science behind superstitions, the superstitions in science, and an anomaly that neither can explain.",
+      "Actors": [
+        "Chaithra J Achar",
+        "Charan Lakkaraju",
+        "Preethi Pagadala",
+        "Ramesh Indira",
+        "Shashank Patil",
+        "Shree Vaishnav",
+        "Shrikanth Ganesh",
+        "Surya Raj",
+        "Kota Jayaram",
+        "Bank Basha",
+        "Satyanarayana Vaddadhi",
+        "Recce Naidu",
+        "Rekha Nirosha",
+        "Sanjana Hardageri",
+        "Sreevaani Tripuraneni"
+      ],
+      "TMDB ID": 1606527,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-10-22",
+      "Rating": 8.0,
+      "Votes": 1,
+      "Popularity": 1.3849,
+      "Runtime": 157,
+      "Genres": [
+        "Horror",
+        "Thriller"
+      ],
+      "Director": [
+        "Kiran Nadagouda"
+      ]
+    },
+    {
+      "Movie Name": "Clayface",
+      "IMDB ID": "tt34890576",
+      "Poster": "https://image.tmdb.org/t/p/w500/9l1NuFjel2j89hiuiJbsxfblqjy.jpg",
+      "Year": 2026,
+      "Description": "Matt Hagen's meteoric rise from Gotham street kid to Hollywood leading man is tragically cut short when a local crime boss's actions leave him horribly disfigured. Abandoned by his team and with nothing left, Matt seeks out a cutting edge treatment that miraculously returns him to his former self… but also unexpectedly affects his grip on reality, spiraling him down a destructive path of all-consuming revenge.",
+      "Actors": [
+        "Tom Rhys Harries",
+        "Naomi Ackie",
+        "Eddie Marsan",
+        "Max Minghella",
+        "David Dencik",
+        "Francesca Corney",
+        "Ruby Sear",
+        "Wil Coban",
+        "Joshua James",
+        "Jake Curran",
+        "Nancy Carroll",
+        "Olivia-Mai Barrett",
+        "Sonita Henry",
+        "Adam Silver",
+        "Rob Brydon"
+      ],
+      "TMDB ID": 1400940,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-10-19",
+      "Rating": 7.393,
+      "Votes": 442,
+      "Popularity": 72.0477,
+      "Runtime": 109,
+      "Genres": [
+        "Horror",
+        "Thriller",
+        "Science Fiction"
+      ],
+      "Director": [
+        "James Watkins"
+      ]
+    },
+    {
+      "Movie Name": "Wildwood",
+      "IMDB ID": "tt2056785",
+      "Poster": "https://image.tmdb.org/t/p/w500/snFM00mpNAfUzUtkdEW0uDEvXA0.jpg",
+      "Year": 2026,
+      "Description": "Prue and her classmate Curtis are drawn into a magical forest filled with enchanted creatures, loyal allies, and formidable adversaries as they embark on a desperate quest to rescue Prue's abducted baby brother from a murder of crows led by a mysterious woman named Alexandra.",
+      "Actors": [
+        "Peyton Elizabeth Lee",
+        "Jacob Tremblay",
+        "Carey Mulligan",
+        "Mahershala Ali",
+        "Richard E. Grant",
+        "Angela Bassett",
+        "Awkwafina",
+        "Amandla Stenberg",
+        "Tom Waits",
+        "Charlie Day",
+        "Blythe Danner",
+        "Jake Johnson",
+        "Maya Erskine",
+        "Rob Delaney",
+        "Jemaine Clement"
+      ],
+      "TMDB ID": 791523,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-10-19",
+      "Rating": 8.48,
+      "Votes": 277,
+      "Popularity": 85.5531,
+      "Runtime": 132,
+      "Genres": [
+        "Animation",
+        "Fantasy",
+        "Adventure"
+      ],
+      "Director": [
+        "Travis Knight"
+      ]
+    },
+    {
+      "Movie Name": "Masterplan",
+      "IMDB ID": "tt38672588",
+      "Poster": "https://image.tmdb.org/t/p/w500/5xmXVd7nCK3tAo34XkO58SxUCip.jpg",
+      "Year": 2026,
+      "Description": "When a legendary thief sets his sights on the Mona Lisa, he recruits two young strangers to help him before revealing they are long-lost siblings… and oh yes, by the way, he is their father. Thrown into a chaotic reunion they never asked for, this new family must learn to work together — and try not to kill each other — if they want any chance at pulling off the heist of the century.",
+      "Actors": [
+        "Stanley Tucci",
+        "Simona Tabasco",
+        "Victor Belmondo",
+        "Eliott Margueron",
+        "Barbara Lo Gaglio",
+        "Etienne Guillou-Kervern",
+        "Srbo Markovic",
+        "Julia Messina",
+        "Mark Ivanir"
+      ],
+      "TMDB ID": 1561726,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-10-16",
+      "Rating": 6.724,
+      "Votes": 248,
+      "Popularity": 41.9262,
+      "Runtime": 110,
+      "Genres": [
+        "Action",
+        "Thriller"
+      ],
+      "Director": [
+        "Thomas Vincent"
+      ]
+    },
+    {
+      "Movie Name": "Prahaar: The Untold Story of Ujjwal Nikam",
+      "IMDB ID": "tt28773062",
+      "Poster": "https://image.tmdb.org/t/p/w500/wTrBTNfHHmpPwiB9rpn0tGbSW1m.jpg",
+      "Year": 2026,
+      "Description": "Public prosecutor Ujjwal Nikam takes on one of the most high-profile criminal cases in India’s history, leading the prosecution in the trial of Ajmal Kasab following the 26/11 Mumbai terror attacks. As he battles to uncover the truth and secure justice, Nikam must confront the immense personal and professional burden of a case that will define his legacy.",
+      "Actors": [
+        "Rajkummar Rao",
+        "Wamiqa Gabbi",
+        "Jaideep Ahlawat",
+        "Sikandar Kher",
+        "Ashish Vidhyarthi",
+        "Lalit Prabhakar",
+        "Ritwik Sahore",
+        "Nassar",
+        "Pranali Ghoghare",
+        "Ajinkya Deo",
+        "Sandeep Kulkarni",
+        "Saahil Sheikh",
+        "Gaurav Chaudhary",
+        "Milind Ukey",
+        "Priya Raina"
+      ],
+      "TMDB ID": 1081010,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-16",
+      "Rating": 8.5,
+      "Votes": 2,
+      "Popularity": 1.5155,
+      "Runtime": 141,
+      "Genres": [
+        "Crime",
+        "Drama"
+      ],
+      "Director": [
+        "Avinash Arun"
+      ]
+    },
+    {
+      "Movie Name": "Nayyi Navelli",
+      "IMDB ID": "tt40855841",
+      "Poster": "https://image.tmdb.org/t/p/w500/aZEKuzGt7ObqoKjTM4kcMd0klYy.jpg",
+      "Year": 2026,
+      "Description": "A new bride's arrival turns a turbulent household in Meerut into a picture of domestic harmony, until her brother-in-law grows convinced that his seemingly perfect sister-in-law is secretly a witch.",
+      "Actors": [
+        "Yami Gautam Dhar",
+        "Anurag Thakur",
+        "Adinath Kothare",
+        "Sushmita Mukherjee",
+        "Prateek Pachori",
+        "Suneel Sinha",
+        "Sunita Rajwar",
+        "Mita Vashisht",
+        "Sonal Jha",
+        "Akshat Singh",
+        "Babita Pandey",
+        "Ajay Pal"
+      ],
+      "TMDB ID": 1654581,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-16",
+      "Rating": 5.125,
+      "Votes": 4,
+      "Popularity": 2.6616,
+      "Runtime": 138,
+      "Genres": [
+        "Adventure",
+        "Fantasy",
+        "Comedy",
+        "Drama"
+      ],
+      "Director": [
+        "Balaji Mohan"
+      ]
+    },
+    {
+      "Movie Name": "Ranabaali",
+      "IMDB ID": "tt32324552",
+      "Poster": "https://image.tmdb.org/t/p/w500/cXaCyYYbafVyMrs8rwKmxezBYPJ.jpg",
+      "Year": 2026,
+      "Description": "Set in 19th-century British India, a fierce leader rises from a drought-stricken land to fight colonial oppression and atrocities.",
+      "Actors": [
+        "Vijay Deverakonda",
+        "Rashmika Mandanna",
+        "Arnold Vosloo",
+        "Easwari Rao",
+        "Vinod Sagar",
+        "Kishore Kumar Polimera",
+        "Luke McGibney",
+        "Madhunandan",
+        "Geoffrey Giuliano",
+        "V. M. Mahalingam"
+      ],
+      "TMDB ID": 1389379,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-10-15",
+      "Rating": 5.0,
+      "Votes": 4,
+      "Popularity": 40.111,
+      "Runtime": 179,
+      "Genres": [
+        "History",
+        "Action",
+        "Drama"
+      ],
+      "Director": [
+        "Rahul Sankrityan"
+      ]
+    },
+    {
+      "Movie Name": "Jailer 2",
+      "IMDB ID": "tt33318732",
+      "Poster": "https://image.tmdb.org/t/p/w500/upwdEyhhYZ7pT2hD535fr2MGfpx.jpg",
+      "Year": 2026,
+      "Description": "When a dangerous syndicate threatens his family, retired jailer Tiger Muthuvel Pandian goes undercover as a driver to battle enemies from the shadows.",
+      "Actors": [
+        "Rajinikanth",
+        "S. J. Suryah",
+        "Suraj Venjaramoodu",
+        "Ramya Krishnan",
+        "Vidya Balan",
+        "Namo Narayana",
+        "Yogi Babu",
+        "Mirnaa",
+        "Rithvik",
+        "Hakkim Shajahan",
+        "Jatin Sarna",
+        "Mithun Chakraborty",
+        "Kottayam Nazeer",
+        "Anna Reshma Rajan",
+        "Bagavathi Perumal"
+      ],
+      "TMDB ID": 1234139,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-10-14",
+      "Rating": 8.0,
+      "Votes": 36,
+      "Popularity": 65.3846,
+      "Runtime": 165,
+      "Genres": [
+        "Action",
+        "Comedy",
+        "Drama"
+      ],
+      "Director": [
+        "Nelson"
+      ]
+    },
+    {
+      "Movie Name": "Street Fighter",
+      "IMDB ID": "tt27419420",
+      "Poster": "https://image.tmdb.org/t/p/w500/dJPT2Uf12X6aFg8i5N67NTpIZ9t.jpg",
+      "Year": 2026,
+      "Description": "In 1993, estranged Street Fighters Ryu and Ken Masters are thrown back into combat when the mysterious Chun-Li recruits them for the next World Warrior Tournament: a brutal clash of fists, fate, and fury. But behind this battle royale lies a deadly conspiracy that forces them to face off against each other and the demons of their past. And if they don't, it's GAME OVER!",
+      "Actors": [
+        "Andrew Koji",
+        "Noah Centineo",
+        "Callina Liang",
+        "David Dastmalchian",
+        "Andrew Schulz",
+        "Roman Reigns",
+        "Cody Rhodes",
+        "Jason Momoa",
+        "Eric André",
+        "50 Cent",
+        "Don Lee",
+        "Mel Jarnson",
+        "Orville Peck",
+        "Hirooki Goto",
+        "Vidyut Jammwal"
+      ],
+      "TMDB ID": 1153576,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-10-13",
+      "Rating": 6.285,
+      "Votes": 240,
+      "Popularity": 77.9786,
+      "Runtime": 120,
+      "Genres": [
+        "Action",
+        "Fantasy"
+      ],
+      "Director": [
+        "Kitao Sakurai"
+      ]
+    },
+    {
+      "Movie Name": "Tenzing",
+      "IMDB ID": "tt6262770",
+      "Poster": "https://image.tmdb.org/t/p/w500/eI0QW02PYqhnmIvLRdn9vrfVVP7.jpg",
+      "Year": 2026,
+      "Description": "A determined man embarks on a high-stakes quest—and defies seemingly impossible odds—to fulfill his dream of being the first to reach the summit of Mount Everest.",
+      "Actors": [
+        "Genden Phuntsok",
+        "Tom Hiddleston",
+        "Willem Dafoe",
+        "Samdrup Dorje Lama",
+        "Bhuchung Kata",
+        "Johnny Flynn",
+        "Lhakpa Tsamchoe",
+        "Jampa Kalsang Tamang",
+        "Elizabeth Blackmore",
+        "Brandon McClelland",
+        "Caitríona Balfe",
+        "Thinley Lhamo",
+        "Tenzing Dalha",
+        "Tsering Choden",
+        "Kyipu Bhuti"
+      ],
+      "TMDB ID": 1288069,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-10-09",
+      "Rating": 8.203,
+      "Votes": 281,
+      "Popularity": 18.7836,
+      "Runtime": 126,
+      "Genres": [
+        "Drama",
+        "History",
+        "Adventure"
+      ],
+      "Director": [
+        "Jennifer Peedom"
+      ]
+    },
+    {
+      "Movie Name": "Animals",
+      "IMDB ID": "tt31049299",
+      "Poster": "https://image.tmdb.org/t/p/w500/iISM36voS1E8gX9BM0DVK0kgi3E.jpg",
+      "Year": 2026,
+      "Description": "When the son of an L.A. mayoral candidate is kidnapped, he and his wife have a few hours to come up with the ransom payment. With most of their money spent on his political campaign, they have to get their hands dirty and expose a side of their lives they never intended to see the light of day.",
+      "Actors": [
+        "Ben Affleck",
+        "Kerry Washington",
+        "Gillian Anderson",
+        "Steven Yeun",
+        "Adriana Paz",
+        "Luis Gerardo Méndez",
+        "Christopher Woodley",
+        "Jacob Estrada",
+        "Ray Fisher",
+        "Taylor Cooper",
+        "Chris Gann",
+        "Matt Gerald",
+        "Craig Baxley Jr.",
+        "Zack Duhame",
+        "Brett Sheerin"
+      ],
+      "TMDB ID": 1236045,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-10-09",
+      "Rating": 6.873,
+      "Votes": 748,
+      "Popularity": 40.5123,
+      "Runtime": 106,
+      "Genres": [
+        "Thriller",
+        "Drama",
+        "Action",
+        "Crime"
+      ],
+      "Director": [
+        "Ben Affleck"
+      ]
+    },
+    {
+      "Movie Name": "Comrade Kalyan",
+      "IMDB ID": "tt32089596",
+      "Poster": "https://image.tmdb.org/t/p/w500/pvRJWA4WnaoPeQ7Fs7G9P7EKu6h.jpg",
+      "Year": 2026,
+      "Description": "In a naxal-dominated village on the Andhra-Odisha border, a theatre owner uses communist sentiment to keep his old cinema running. He joins the naxals and kidnaps a leader, setting off a chain of events.",
+      "Actors": [
+        "Sree Vishnu",
+        "Mahima Nambiar",
+        "Upendra Limaye",
+        "Shine Tom Chacko",
+        "Radhika Sarathkumar",
+        "Brahmaji",
+        "Satya"
+      ],
+      "TMDB ID": 1428295,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-10-09",
+      "Rating": 3.0,
+      "Votes": 1,
+      "Popularity": 4.0079,
+      "Runtime": 145,
+      "Genres": [
+        "Romance",
+        "Action",
+        "Drama"
+      ],
+      "Director": [
+        "Janakiram Marella"
+      ]
+    },
+    {
+      "Movie Name": "Reporting Live",
+      "IMDB ID": "tt47657999",
+      "Poster": "https://image.tmdb.org/t/p/w500/xVabS4lTi6IMscr2FOucxydE6ZD.jpg",
+      "Year": 2026,
+      "Description": "A young reporter and her reluctant cameraman chase a story, only to get entangled in an illegal sand-mining racket run by a ruthless syndicate.",
+      "Actors": [
+        "Parineeti Chopra",
+        "Deven Bhojani",
+        "Adil Hussain",
+        "Shekhar Suman",
+        "Amol Palekar",
+        "Nassar",
+        "Geeta Agrawal Sharma",
+        "Saswata Chatterjee",
+        "Prachee Shah",
+        "Pitobash",
+        "Sameer Kochhar"
+      ],
+      "TMDB ID": 1389172,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-09",
+      "Rating": 7.333,
+      "Votes": 9,
+      "Popularity": 24.2474,
+      "Runtime": 116,
+      "Genres": [
+        "Crime",
+        "Thriller"
+      ],
+      "Director": [
+        "Dhruv Tripathi"
+      ]
+    },
+    {
+      "Movie Name": "Angel and the Badman",
+      "IMDB ID": "tt39850240",
+      "Poster": "https://image.tmdb.org/t/p/w500/mJe53zlhGBdcjtN1GqncNZ5Unm0.jpg",
+      "Year": 2026,
+      "Description": "A wounded outlaw finds unexpected mercy in the care of a rancher's daughter. The hope of love pulls him toward a different life until the law, and his violent past, close in on his new home. Now he must choose the kind of man he'll become.",
+      "Actors": [
+        "Zachary Levi",
+        "Neal McDonough",
+        "Tommy Lee Jones",
+        "Meg Fraser",
+        "Jean Louisa Kelly",
+        "Barrett Ellis Luca",
+        "Melissa Chambers",
+        "Maurice Greene",
+        "Jesús Carús",
+        "Sean Bridgers",
+        "Manny Greenfield",
+        "Eric T. Esparza",
+        "Nicholas Logan",
+        "John Pyper-Ferguson",
+        "Matthew Blood-Smyth"
+      ],
+      "TMDB ID": 1669915,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-10-08",
+      "Rating": 8.944,
+      "Votes": 18,
+      "Popularity": 53.0317,
+      "Runtime": 105,
+      "Genres": [
+        "Western",
+        "Action",
+        "Adventure",
+        "Romance"
+      ],
+      "Director": [
+        "Julio Quintana"
+      ]
+    },
+    {
+      "Movie Name": "Love of Your Life",
+      "IMDB ID": "tt34384900",
+      "Poster": "https://image.tmdb.org/t/p/w500/dL3Tcv4FU2K85bgnGRBgLjFSrLr.jpg",
+      "Year": 2026,
+      "Description": "After a chance encounter sparks a sweeping romance, Maya's future is suddenly upended, sending her on an unexpected journey to love and live again.",
+      "Actors": [
+        "Margaret Qualley",
+        "Gabriel Basso",
+        "Aaron Pierre",
+        "Patrick Schwarzenegger",
+        "Catherine Keener",
+        "Tamara Lawrance",
+        "Corey Johnson",
+        "Michael Shelford",
+        "Adam Woodward",
+        "Gayané Kaligian",
+        "Vas Constanti",
+        "Mary Pursell",
+        "Shing Moussa Chung",
+        "Kalisha A. Johnson",
+        "Robert Lonsdale"
+      ],
+      "TMDB ID": 1381078,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-10-07",
+      "Rating": 6.67,
+      "Votes": 229,
+      "Popularity": 27.0774,
+      "Runtime": 109,
+      "Genres": [
+        "Romance",
+        "Drama"
+      ],
+      "Director": [
+        "Rachel Morrison"
+      ]
+    },
+    {
+      "Movie Name": "The Social Reckoning",
+      "IMDB ID": "tt37510326",
+      "Poster": "https://image.tmdb.org/t/p/w500/7jK6NuxVg1XuEV7UdNa6KO03IgZ.jpg",
+      "Year": 2026,
+      "Description": "Frances Haugen, a young Facebook engineer, enlists the help of Jeff Horwitz, a Wall Street Journal reporter, to go on a dangerous journey that ends up blowing the whistle on the social network's most guarded secrets.",
+      "Actors": [
+        "Mikey Madison",
+        "Jeremy Allen White",
+        "Jeremy Strong",
+        "Betty Gilpin",
+        "Bill Burr",
+        "Wunmi Mosaku",
+        "Billy Magnussen",
+        "Gbenga Akinnagbe",
+        "Anna Lambe",
+        "Aidan Laprete",
+        "Kelley Pereira",
+        "Nelson Franklin",
+        "Portia Doubleday",
+        "Patrick Fischler",
+        "Joseph Brooks"
+      ],
+      "TMDB ID": 1281331,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-10-07",
+      "Rating": 7.0,
+      "Votes": 140,
+      "Popularity": 28.3897,
+      "Runtime": 113,
+      "Genres": [
+        "Drama",
+        "Thriller"
+      ],
+      "Director": [
+        "Aaron Sorkin"
+      ]
+    },
+    {
+      "Movie Name": "Other Mommy",
+      "IMDB ID": "tt36586020",
+      "Poster": "https://image.tmdb.org/t/p/w500/fGRNCssTRrhYZxNzykGGCoMsAVq.jpg",
+      "Year": 2026,
+      "Description": "Young Bela forms a relationship with a sinister entity in her home that looks uncannily like her own mother, drawing her into a terrifying and increasingly dark world.",
+      "Actors": [
+        "Jessica Chastain",
+        "Arabella Olivia Clark",
+        "Jay Duplass",
+        "Karen Allen",
+        "Arian Moayed",
+        "Sean Kaufman",
+        "Dichen Lachman",
+        "Adam Silver",
+        "Alec Secăreanu",
+        "Millie Wood",
+        "Travis Nelson",
+        "Carrie Dimaculangan",
+        "Erin Birgy",
+        "Hayley Spelman",
+        "Rosie Anne O'Gorman"
+      ],
+      "TMDB ID": 1400837,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-10-07",
+      "Rating": 6.288,
+      "Votes": 396,
+      "Popularity": 333.5352,
+      "Runtime": 93,
+      "Genres": [
+        "Horror"
+      ],
+      "Director": [
+        "Rob Savage"
+      ]
+    },
+    {
+      "Movie Name": "Ishqa Ishqa",
+      "IMDB ID": "tt47743267",
+      "Poster": "https://image.tmdb.org/t/p/w500/a8zQAF27Lo7AjWZ8zkFOX8d4OLG.jpg",
+      "Year": 2026,
+      "Description": "Kabir is a successful writer dating Suhani, who brings calm to his life. As he prepares for the sequel to his hit novel Ishqa Ishqa, inspired by Arohi, his childhood love, she is set to return to his life. Arohi brings the inspiration he needs for his writing, but her return threatens to disrupt the life Kabir has built with Suhani.",
+      "Actors": [
+        "Helly Shah",
+        "Satyajeet Dubey",
+        "Anushka Kaushik",
+        "Yudhvir Ahlawat",
+        "Ankit Raizada",
+        "Jairoop Jeevan"
+      ],
+      "TMDB ID": 337653,
+      "Type": "Web Series",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-07",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 3.2951,
+      "Runtime": "",
+      "Genres": [],
+      "Director": [
+        "Rajesh Bachchani"
+      ]
+    },
+    {
+      "Movie Name": "Almari",
+      "IMDB ID": "tt34678039",
+      "Poster": "https://image.tmdb.org/t/p/w500/8XH2zkj4KcNFmVTi33s6wpyDyBP.jpg",
+      "Year": 2026,
+      "Description": "When a family discovers the enchanting powers of their old mysterious cupboard, their lives spiral into a web of desires, drawing both - foes and vices to their doorstep.",
+      "Actors": [
+        "Jyotsana Rajpurohit",
+        "Mehool Desai",
+        "Sandeep Prajapati",
+        "Jay Panchal",
+        "Anil Modi",
+        "Manish Vaghela",
+        "Chetan Padhiyar",
+        "Jayraj Freeman"
+      ],
+      "TMDB ID": 1715215,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-07",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.7952,
+      "Runtime": 140,
+      "Genres": [
+        "Fantasy",
+        "Thriller"
+      ],
+      "Director": [
+        "Nilay Shah"
+      ]
+    },
+    {
+      "Movie Name": "Matchbox the Movie",
+      "IMDB ID": "tt28498219",
+      "Poster": "https://image.tmdb.org/t/p/w500/aHhHRz6nOpwkqJs5ASeRGAdK2dt.jpg",
+      "Year": 2026,
+      "Description": "When a group of former childhood friends reconnect, their reunion takes a wild turn as they stumble upon a dangerous international plot—and must save the world.",
+      "Actors": [
+        "John Cena",
+        "Jessica Biel",
+        "Arturo Castro",
+        "Sam Richardson",
+        "Teyonah Parris",
+        "Danai Gurira",
+        "Golshifteh Farahani",
+        "Corey Stoll",
+        "Daniel Bernhardt",
+        "Randeep Hooda",
+        "Bill Camp",
+        "Kristofer Hivju",
+        "Tornike Gogrichiani",
+        "Aurélia Agel",
+        "Eniko Fulop"
+      ],
+      "TMDB ID": 1148365,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-10-05",
+      "Rating": 7.521,
+      "Votes": 633,
+      "Popularity": 66.6449,
+      "Runtime": 127,
+      "Genres": [
+        "Action",
+        "Comedy",
+        "Adventure"
+      ],
+      "Director": [
+        "Sam Hargrave"
+      ]
+    },
+    {
+      "Movie Name": "The Third Murder",
+      "IMDB ID": "tt27512908",
+      "Poster": "https://image.tmdb.org/t/p/w500/jNKwDvLdx81UqY4KVl0KybtSTqo.jpg",
+      "Year": 2026,
+      "Description": "When businessman Boban is murdered in the same manner as drug peddler Justin, DYSP Christy brings in ex-cop Swamy, an expert in serial killer cases. Their investigation leads to Aditya, a troubled teenager caught in conflict with his eccentric father, as hidden motives emerge and a deadly hunt begins to stop a third murder.",
+      "Actors": [
+        "Vinay Forrt",
+        "Saiju Kurup",
+        "Indrans",
+        "Ananya",
+        "Leona Lishoy",
+        "Fara Shibla",
+        "Johny Antony",
+        "Gibin Gopinath",
+        "Anand Manmadhan",
+        "Manikandan Pattambi",
+        "Riyas Narmakala",
+        "Maria Vincent",
+        "Arunamshu Dev D R",
+        "Sajal Sudarshanan",
+        "Pramil Sidharth"
+      ],
+      "TMDB ID": 922673,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Malayalam",
+      "Language": "ml",
+      "Release Date": "2026-10-02",
+      "Rating": 8.0,
+      "Votes": 1,
+      "Popularity": 6.5522,
+      "Runtime": 124,
+      "Genres": [
+        "Crime",
+        "Thriller",
+        "Mystery"
+      ],
+      "Director": [
+        "Sunil Ibrahim"
+      ]
+    },
+    {
+      "Movie Name": "Avaraachan & Sons",
+      "IMDB ID": "tt34792531",
+      "Poster": "https://image.tmdb.org/t/p/w500/wRKg0WoPV0D3bCl1B5jJtcRdU1Z.jpg",
+      "Year": 2026,
+      "Description": "Follows Avarachan, his children and the various family and social relationships that shape their lives.",
+      "Actors": [
+        "Biju Menon",
+        "Sreenath Bhasi",
+        "Vinay Forrt",
+        "Grace Antony",
+        "Ganapathi S. Poduval",
+        "Johny Antony",
+        "Akhila Bhargavan",
+        "Pauly Valsan",
+        "Parvathy Babu",
+        "Sreejith Babu",
+        "Vineeth Thattil David",
+        "Kottayam Nazeer",
+        "Sabumon Abdusamad",
+        "Urvashi"
+      ],
+      "TMDB ID": 1290035,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Malayalam",
+      "Language": "ml",
+      "Release Date": "2026-10-02",
+      "Rating": 6.75,
+      "Votes": 4,
+      "Popularity": 7.8094,
+      "Runtime": 150,
+      "Genres": [
+        "Drama"
+      ],
+      "Director": [
+        "Thamby"
+      ]
+    },
+    {
+      "Movie Name": "Sigma",
+      "IMDB ID": "tt39239754",
+      "Poster": "https://image.tmdb.org/t/p/w500/18Lhkc3nf92bY1cacQomXIqihhN.jpg",
+      "Year": 2026,
+      "Description": "A daring treasure hunter throws caution to the wind, outwitting deadly traps and treacherous allies with sheer nerve and cunning.",
+      "Actors": [
+        "Sundeep Kishan",
+        "Faria Abdullah",
+        "Raju Sundaram",
+        "Sampath Raj",
+        "Shiv Panditt",
+        "Anbu Thasan",
+        "Yog Jappie",
+        "Magalakshmi Sudarsanan",
+        "Sheela Rajkumar",
+        "Kamalesh Jegan",
+        "Kiran Konda",
+        "Catherine Tresa",
+        "Jason Sanjay",
+        "Haritha Natarajan",
+        "Smruthi Mohankumar"
+      ],
+      "TMDB ID": 1395215,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-10-02",
+      "Rating": 4.5,
+      "Votes": 2,
+      "Popularity": 2.3758,
+      "Runtime": 145,
+      "Genres": [
+        "Action",
+        "Crime",
+        "Drama"
+      ],
+      "Director": [
+        "Jason Sanjay"
+      ]
+    },
+    {
+      "Movie Name": "Anakapalli",
+      "IMDB ID": "tt41221277",
+      "Poster": "https://image.tmdb.org/t/p/w500/gwyOrA2t78PT5xrayNRvqZisTpZ.jpg",
+      "Year": 2026,
+      "Description": "In rural Anakapalli, a young man enters the criminal underworld under a feared gangster. When love arrives, he faces a choice between power, loyalty, and his former dreams in this tale of action and destiny.",
+      "Actors": [
+        "Vikram Sahidev",
+        "Sandhya Vasishta",
+        "Trinadha Rao Nakkina",
+        "Tarak Ponnappa",
+        "Nandini Rai"
+      ],
+      "TMDB ID": 1690876,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-10-02",
+      "Rating": 8.0,
+      "Votes": 1,
+      "Popularity": 1.4794,
+      "Runtime": 153,
+      "Genres": [
+        "Action",
+        "Drama",
+        "Romance"
+      ],
+      "Director": [
+        "Khagesh Tammineni"
+      ]
+    },
+    {
+      "Movie Name": "Don't Trouble the Trouble",
+      "IMDB ID": "tt31841170",
+      "Poster": "https://image.tmdb.org/t/p/w500/lxgQu74WalgmhWnSEqweyYj8fnc.jpg",
+      "Year": 2026,
+      "Description": "Suri, a magician, accidentally makes a young girl vanish with a spell. The girl, revealed to be a genie who grants wishes, explores the city and unleashes her powers when angered.",
+      "Actors": [
+        "Fahadh Faasil",
+        "Ssara Palekar",
+        "Saurabh Sachdeva",
+        "Venkatesh Kakumanu",
+        "Subbaraju",
+        "Mahesh Manjrekar",
+        "Rohit Pathak",
+        "Divya Pillai",
+        "S. S. Shashank",
+        "Paritosh Tiwari",
+        "Inturi Vasu",
+        "Surabhi Prabhavathi",
+        "Ramana Bhargava",
+        "Manoj Muthyam",
+        "Adarsh Annapareddy"
+      ],
+      "TMDB ID": 1261763,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-10-02",
+      "Rating": 5.75,
+      "Votes": 4,
+      "Popularity": 3.6212,
+      "Runtime": 156,
+      "Genres": [
+        "Fantasy",
+        "Drama",
+        "Action"
+      ],
+      "Director": [
+        "Shashank Yeleti"
+      ]
+    },
+    {
+      "Movie Name": "Pooja Meri Jaan",
+      "IMDB ID": "tt21378820",
+      "Poster": "https://image.tmdb.org/t/p/w500/g6JmYwvEopRlHCV1NykM5NjSPrw.jpg",
+      "Year": 2026,
+      "Description": "After Pooja rejects Aniket’s romantic advances, his subsequent death by suicide leaves her facing accusations. As lawyer and friend Sana investigates the circumstances surrounding the incident, questions of obsession, consent, responsibility and the truth behind Pooja’s relationship with Aniket begin to emerge.",
+      "Actors": [
+        "Mrunal Thakur",
+        "Huma Qureshi",
+        "Vikram Singh Chauhan",
+        "Vijay Raaz",
+        "Sunita Rajwar",
+        "Rajesh Jais",
+        "Suparna Marwah",
+        "Nikhil Angrish",
+        "Madhu Sachdeva",
+        "Rituraj Singh",
+        "Latin Ghai",
+        "Manuj Sharma",
+        "Shant Manu",
+        "Sarthak Gambhir",
+        "Chahat Tewani"
+      ],
+      "TMDB ID": 1220538,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-02",
+      "Rating": 5.5,
+      "Votes": 2,
+      "Popularity": 1.2845,
+      "Runtime": 118,
+      "Genres": [
+        "Thriller",
+        "Crime",
+        "Romance"
+      ],
+      "Director": [
+        "Navjot Gulati",
+        "Vipasha Arvind"
+      ]
+    },
+    {
+      "Movie Name": "Prem Keetanu",
+      "IMDB ID": "tt44090550",
+      "Poster": "https://image.tmdb.org/t/p/w500/plgzRPjD2OsmMV4xXdMSykXfmrB.jpg",
+      "Year": 2026,
+      "Description": "A group of young men and their turbulent college life, where bad grades and hopelessness remain in the driver's seat. Even as they pursue love, friendship and aspirations, the film promises to capture the current generation's struggles and dreams in a light-hearted yet heartfelt manner.",
+      "Actors": [
+        "Veer Pahariya",
+        "Aparshakti Khurana",
+        "Aafiya Sayed",
+        "Rakesh Bedi",
+        "Nikhil Vijay"
+      ],
+      "TMDB ID": 1640396,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-02",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 2.302,
+      "Runtime": 142,
+      "Genres": [
+        "Comedy",
+        "Romance"
+      ],
+      "Director": [
+        "Apoorv Singh Karki"
+      ]
+    },
+    {
+      "Movie Name": "Drishyam: The Conclusion",
+      "IMDB ID": "tt27050858",
+      "Poster": "https://image.tmdb.org/t/p/w500/67FsF2kpgEZ1T5Qos4adgqm9dLf.jpg",
+      "Year": 2026,
+      "Description": "Years after outsmarting the police, Vijay Salgaonkar's past resurfaces when a new evidence threatens to expose his secret. As the investigation reopens, he must outwit the system once again to save his family.",
+      "Actors": [
+        "Ajay Devgn",
+        "Jaideep Ahlawat",
+        "Tabu",
+        "Shriya Saran",
+        "Rajat Kapoor",
+        "Prakash Raj",
+        "Ishita Dutta",
+        "Mrunal Jadhav",
+        "Kamlesh Sawant",
+        "Saurabh Shukla",
+        "Samvedna Suwalka",
+        "Nishant Singh",
+        "Neha Joshi",
+        "Ramchandra Singh",
+        "Ajeet Singh Palawat"
+      ],
+      "TMDB ID": 1269325,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-10-02",
+      "Rating": 7.607,
+      "Votes": 14,
+      "Popularity": 9.3935,
+      "Runtime": 148,
+      "Genres": [
+        "Thriller",
+        "Drama",
+        "Mystery",
+        "Crime"
+      ],
+      "Director": [
+        "Abhishek Pathak"
+      ]
+    },
+    {
+      "Movie Name": "Beware Boiúna",
+      "IMDB ID": "tt10377864",
+      "Poster": "https://image.tmdb.org/t/p/w500/7mI13sTZcuwWEIUK9fckAb8Zmba.jpg",
+      "Year": 2026,
+      "Description": "A medical mission deep in the Amazon becomes a desperate fight for survival when a colossal ancient predator awakens, turning the jungle into a deadly battleground where nature decides who lives and dies.",
+      "Actors": [
+        "Kiana Madeira",
+        "Jessica Rothe",
+        "Will Close",
+        "Juan Pablo Shuk",
+        "Logan Marshall-Green",
+        "Jaime Newball",
+        "Jackson Bews",
+        "Tonfy Andoque",
+        "Andres Paier",
+        "Victor Bustos",
+        "Sergio Herrera",
+        "Mateo Moreno",
+        "Orlando Diago",
+        "Sandra Rodriguez",
+        "Axel Stiven Campos"
+      ],
+      "TMDB ID": 1244523,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-10-01",
+      "Rating": 6.069,
+      "Votes": 58,
+      "Popularity": 167.1916,
+      "Runtime": 103,
+      "Genres": [
+        "Horror",
+        "Thriller",
+        "Action"
+      ],
+      "Director": [
+        "Mike P. Nelson"
+      ]
+    },
+    {
+      "Movie Name": "Baththa",
+      "IMDB ID": "tt44090278",
+      "Poster": "https://image.tmdb.org/t/p/w500/7wHBYs8HHmTGe4nXLpMEAoDSK2o.jpg",
+      "Year": 2026,
+      "Description": "In 1986 Madras, a timid eight-year-old boy accidentally traps a feared gangster inside a deserted school toilet. As the gangster is forced to confront hunger, loneliness and his own vulnerability, an unlikely bond begins to grow between the two.",
+      "Actors": [
+        "Vijay Sethupathi",
+        "Sai Prithviraj",
+        "Lijomol Jose",
+        "Sahasra Sree",
+        "Santhy Balachandran",
+        "Arjun Chidambaram",
+        "Hari Krishnan",
+        "Ajay Ghosh",
+        "Deepa Venkat",
+        "Ramya Pandian",
+        "Vishnu Govindan",
+        "Ismath Banu",
+        "Varun",
+        "Rekha Kumanan",
+        "Indumathi Manikandan"
+      ],
+      "TMDB ID": 1515692,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-10-01",
+      "Rating": 8.0,
+      "Votes": 23,
+      "Popularity": 13.3871,
+      "Runtime": 159,
+      "Genres": [
+        "Drama",
+        "Comedy",
+        "Action"
+      ],
+      "Director": [
+        "Balaji Tharaneetharan"
+      ]
+    },
+    {
+      "Movie Name": "Verity",
+      "IMDB ID": "tt32261958",
+      "Poster": "https://image.tmdb.org/t/p/w500/rmaNMA1seHqpjtnYKzyynFAr1g8.jpg",
+      "Year": 2026,
+      "Description": "Lowen Ashleigh, hired to ghostwrite for best-selling author Verity Crawford, uncovers Verity's autobiographical notes, and becomes involved in what may prove to be a lethal conspiracy.",
+      "Actors": [
+        "Dakota Johnson",
+        "Anne Hathaway",
+        "Josh Hartnett",
+        "Brady Wagner",
+        "Ismael Cruz Cordova",
+        "Iryna Dvorovenko",
+        "Sienna Kulovitz",
+        "K.K. Moggie",
+        "Tom Galantich",
+        "Lou Martini Jr.",
+        "Clark Carmichael",
+        "Michael Abbott Jr.",
+        "Stephen Elrod",
+        "Nathan Tylutki",
+        "Thursday Farrar"
+      ],
+      "TMDB ID": 1283515,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-09-30",
+      "Rating": 6.999,
+      "Votes": 697,
+      "Popularity": 124.0516,
+      "Runtime": 117,
+      "Genres": [
+        "Mystery",
+        "Thriller"
+      ],
+      "Director": [
+        "Michael Showalter"
+      ]
+    },
+    {
+      "Movie Name": "Digger",
+      "IMDB ID": "tt31450459",
+      "Poster": "https://image.tmdb.org/t/p/w500/1ATXKrIPJyKNwnJ6lcG088Sa6zi.jpg",
+      "Year": 2026,
+      "Description": "The most powerful man in the world embarks on a frantic mission to prove he is humanity's savior before the disaster he's unleashed destroys everything.",
+      "Actors": [
+        "Tom Cruise",
+        "Riz Ahmed",
+        "John Goodman",
+        "Sandra Hüller",
+        "Michael Stuhlbarg",
+        "Jesse Plemons",
+        "Robert John Burke",
+        "Emma D'Arcy",
+        "Burn Gorman",
+        "Sophie Wilde",
+        "Danny Kirrane",
+        "Ross Hatt",
+        "Mercedes Hernández",
+        "James Dryden",
+        "Richard Foster-King"
+      ],
+      "TMDB ID": 1248832,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-09-28",
+      "Rating": 7.48,
+      "Votes": 523,
+      "Popularity": 29.3496,
+      "Runtime": 129,
+      "Genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "Director": [
+        "Alejandro G. Iñárritu"
+      ]
+    },
+    {
+      "Movie Name": "BOMBAY STORIES",
+      "IMDB ID": "tt42481138",
+      "Poster": "https://image.tmdb.org/t/p/w500/7SeNqtIi5lpVzs9GAcErgXqkmkU.jpg",
+      "Year": 2026,
+      "Description": "Adapted from the short stories of Pakistani writer Saadat Hasan Manto, the film interweaves the lives of three sex workers and their pimps.",
+      "Actors": [
+        "Monica Aggarwal",
+        "Bilal Ahamad Bhagat",
+        "Anupriya Goenka",
+        "Gargi Duggal",
+        "Mouni Roy",
+        "Rahhat Shah Kazmi",
+        "Faizan Khan",
+        "Shoib Nikash Shah",
+        "Sushmita Singh",
+        "Rrahul Sudhir"
+      ],
+      "TMDB ID": 1727033,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-09-28",
+      "Rating": 4.0,
+      "Votes": 1,
+      "Popularity": 2.9187,
+      "Runtime": 124,
+      "Genres": [
+        "Drama"
+      ],
+      "Director": [
+        "Rahhat Shah Kazmi"
+      ]
+    },
+    {
+      "Movie Name": "UNABOMBER",
+      "IMDB ID": "tt6933238",
+      "Poster": "https://image.tmdb.org/t/p/w500/39aMkR8Y5vhCG9dTkjiqRl8AVqp.jpg",
+      "Year": 2026,
+      "Description": "Follow Ted Kaczynski's transformation from Harvard prodigy into the infamous Unabomber. Subjected to controversial psychological experiments by Professor Henry Murray, Kaczynski's troubled past resurfaces decades later when his manhunt, led by FBI agent Joanne Miller, brings to light the chilling consequences of ambition and isolation.",
+      "Actors": [
+        "Russell Crowe",
+        "Jacob Tremblay",
+        "Shailene Woodley",
+        "Annabelle Wallis",
+        "Alexander Ludwig",
+        "Marc Menchaca",
+        "Steven Ogg",
+        "Mark Camacho",
+        "David Webster",
+        "Bruce Ramsay",
+        "Michelle Leblanc",
+        "Gus Halper",
+        "William Kosovic",
+        "Matthew Kevin Anderson",
+        "Tanya Clarke"
+      ],
+      "TMDB ID": 1492640,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-09-25",
+      "Rating": 6.556,
+      "Votes": 593,
+      "Popularity": 14.9324,
+      "Runtime": 101,
+      "Genres": [
+        "Thriller",
+        "Drama",
+        "Crime"
+      ],
+      "Director": [
+        "Janus Metz"
+      ]
+    },
+    {
+      "Movie Name": "Your Mother Your Mother Your Mother",
+      "IMDB ID": "tt35856037",
+      "Poster": "https://image.tmdb.org/t/p/w500/4KaPZSKnInnArErTTgy9Oy14leR.jpg",
+      "Year": 2026,
+      "Description": "Latif, a devoutly religious hitman, struggles to balance work, faith and fatherhood. When his wife dies, he embarks on a desperate journey across Houston to protect his children, confronting the forces closing in around him – and the beliefs threatening to unravel within.",
+      "Actors": [
+        "Mahershala Ali",
+        "John Cho",
+        "Giancarlo Esposito",
+        "Abubakr Ali",
+        "Laith Nakli",
+        "Adia",
+        "Jahleel Kamara",
+        "Tiffany Boone",
+        "Tramell Tillman",
+        "John Henry Ward",
+        "Alyssa Kim",
+        "Ashley P. Jones",
+        "Aaron Goodson",
+        "Irene Santiago",
+        "Nettie Kraft"
+      ],
+      "TMDB ID": 1437396,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-09-25",
+      "Rating": 6.639,
+      "Votes": 72,
+      "Popularity": 46.791,
+      "Runtime": 112,
+      "Genres": [
+        "Drama",
+        "Crime",
+        "Thriller"
+      ],
+      "Director": [
+        "Bassam Tariq"
+      ]
+    },
+    {
+      "Movie Name": "Premada Oorali",
+      "IMDB ID": "tt33381528",
+      "Poster": "https://image.tmdb.org/t/p/w500/yZ1CNb3lo1BwMKiSGz0vJbcfdC2.jpg",
+      "Year": 2026,
+      "Description": "Premada Oorali is a heartfelt love story set in picturesque villages in the 2020s. The film intertwines romance and family drama, exploring the relationships between a father and son, as well as a boy and girl, as they navigate through intriguing, yet relatable, relationship challenges.",
+      "Actors": [
+        "Rangayana Raghu",
+        "Shri Mahadev",
+        "Thapaswini",
+        "Ramika Shivu",
+        "Ilaa Vitla",
+        "Devendra Naidu",
+        "Govinde Gowda",
+        "Abhishek Kalmani V",
+        "Suvish",
+        "Swathi Gurudutt"
+      ],
+      "TMDB ID": 1735270,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Kannada",
+      "Language": "kn",
+      "Release Date": "2026-09-25",
+      "Rating": 4.6,
+      "Votes": 5,
+      "Popularity": 9.0499,
+      "Runtime": 155,
+      "Genres": [
+        "Family",
+        "Drama"
+      ],
+      "Director": [
+        "Manoj Kumar"
+      ]
+    },
+    {
+      "Movie Name": "Dhoomakethu",
+      "IMDB ID": "tt38990864",
+      "Poster": "https://image.tmdb.org/t/p/w500/kZCKwhUx7r9HRDqpGbavdMtd8f5.jpg",
+      "Year": 2026,
+      "Description": "On the morning of his wedding, 36-year-old Kuttan wakes from a disturbing dream about his own death. As the day unfolds, familiar moments begin to repeat, and reality becomes increasingly difficult to distinguish from memory. Realising that something is terribly wrong, Kuttan races to uncover the truth before the day repeats itself.",
+      "Actors": [
+        "Nikhila Vimal",
+        "Sajin Gopu",
+        "Ganapathi S. Poduval",
+        "Shine Tom Chacko",
+        "Sidharth Bharathan",
+        "Manju Pillai",
+        "Rajesh Pandian",
+        "Abel Twinkle",
+        "Adish Praveen",
+        "Niyas Backer",
+        "Karthika Vellathery",
+        "Srikant Murali",
+        "Suresh Krishna",
+        "Binoy Nambala",
+        "Baiju Kuttan"
+      ],
+      "TMDB ID": 1590718,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Malayalam",
+      "Language": "ml",
+      "Release Date": "2026-09-25",
+      "Rating": 7.188,
+      "Votes": 8,
+      "Popularity": 2.4982,
+      "Runtime": 122,
+      "Genres": [
+        "Comedy",
+        "Fantasy"
+      ],
+      "Director": [
+        "Sudhi Maddison"
+      ]
+    },
+    {
+      "Movie Name": "Lenin Pandiyan",
+      "IMDB ID": "tt38916037",
+      "Poster": "https://image.tmdb.org/t/p/w500/qhvvef3ayMfnuA4wQcPscC8em0A.jpg",
+      "Year": 2026,
+      "Description": "Set alongside on the riverbanks of Maanamadurai in the Sivagangai district, the premise is about a very gullible, innocent old couple in their late 60s, 70s who inadvertently get intertwined in the political lobby of sand mining which is currently a major issue in the local district.",
+      "Actors": [
+        "Gangai Amaran",
+        "Roja Selvamani",
+        "Darshan Ganesan",
+        "Shrita Rao",
+        "George Mariyan",
+        "Aadukalam Naren",
+        "Yugendran",
+        "Bose Venkat",
+        "Archana Ravichandran",
+        "Saravana Subbiah",
+        "Sunil",
+        "Ilavarasu",
+        "Subbu Panchu",
+        "Ravi Venkatraman",
+        "Haritha Mutharasan"
+      ],
+      "TMDB ID": 1563192,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-09-25",
+      "Rating": 7.0,
+      "Votes": 1,
+      "Popularity": 2.5697,
+      "Runtime": 131,
+      "Genres": [
+        "Drama",
+        "Crime",
+        "Romance"
+      ],
+      "Director": [
+        "D. D. Balachandran"
+      ]
+    },
+    {
+      "Movie Name": "Meesaya Murukku 2",
+      "IMDB ID": "tt38097205",
+      "Poster": "https://image.tmdb.org/t/p/w500/r86ozGJdc85H0rWLnqhEBOqajsq.jpg",
+      "Year": 2026,
+      "Description": "After heartbreak and turmoil, Jeeva uncovers his father's quiet sacrifices, inspiring him to chase his musical dreams and make his family proud.",
+      "Actors": [
+        "HipHop Tamizha Adhi",
+        "Ketika Sharma",
+        "Chaithra J Achar",
+        "Ramya Ranganathan",
+        "Harshath Khan",
+        "Shah Ra",
+        "Karunas",
+        "Nassar",
+        "Aadukalam Naren",
+        "Karunakaran",
+        "Arul D. Shankar",
+        "Baba Baskar",
+        "S Manikandan",
+        "Uma Padmanabhan",
+        "Yogi Babu"
+      ],
+      "TMDB ID": 1538457,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-09-25",
+      "Rating": 6.5,
+      "Votes": 2,
+      "Popularity": 4.2592,
+      "Runtime": 138,
+      "Genres": [
+        "Comedy",
+        "Romance",
+        "Drama"
+      ],
+      "Director": [
+        "HipHop Tamizha Adhi"
+      ]
+    },
+    {
+      "Movie Name": "Dorothy",
+      "IMDB ID": "tt38915678",
+      "Poster": "https://image.tmdb.org/t/p/w500/o3r5DmWhOKdFmeIUoRJj4CvCqOP.jpg",
+      "Year": 2026,
+      "Description": "In rural Tamil Nadu, two inseparable childhood friends navigate a world shaped by caste, violence and toxic masculinity, until a compassionate woman enters their lives and quietly challenges the social order around them.",
+      "Actors": [
+        "Sananth",
+        "Rishikanth",
+        "Keerthy Suresh",
+        "Ramachandran Durairaj",
+        "Soundara Raja",
+        "Muthazhagi",
+        "Jeeva Subramanian",
+        "Muthukumar",
+        "Gajaraj",
+        "Muthupandi",
+        "Harishankar Narayanan",
+        "Rajeshwari",
+        "Merline Josi",
+        "Vijay Muthu",
+        "Sathya Prema"
+      ],
+      "TMDB ID": 1578079,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-09-25",
+      "Rating": 8.2,
+      "Votes": 16,
+      "Popularity": 5.0774,
+      "Runtime": 146,
+      "Genres": [
+        "Crime",
+        "Drama"
+      ],
+      "Director": [
+        "Karthik Subbaraj"
+      ]
+    },
+    {
+      "Movie Name": "Mitrata",
+      "IMDB ID": "tt43641694",
+      "Poster": "https://image.tmdb.org/t/p/w500/9WpP9KlGkPovW3BGbad7mKVAw5C.jpg",
+      "Year": 2026,
+      "Description": "Mitrata follows three inseparable friends whose bond is hilariously and heart-warmingly tested by a chaotic twist of fate. Packed with laughter, loyalty, and life-changing choices, it is the ultimate celebration of the people who know us best.",
+      "Actors": [
+        "Viraj Ghelani",
+        "Deep Vaidya",
+        "Vishal Parekh",
+        "Vishwaa Joshi"
+      ],
+      "TMDB ID": 1776954,
+      "Type": "Movie",
+      "Category": "Gujarati",
+      "Industry": "Gujarati",
+      "Language": "gu",
+      "Release Date": "2026-09-25",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.7096,
+      "Runtime": 114,
+      "Genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "Director": [
+        "Oneel Prashant Karnik"
+      ]
+    },
+    {
+      "Movie Name": "Oye Chill Maar",
+      "IMDB ID": "tt44734409",
+      "Poster": "https://image.tmdb.org/t/p/w500/oZN8yKQoQROH7zdjBGx2gOZ4Xal.jpg",
+      "Year": 2026,
+      "Description": "Four close friends face challenges when secrets and troubling events reveal the risks of social media obsession. At the center is Prem, a young man dealing with past difficulties and questions of identity.",
+      "Actors": [
+        "Shrey Pareek",
+        "Tejas Dev",
+        "Prachi Bansal",
+        "Shikha Pandey",
+        "Atul Tiwari",
+        "Sujeet Asthana",
+        "Kirti Choudhary",
+        "Sufiya Tanveer",
+        "Prashant Mohite",
+        "Meenu Sharma"
+      ],
+      "TMDB ID": 1798313,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-09-25",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.685,
+      "Runtime": 127,
+      "Genres": [
+        "Comedy",
+        "Drama",
+        "Thriller"
+      ],
+      "Director": [
+        "Nitin Rokade"
+      ]
+    },
+    {
+      "Movie Name": "Love Lottery",
+      "IMDB ID": "tt40039371",
+      "Poster": "https://image.tmdb.org/t/p/w500/v4OkeQDiO1OnGJxBfiYAaO89472.jpg",
+      "Year": 2026,
+      "Description": "When a young woman, Bharani Verma, is found dead under mysterious circumstances, the police quickly arrest Kartik Saxena, making him the prime suspect in a seemingly open-and-shut murder case. But as the courtroom battle begins, every testimony uncovers new questions instead of answers. Hidden relationships, conflicting statements, and buried secrets gradually transform a simple murder trial into a gripping mystery where nothing is as it appears. Beyond the suspense, the film also explores a thought-provoking question: Have marriage and legal battles become a silent punishment for some innocent men, or is the truth far more complex than it seems? With every hearing, the truth becomes more elusive, and just when the verdict seems certain, an unexpected twist changes the entire direction of the case. A taut courtroom suspense thriller that keeps the audience guessing until the very last moment.",
+      "Actors": [
+        "Akshay Oberoi",
+        "Heli Daruwala",
+        "Kabir Duhan Singh",
+        "Vijayant Kohli",
+        "Hemant Pandey",
+        "Indira Krishnan",
+        "Santosh Shukla",
+        "Vikram Sharma",
+        "Agni Agyari",
+        "Kumar Saurabh"
+      ],
+      "TMDB ID": 1640649,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-09-25",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.7373,
+      "Runtime": 123,
+      "Genres": [
+        "Thriller"
+      ],
+      "Director": [
+        "Arvind Pandey"
+      ]
+    },
+    {
+      "Movie Name": "Don't Be Shy!",
+      "IMDB ID": "tt39528902",
+      "Poster": "https://image.tmdb.org/t/p/w500/lBeDq7KmZaQNnnIXgExCAmfLMqT.jpg",
+      "Year": 2026,
+      "Description": "Quintessential Mean Girl, Shyamili ‘Shy’ Das, finds herself suddenly relegated to Loser-ville when Mayank, her boyfriend of three years, suddenly dumps her. But Shy, all set to get her revenge, finds herself falling into friendship and compassion with someone unexpected… Mayank’s new girlfriend - Tara.",
+      "Actors": [
+        "Arushi Bajaj",
+        "Ansh Duggal",
+        "Bianca Arora",
+        "Piyush Khati",
+        "Kunaal Roy Kapur",
+        "Neha Dhupia",
+        "Anurag Basu",
+        "Nazneen Madan",
+        "Amit Singh Thakur",
+        "Shireesh Sharma",
+        "Anju Alva Naik",
+        "Ranbir Vijan",
+        "Farzil Pardiwala",
+        "Alishka Prothi",
+        "Alia Bhatt"
+      ],
+      "TMDB ID": 1529372,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-09-25",
+      "Rating": 7.0,
+      "Votes": 2,
+      "Popularity": 1.7239,
+      "Runtime": 149,
+      "Genres": [
+        "Romance",
+        "Comedy"
+      ],
+      "Director": [
+        "Sreeti Mukerji"
+      ]
+    },
+    {
+      "Movie Name": "Mahakavya: Shri Ramayan Katha",
+      "IMDB ID": "tt32296379",
+      "Poster": "https://image.tmdb.org/t/p/w500/fgaQz1gJDi2ZSPKDVUtc7fGuFk0.jpg",
+      "Year": 2026,
+      "Description": "A futuristic drama based on the story of the great epic Ramayana with the emotional filming and presentation of the events of Shri Ram's life which has never been seen on screen till now.",
+      "Actors": [
+        "Dev Sharma",
+        "Anjali Arora",
+        "Rajneesh Duggal",
+        "Sheel Verma",
+        "Nirbhay Wadhwa"
+      ],
+      "TMDB ID": 1285815,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-09-25",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 1.7923,
+      "Runtime": 176,
+      "Genres": [
+        "Drama",
+        "Fantasy"
+      ],
+      "Director": [
+        "Abhishek Singh"
+      ]
+    },
+    {
+      "Movie Name": "Shaque: Trust No One",
+      "IMDB ID": "tt35929525",
+      "Poster": "https://image.tmdb.org/t/p/w500/xddc9KBcqffXjLEYLX8cZzRwYkS.jpg",
+      "Year": 2026,
+      "Description": "A mother receives yearly photos of her missing child. After nine years of searching, she discovers the truth about the abduction lies not far away, but hidden among her closest circle.",
+      "Actors": [
+        "Parineeti Chopra",
+        "Jennifer Winget",
+        "Tahir Raj Bhasin",
+        "Anup Soni",
+        "Sumeet Vyas",
+        "Soni Razdan",
+        "Harleen Sethi",
+        "Dhruv Chaudhary"
+      ],
+      "TMDB ID": 285147,
+      "Type": "Web Series",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-09-24",
+      "Rating": 7.7,
+      "Votes": 9,
+      "Popularity": 5.2388,
+      "Runtime": "",
+      "Genres": [
+        "Crime",
+        "Mystery",
+        "Drama"
+      ],
+      "Director": [
+        "Renzil D'Silva",
+        "Siddharth P. Malhotra"
+      ]
+    },
+    {
+      "Movie Name": "The Love Hypothesis",
+      "IMDB ID": "tt22526100",
+      "Poster": "https://image.tmdb.org/t/p/w500/vfZxVHextAGC70zrNhS8lsROqP1.jpg",
+      "Year": 2026,
+      "Description": "Olive Smith, a biology PhD candidate, and Dr. Adam Carlsen, a hotshot professor and well-known tyrant, enter into a fake relationship, seeing each of their carefully calculated theories on love get thrown into chaos.",
+      "Actors": [
+        "Lili Reinhart",
+        "Tom Bateman",
+        "Rachel Marsh",
+        "Jaboukie Young-White",
+        "Nicholas Duvernay",
+        "Arty Froushan",
+        "Jeananne Goossen",
+        "Aladeen Tawfeek",
+        "Kenny Wong",
+        "Daniel Brochu",
+        "Alexandra Petrachuk",
+        "Howard Bilerman",
+        "Amber Jonas",
+        "Sierra Pompey",
+        "Rahul Gandhi"
+      ],
+      "TMDB ID": 1032863,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-09-23",
+      "Rating": 7.845,
+      "Votes": 743,
+      "Popularity": 22.2148,
+      "Runtime": 112,
+      "Genres": [
+        "Romance",
+        "Comedy"
+      ],
+      "Director": [
+        "Claire Scanlon"
+      ]
+    },
+    {
+      "Movie Name": "Sense and Sensibility",
+      "IMDB ID": "tt13609648",
+      "Poster": "https://image.tmdb.org/t/p/w500/czsyPHosFNbh4PPqXfqWu1aBXnA.jpg",
+      "Year": 2026,
+      "Description": "A charming, witty, and deeply relatable story of love and sisterhood.",
+      "Actors": [
+        "Daisy Edgar-Jones",
+        "Esmé Creed-Miles",
+        "Caitríona Balfe",
+        "Frank Dillane",
+        "Herbert Nordrum",
+        "George MacKay",
+        "Fiona Shaw",
+        "Bodhi Rae Breathnach",
+        "Stacy Martin",
+        "Tom Brooke",
+        "Turlough Convery",
+        "Chloe Pirrie",
+        "Forrest Bothwell",
+        "Ceara Coveney",
+        "Eliot Sumner"
+      ],
+      "TMDB ID": 1503762,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-09-23",
+      "Rating": 7.228,
+      "Votes": 167,
+      "Popularity": 49.7739,
+      "Runtime": 132,
+      "Genres": [
+        "Drama",
+        "Romance"
+      ],
+      "Director": [
+        "Georgia Oakley"
+      ]
+    },
+    {
+      "Movie Name": "Primetime",
+      "IMDB ID": "tt34206385",
+      "Poster": "https://image.tmdb.org/t/p/w500/lmrulvLbmaejTix1YaMxo1oGhH1.jpg",
+      "Year": 2026,
+      "Description": "In 2006, To Catch a Predator host Chris Hansen sets out to make television history. When a high stakes operation goes fatally wrong, his veneered dream of fame curdles into a nightmare of performative justice.",
+      "Actors": [
+        "Robert Pattinson",
+        "Merritt Wever",
+        "Skyler Gisondo",
+        "Matthew Maher",
+        "Phoebe Bridgers",
+        "Victor Brunette",
+        "Bokeem Woodbine",
+        "Michael Chachere",
+        "Alex Winter",
+        "Tony Revolori",
+        "Bob Ari",
+        "Jonathan Lipnicki",
+        "Matt Smith",
+        "Anna Faris",
+        "Franco Brocato"
+      ],
+      "TMDB ID": 1375441,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-09-23",
+      "Rating": 6.75,
+      "Votes": 430,
+      "Popularity": 54.5557,
+      "Runtime": 110,
+      "Genres": [
+        "Thriller",
+        "Drama",
+        "Crime"
+      ],
+      "Director": [
+        "Lance Oppenheim"
+      ]
+    },
+    {
+      "Movie Name": "The Paradise",
+      "IMDB ID": "tt31969655",
+      "Poster": "https://image.tmdb.org/t/p/w500/smghVMoMWSIFi5dgIz4w1UIcEcY.jpg",
+      "Year": 2026,
+      "Description": "In 1980s Secunderabad, a marginalized tribe battles discrimination and fights for citizenship under an unexpected leader's guidance, challenging systemic oppression.",
+      "Actors": [
+        "Nani",
+        "Sonali Kulkarni",
+        "Mohan Babu",
+        "Raghav Juyal",
+        "Kayadu Lohar",
+        "Sampoornesh Babu",
+        "Vishika",
+        "Tanikella Bharani",
+        "Priyadarshi Pullikonda",
+        "P.  Vijay Kumar",
+        "Raja Ravindra",
+        "Krishna Teja",
+        "M. S. Chowdhary",
+        "Ram Jagan",
+        "Keerthy Suresh"
+      ],
+      "TMDB ID": 1376856,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-09-23",
+      "Rating": 4.8,
+      "Votes": 17,
+      "Popularity": 7.6577,
+      "Runtime": 170,
+      "Genres": [
+        "Action",
+        "Drama"
+      ],
+      "Director": [
+        "Srikanth Odela"
+      ]
+    },
+    {
+      "Movie Name": "One Last Shot",
+      "IMDB ID": "tt37971717",
+      "Poster": "https://image.tmdb.org/t/p/w500/niQ4NBh2jqAf1hDZP5m6ReWFAb7.jpg",
+      "Year": 2026,
+      "Description": "Navy Seal Jake Harris must stop a team of mercenaries, led by his disillusioned former comrade, from disabling the US missile defense network.",
+      "Actors": [
+        "Scott Adkins",
+        "Steven Cree",
+        "Hannah Ware",
+        "Dolph Lundgren",
+        "Kane Kosugi",
+        "Neil Linpow",
+        "Ray Fearon",
+        "Tom Dunne",
+        "Michel Curiel",
+        "Tom Leigh",
+        "Jack Trueman",
+        "Sofian Francis",
+        "Stewart Alexander",
+        "Greg Austin",
+        "Jess Khan-Lee"
+      ],
+      "TMDB ID": 1607127,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-09-22",
+      "Rating": 7.2,
+      "Votes": 167,
+      "Popularity": 28.4724,
+      "Runtime": 98,
+      "Genres": [
+        "Action",
+        "Thriller"
+      ],
+      "Director": [
+        "James Nunn"
+      ]
+    },
+    {
+      "Movie Name": "Heart of the Beast",
+      "IMDB ID": "tt7526136",
+      "Poster": "https://image.tmdb.org/t/p/w500/6sYemVUn79UPKz1ZsSG6kPU4RVy.jpg",
+      "Year": 2026,
+      "Description": "After a harrowing plane crash, Special Forces officer James Belmont and his combat dog, Odin, find themselves stranded deep in the Alaskan wilderness. Together, they are forced into a brutal fight for survival against the elements.",
+      "Actors": [
+        "Brad Pitt",
+        "J.K. Simmons",
+        "Anna Lambe",
+        "Justin Melnick",
+        "Shaun DeZern"
+      ],
+      "TMDB ID": 1263337,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-09-19",
+      "Rating": 7.57,
+      "Votes": 796,
+      "Popularity": 556.1351,
+      "Runtime": 101,
+      "Genres": [
+        "Adventure",
+        "Thriller"
+      ],
+      "Director": [
+        "David Ayer"
+      ]
+    },
+    {
+      "Movie Name": "City Lights",
+      "IMDB ID": "tt33483889",
+      "Poster": "https://image.tmdb.org/t/p/w500/ksUcE0USVqVrawaBL5mVwbe5k92.jpg",
+      "Year": 2026,
+      "Description": "Follows two individuals who move from a village to Bengaluru, only to confront the harsh realities of survival in a fast-paced, indifferent city.",
+      "Actors": [
+        "Vinay Rajkumar",
+        "Monisha vijay kumar",
+        "Umashree",
+        "B M Giriraj",
+        "Vinod Master",
+        "Veera Devaraj",
+        "Vasantha Krishnamurthy",
+        "Gopalkrishna Deshpande",
+        "Punith Puni Kumar"
+      ],
+      "TMDB ID": 1730215,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Kannada",
+      "Language": "kn",
+      "Release Date": "2026-09-18",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.5586,
+      "Runtime": 130,
+      "Genres": [
+        "Drama",
+        "Romance"
+      ],
+      "Director": [
+        "Duniya Vijay"
+      ]
+    },
+    {
+      "Movie Name": "Cold Call",
+      "IMDB ID": "tt38349121",
+      "Poster": "https://image.tmdb.org/t/p/w500/hsKckxgxWBnDqv8NgSjsQpxHGbb.jpg",
+      "Year": 2026,
+      "Description": "In the winter of 2023, the Media is buzz with the kidnapping case of a 13-year-old boy. The Investigators find that a group of 4 Market Research Executive (MRE) are prime suspects.",
+      "Actors": [
+        "Siddu Moolimani",
+        "Santhosh S A",
+        "Shree Vaishnav",
+        "Krishna T Vijayachandran",
+        "Amitha Ranganath",
+        "Nisha Hegde",
+        "Keerthana Pulki",
+        "Payal Chengappa",
+        "Balaji Rajashekar"
+      ],
+      "TMDB ID": 1773328,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-09-18",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.4441,
+      "Runtime": 131,
+      "Genres": [
+        "Comedy",
+        "Family"
+      ],
+      "Director": [
+        "Thambidurai Ethuraj"
+      ]
+    },
+    {
+      "Movie Name": "The Dark Heaven",
+      "IMDB ID": "tt45370533",
+      "Poster": "https://image.tmdb.org/t/p/w500/xFr0Q7j2JmOwBJnvImIgTAWBk4U.jpg",
+      "Year": 2026,
+      "Description": "In the Hill Village of Mekkarai, Where It is Customary for Men to Die Every Seven Years During the Month of June, a Newly Appointed Police Inspector Arrives to Investigate a Series of Mysterious Murders. As He Digs Deeper Into the Village's Dark Secrets and Long-standing Beliefs, He Finds Himself Trapped in a Web of Crime, Fear, and Hidden Truths.",
+      "Actors": [
+        "Sidhu Sid",
+        "Tharsika",
+        "Riythvika",
+        "Vela Ramamoorthy",
+        "Nizhalgal Ravi",
+        "Jayakumar",
+        "Chaplin Balu",
+        "Maala Parvathi"
+      ],
+      "TMDB ID": 1618200,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-09-18",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 7.3874,
+      "Runtime": 147,
+      "Genres": [
+        "Crime",
+        "Thriller"
+      ],
+      "Director": [
+        "Balaaji"
+      ]
+    },
+    {
+      "Movie Name": "Chatni",
+      "IMDB ID": "tt43731362",
+      "Poster": "https://image.tmdb.org/t/p/w500/yAgbaaRFFWjCWLKNdEIl0QOKKHl.jpg",
+      "Year": 2026,
+      "Description": "A young engineer abandons his secure job to continue his family's 115-year farsan tradition, working to transform their classic chutney recipe into a contemporary brand while overcoming obstacles and family skepticism.",
+      "Actors": [
+        "Puja Joshi",
+        "Malhar Thakar",
+        "Prashant Barot",
+        "Hetal Modi",
+        "Smit Joshi"
+      ],
+      "TMDB ID": 1808613,
+      "Type": "Movie",
+      "Category": "Gujarati",
+      "Industry": "Gujarati",
+      "Language": "gu",
+      "Release Date": "2026-09-18",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.474,
+      "Runtime": 167,
+      "Genres": [
+        "Drama",
+        "Family",
+        "Romance"
+      ],
+      "Director": [
+        "Saandeep Patel"
+      ]
+    },
+    {
+      "Movie Name": "Khoonta",
+      "IMDB ID": "tt39284754",
+      "Poster": "https://image.tmdb.org/t/p/w500/wwcMDBDGueHEiSVCUIkqjF4F23N.jpg",
+      "Year": 2026,
+      "Description": "A woman bound spiritually to a Himalayan river waits for her missing husband, as her village quietly slips into an uncertain future-where faith, memory, and nature begin to reveal truths no one is ready to face.",
+      "Actors": [
+        "Anushi Sharma",
+        "Ishan Azad",
+        "Ashu Ghanshyam",
+        "Jawahar Kaul",
+        "Karrtik Rao",
+        "Shubham Sethi",
+        "Manish Sharma",
+        "Uday Sharma"
+      ],
+      "TMDB ID": 1775462,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-09-18",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.4287,
+      "Runtime": 123,
+      "Genres": [
+        "Drama"
+      ],
+      "Director": [
+        "Anushi Sharma"
+      ]
+    },
+    {
+      "Movie Name": "Lust Stories 3",
+      "IMDB ID": "tt39667834",
+      "Poster": "https://image.tmdb.org/t/p/w500/cLA83DD1qMEBwbRIYXf29RKjMja.jpg",
+      "Year": 2026,
+      "Description": "Through four bite-sized yet emotionally resonant films, the anthology once again explores lust, love, relationships, and repressed desire, offering fresh perspectives on intimacy, longing, and human connection in all their complexity.",
+      "Actors": [
+        "Radhika Apte",
+        "Konkona Sen Sharma",
+        "Vijay Varma",
+        "Abhishek Banerjee",
+        "Ali Fazal",
+        "Radhikka Madan",
+        "Aditi Rao Hydari",
+        "Siddharth",
+        "Gurfateh Pirzada",
+        "Sana Thampi",
+        "Poonam Mathur",
+        "Gajraj Rao",
+        "Deepika Amin",
+        "Bipin Nadkarni",
+        "Madhu Sachdeva"
+      ],
+      "TMDB ID": 1451944,
+      "Type": "Movie",
+      "Category": "Bollywood",
+      "Industry": "Hindi",
+      "Language": "hi",
+      "Release Date": "2026-09-18",
+      "Rating": 5.9,
+      "Votes": 12,
+      "Popularity": 6.9023,
+      "Runtime": 165,
+      "Genres": [
+        "Romance",
+        "Drama"
+      ],
+      "Director": [
+        "Vikramaditya Motwane",
+        "Kiran Rao",
+        "Shakun Batra",
+        "Vishal Bhardwaj"
+      ]
+    },
+    {
       "Movie Name": "Hari Ka Om",
       "IMDB ID": "tt36853476",
       "Poster": "https://image.tmdb.org/t/p/w500/3iYiVdesjcaWfOa2DbzGTeWEAAP.jpg",
@@ -142,6 +3564,89 @@
       ]
     },
     {
+      "Movie Name": "Enna Vilai",
+      "IMDB ID": "tt33095205",
+      "Poster": "https://image.tmdb.org/t/p/w500/NkklX4xp3BlLmlMT0LXehkStJZ.jpg",
+      "Year": 2026,
+      "Description": "A humble fisherman from Rameswaram lives a quiet life with his family until he finds a gold pendant washed ashore. What initially seems like a blessing soon turns into a nightmare when false accusations threaten his peace and dignity, forcing him to stand up against a powerful system.",
+      "Actors": [
+        "Karunas",
+        "Nimisha Sajayan",
+        "Vijayalakshmi Veeramani",
+        "Kamalesh Jegan",
+        "Shashaa Shivakumar",
+        "Mohan Raman",
+        "Kavithalayaa Krishnan",
+        "Swaminathan",
+        "Nizhalgal Ravi",
+        "Y. G. Mahendran",
+        "Poornima Bhagyaraj",
+        "Deepa Shankar",
+        "Rajendran",
+        "Tamizh",
+        "Heesha"
+      ],
+      "TMDB ID": 1686999,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-09-17",
+      "Rating": 7.0,
+      "Votes": 1,
+      "Popularity": 2.447,
+      "Runtime": 141,
+      "Genres": [
+        "Drama",
+        "Thriller"
+      ],
+      "Director": [
+        "Sajeev Pazhoor"
+      ]
+    },
+    {
+      "Movie Name": "The Weight",
+      "IMDB ID": "tt10794054",
+      "Poster": "https://image.tmdb.org/t/p/w500/bsrd6ItRwNrg3DGlUDYrEy1S9C1.jpg",
+      "Year": 2026,
+      "Description": "When Samuel is torn from his daughter and sent to a brutal prison, Warden Clancy offers him a high-stakes proposition: smuggle gold out of a remote mine with a dangerous crew of prisoners and he’ll win his freedom.",
+      "Actors": [
+        "Ethan Hawke",
+        "Russell Crowe",
+        "Julia Jones",
+        "Austin Amelio",
+        "Avi Nash",
+        "Lucas Lynggaard Tønnesen",
+        "Sam Hazeldine",
+        "George Burgess",
+        "Jeff Hallman",
+        "Alec Newman",
+        "Avy-Berry Worrall",
+        "Cameron Brady",
+        "Eric Ford",
+        "Peter Lewys Preston",
+        "Neil McGarry"
+      ],
+      "TMDB ID": 1433583,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-09-16",
+      "Rating": 6.7,
+      "Votes": 98,
+      "Popularity": 13.7125,
+      "Runtime": 112,
+      "Genres": [
+        "Adventure",
+        "Drama",
+        "Thriller"
+      ],
+      "Director": [
+        "Padraic McKinley"
+      ]
+    },
+    {
       "Movie Name": "Resident Evil",
       "IMDB ID": "tt35538033",
       "Poster": "https://image.tmdb.org/t/p/w500/i7UyjfPio0VFHB9rBUZSFyhOoM8.jpg",
@@ -216,6 +3721,88 @@
       ],
       "Director": [
         "Sameer Vidwans"
+      ]
+    },
+    {
+      "Movie Name": "Aasha",
+      "IMDB ID": "tt37894980",
+      "Poster": "https://image.tmdb.org/t/p/w500/dZyMVwRhI0Y1ANDRM4sAk7P4hYC.jpg",
+      "Year": 2026,
+      "Description": "Follows a stubborn, short-tempered widow named Aasha who gets into a tense altercation with a volatile man named Jeemon following a minor road accident.",
+      "Actors": [
+        "Urvashi",
+        "Joju George",
+        "Aishwarya Lekshmi",
+        "Vijayaraghavan",
+        "Ramesh Girija",
+        "Amrutha Krishnakumar",
+        "Joy Mathew",
+        "Prashant Madhavan",
+        "Shari",
+        "Kottayam Ramesh",
+        "Prasanth Alexander",
+        "Lakshmi Menon",
+        "Ajayan Adat",
+        "Bhagyalakshmi",
+        "Kumar Sunil"
+      ],
+      "TMDB ID": 1513475,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Malayalam",
+      "Language": "ml",
+      "Release Date": "2026-09-11",
+      "Rating": 7.5,
+      "Votes": 6,
+      "Popularity": 1.736,
+      "Runtime": 127,
+      "Genres": [
+        "Thriller",
+        "Drama"
+      ],
+      "Director": [
+        "Safar Sanal"
+      ]
+    },
+    {
+      "Movie Name": "Mahendragiri Vaaraahi",
+      "IMDB ID": "tt30050236",
+      "Poster": "https://image.tmdb.org/t/p/w500/hYfu1SIE1wViNVPT0zdlqTwpPeb.jpg",
+      "Year": 2026,
+      "Description": "Siddharth, an atheist and skeptic, is drawn into a mysterious journey surrounding the ancient Varahi temple at Mahendragiri. As he uncovers secrets connected to the sacred site, he is forced to confront forces beyond his understanding, challenging his beliefs and changing his perception of faith, destiny, and the supernatural.",
+      "Actors": [
+        "Sumanth",
+        "Meenakshi Goswami",
+        "Aishwarya Rajesh",
+        "Malvika Nair",
+        "Manju Bhargavi",
+        "Brahmanandam",
+        "Rajeev Kanakala",
+        "Rajsekhar Aningi",
+        "Ali",
+        "Vennela Kishore",
+        "Vamsee Chaganti",
+        "Kamal Kamaraju",
+        "Vadlamani Srinivas",
+        "Siddhu Jonnalagadda"
+      ],
+      "TMDB ID": 1049064,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-09-11",
+      "Rating": 8.0,
+      "Votes": 2,
+      "Popularity": 5.804,
+      "Runtime": 154,
+      "Genres": [
+        "Fantasy",
+        "Thriller",
+        "Mystery"
+      ],
+      "Director": [
+        "Santosh Jagarlapudi"
       ]
     },
     {
@@ -395,6 +3982,117 @@
       ],
       "Director": [
         "Priyadarshan"
+      ]
+    },
+    {
+      "Movie Name": "Forgotten Island",
+      "IMDB ID": "tt36583977",
+      "Poster": "https://image.tmdb.org/t/p/w500/myd1K3gefdNAWFsGNRDdMeiK9Qg.jpg",
+      "Year": 2026,
+      "Description": "While celebrating their last night together, high school graduates and best friends Jo and Raissa stumble upon a mysterious portal that transports them to the fantastical island of Nakali. When they discover that the memories of their entire friendship are the price for returning home, Jo and Raissa must race to find a way to leave the island before they forget each other forever.",
+      "Actors": [
+        "H.E.R.",
+        "Liza Soberano",
+        "Dave Franco",
+        "Jenny Slate",
+        "Manny Jacinto",
+        "Lea Salonga",
+        "Dolly de Leon",
+        "Jo Koy",
+        "Ronny Chieng",
+        "Kevin McCann",
+        "Kailey Crawford",
+        "Kayla Teruel",
+        "Amielynn Abellera",
+        "Eugene Cordero",
+        "Eric Bauza"
+      ],
+      "TMDB ID": 1465063,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-09-10",
+      "Rating": 8.01,
+      "Votes": 254,
+      "Popularity": 69.8568,
+      "Runtime": 109,
+      "Genres": [
+        "Animation",
+        "Adventure",
+        "Fantasy",
+        "Comedy",
+        "Family"
+      ],
+      "Director": [
+        "Januel Mercado",
+        "Joel Crawford"
+      ]
+    },
+    {
+      "Movie Name": "Maremma",
+      "IMDB ID": "tt37537243",
+      "Poster": "https://image.tmdb.org/t/p/w500/gMN8kkciIx3abnABV3KJy6DnDgN.jpg",
+      "Year": 2026,
+      "Description": "In a village bound by ancient traditions, the Maremma Goddess festival is a time of both reverence and fear. Every 12 years, a male bull is sacrificed to the deity, yet with each ceremony, calamity befalls the villagers. Despite their efforts, the elders fail to prevent disaster. Determined to break the cycle, they enact a new decree: any household whose bull bears a male calf in the next 100 days must offer it to the goddess. As the deadline approaches, the fate of the village hangs in the balance, and the true test of their resolve begins.",
+      "Actors": [
+        "Maadhav Bhupathiraju",
+        "Deepa Balu",
+        "Vikas Vasistha",
+        "V. S. Roopa Lakshmi",
+        "Dayanand Reddy"
+      ],
+      "TMDB ID": 1604274,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-09-10",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 1.0079,
+      "Runtime": 135,
+      "Genres": [
+        "Action",
+        "Drama"
+      ],
+      "Director": [
+        "Manchala Nagaraj"
+      ]
+    },
+    {
+      "Movie Name": "Epic - First Semester",
+      "IMDB ID": "tt35448218",
+      "Poster": "https://image.tmdb.org/t/p/w500/vqt0fIHy8dkSpUtVcrN1NaaANl8.jpg",
+      "Year": 2026,
+      "Description": "Far from home, Aditya wrestles with family expectations, cultural differences and loneliness while studying in London – until he meets the lively Kadali.",
+      "Actors": [
+        "Anand Deverakonda",
+        "Vaishnavi Chaitanya",
+        "Sivaji Sontineni",
+        "Vasuki Anand",
+        "Kalyan Shankar",
+        "Srinivas Gavireddy",
+        "Jane Serena",
+        "Kadambari Kiran",
+        "G Rohan Roy"
+      ],
+      "TMDB ID": 1408158,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-09-10",
+      "Rating": 5.5,
+      "Votes": 2,
+      "Popularity": 1.4841,
+      "Runtime": 150,
+      "Genres": [
+        "Romance",
+        "Drama"
+      ],
+      "Director": [
+        "Aditya Hasan"
       ]
     },
     {
@@ -757,6 +4455,42 @@
       ]
     },
     {
+      "Movie Name": "Asambhauuu",
+      "IMDB ID": "tt41768743",
+      "Poster": "",
+      "Year": 2026,
+      "Description": "The story is a metaphor for Yudhishthira and the dog, and explores the idea of dharma. Chintu, a dog, loves his owner, Chintan, like a brother. Chintan, too, loves him with all his heart. When fate puts their love and loyalty to the test, they go to extraordinary lengths to fight for each other.",
+      "Actors": [
+        "Raunaq Kamdar",
+        "Mitra Gadhvi",
+        "Tatsat Munshi",
+        "Shivani Bhardwaj",
+        "Chetan Daiya",
+        "Jitendra Thakkar",
+        "Premal Yagnik",
+        "Hetal Modi",
+        "Tusharika Rajyaguru",
+        "Jassi Gadhavi"
+      ],
+      "TMDB ID": 1775289,
+      "Type": "Movie",
+      "Category": "Gujarati",
+      "Industry": "Gujarati",
+      "Language": "gu",
+      "Release Date": "2026-09-04",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.5562,
+      "Runtime": 150,
+      "Genres": [
+        "Drama",
+        "Comedy"
+      ],
+      "Director": [
+        "Parth Trivedi"
+      ]
+    },
+    {
       "Movie Name": "Immortal",
       "IMDB ID": "tt36931126",
       "Poster": "https://image.tmdb.org/t/p/w500/8Ev68TZqunJ31uvn7cbchALeDkn.jpg",
@@ -1034,6 +4768,48 @@
       ]
     },
     {
+      "Movie Name": "Onslaught",
+      "IMDB ID": "tt32268691",
+      "Poster": "https://image.tmdb.org/t/p/w500/eAs7G3yFaULpfwfVdGvPo5HmFJS.jpg",
+      "Year": 2026,
+      "Description": "When a rogue squad of genetically engineered super soldiers break loose in the desert, a badass Army sniper must unleash hell to protect her young daughter.",
+      "Actors": [
+        "Adria Arjona",
+        "Dan Stevens",
+        "Eric Wareheim",
+        "Reginald VelJohnson",
+        "Michael Biehn",
+        "Blake Kennedy",
+        "Alex Pereira",
+        "Drew Starkey",
+        "Rebecca Hall",
+        "Jacob Scipio",
+        "Leon M. Brown",
+        "Dave Campbell",
+        "Tyler Hall",
+        "Jasper Keen",
+        "Abby Townsend"
+      ],
+      "TMDB ID": 1284046,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-09-02",
+      "Rating": 5.574,
+      "Votes": 148,
+      "Popularity": 43.4113,
+      "Runtime": 92,
+      "Genres": [
+        "Action",
+        "Thriller",
+        "Horror"
+      ],
+      "Director": [
+        "Adam Wingard"
+      ]
+    },
+    {
       "Movie Name": "By Any Means",
       "IMDB ID": "tt34379051",
       "Poster": "https://image.tmdb.org/t/p/w500/f4hdIed8vh10O8TkQ1CkHS8MQ3G.jpg",
@@ -1190,6 +4966,48 @@
       "Director": [
         "Peter Spierig",
         "Michael Spierig"
+      ]
+    },
+    {
+      "Movie Name": "Legend of the White Dragon",
+      "IMDB ID": "tt12446086",
+      "Poster": "https://image.tmdb.org/t/p/w500/k0L5ZQP4PjdNziVGvcOeaihXyCc.jpg",
+      "Year": 2026,
+      "Description": "Forced to hide in the shadows, fugitive hero Erik Reed must clear his name to reunite with his family. Standing in his way is a mysterious villain obsessed with destroying the White Dragon for good.",
+      "Actors": [
+        "Jason David Frank",
+        "Aaron Schoenke",
+        "Jason Faunt",
+        "Rachele Brooke Smith",
+        "Michael Madsen",
+        "Andrew Bachelor",
+        "David Ramsey",
+        "Mark Dacascos",
+        "Chalet Lizette Brannan",
+        "Kevin Porter",
+        "Ciara Hanna",
+        "Mayling Ng",
+        "Lola Blanc",
+        "Ron Roggé",
+        "Nicole Fong"
+      ],
+      "TMDB ID": 843352,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-08-28",
+      "Rating": 6.7,
+      "Votes": 90,
+      "Popularity": 22.976,
+      "Runtime": 97,
+      "Genres": [
+        "Action",
+        "Fantasy",
+        "Science Fiction"
+      ],
+      "Director": [
+        "Aaron Schoenke"
       ]
     },
     {
@@ -2314,6 +6132,43 @@
       "Banner": "Big"
     },
     {
+      "Movie Name": "Photographer",
+      "IMDB ID": "tt43727339",
+      "Poster": "https://image.tmdb.org/t/p/w500/2viJLcdWykkcagEfHpGZupbZiq4.jpg",
+      "Year": 2026,
+      "Description": "Photographer follows Veera, a troubled and obsessive photographer determined to prove his worth in a world that has long dismissed him. Driven by ambition and haunted by a painful past, he ventures deep into Mathikettan Solai, a mysterious reserve forest, to capture a rare and elusive natural phenomenon that could change his life forever.",
+      "Actors": [
+        "Ashraf A",
+        "Janani Samathanam",
+        "Karunakaran",
+        "Devi Mahesh",
+        "Aadukalam Naren",
+        "Vela Ramamoorthy",
+        "Nizhalgal Ravi",
+        "Kalatpadai Jai",
+        "Uriyadi Shiva",
+        "Vetrivel Raja"
+      ],
+      "TMDB ID": 1740942,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-08-07",
+      "Rating": 2.0,
+      "Votes": 1,
+      "Popularity": 0.6855,
+      "Runtime": 121,
+      "Genres": [
+        "Fantasy",
+        "Mystery",
+        "Thriller"
+      ],
+      "Director": [
+        "Ashraf A"
+      ]
+    },
+    {
       "Movie Name": "Tony",
       "IMDB ID": "tt33095251",
       "Poster": "https://image.tmdb.org/t/p/w500/uwZF5guNR5EnXkjIVTk4UPTVGiS.jpg",
@@ -2587,6 +6442,46 @@
         "Arnav Kumar"
       ],
       "Banner": "Medium"
+    },
+    {
+      "Movie Name": "Feed",
+      "IMDB ID": "tt30505578",
+      "Poster": "https://image.tmdb.org/t/p/w500/nICoMIb6FcHqnrKeO43zKY3w8vT.jpg",
+      "Year": 2026,
+      "Description": "Five social media influencers spend a weekend at a forest retreat but inadvertently awaken and confront the world's first vampire.",
+      "Actors": [
+        "Grace Collender",
+        "Rhys Mannion",
+        "Molly McCann",
+        "Charlotte Bradley",
+        "Flynn Gray",
+        "Daisy Jelley",
+        "Clinton Liberty",
+        "Niamh Hogan",
+        "Noella Brennan",
+        "Dominic Wright",
+        "Oskar Smith",
+        "Jacek Skalmierski",
+        "Gavan O'Connor-Duffy",
+        "Brendan Swan",
+        "Sadbh McMullin"
+      ],
+      "TMDB ID": 1128204,
+      "Type": "Movie",
+      "Category": "Hollywood",
+      "Industry": "English",
+      "Language": "en",
+      "Release Date": "2026-08-06",
+      "Rating": 6.731,
+      "Votes": 39,
+      "Popularity": 55.9012,
+      "Runtime": 82,
+      "Genres": [
+        "Horror"
+      ],
+      "Director": [
+        "Marco van Belle"
+      ]
     },
     {
       "Movie Name": "Teenage Sex and Death at Camp Miasma",
@@ -6662,6 +10557,43 @@
       "Banner": "Big"
     },
     {
+      "Movie Name": "Charukesi",
+      "IMDB ID": "tt26654655",
+      "Poster": "https://image.tmdb.org/t/p/w500/fbOhX1v52IiXJUdVAbw9Zurcc6s.jpg",
+      "Year": 2026,
+      "Description": "A Carnatic musician with Alzheimer's grapples with his prodigal son's lifestyle choices, exploring the intersection of music, memory, and family relationships.",
+      "Actors": [
+        "Y. G. Mahendran",
+        "Suhasini Maniratnam",
+        "Sathyaraj",
+        "Samuthirakani",
+        "Thalaivasal Vijay",
+        "Ramya Pandian",
+        "Raj Aiyyappa",
+        "Madhuvanti Arun",
+        "Livingston",
+        "Jayaprakash",
+        "Boxer Dheena"
+      ],
+      "TMDB ID": 1503015,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-06-12",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.3875,
+      "Runtime": 129,
+      "Genres": [
+        "Drama",
+        "Music"
+      ],
+      "Director": [
+        "Suresh Krissna"
+      ]
+    },
+    {
       "Movie Name": "Habeebi",
       "IMDB ID": "tt41101621",
       "Poster": "https://image.tmdb.org/t/p/w500/kHU73XK0DHhphgo7U6MUQz8ADYv.jpg",
@@ -7148,6 +11080,40 @@
       ],
       "Director": [
         "Sanjay Malavalli"
+      ]
+    },
+    {
+      "Movie Name": "Mango Pachcha",
+      "IMDB ID": "tt36967234",
+      "Poster": "https://image.tmdb.org/t/p/w500/ho0aScFTUy02dy6wA9IqAF9RFTd.jpg",
+      "Year": 2026,
+      "Description": "Set in Mysuru, a crime drama unfolds across a decade (2001-2011), following a chain of events that builds tension over time. The city's setting plays a key role in reflecting different phases across the years.",
+      "Actors": [
+        "Sanchith Sanjeev",
+        "Kaajal Kunder",
+        "Prashanth Hiremath",
+        "Mayur Patel",
+        "Jai Gopinath",
+        "Harini Srikanth",
+        "Uggram Manju"
+      ],
+      "TMDB ID": 1592821,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Kannada",
+      "Language": "kn",
+      "Release Date": "2026-06-05",
+      "Rating": 5.0,
+      "Votes": 1,
+      "Popularity": 0.7811,
+      "Runtime": 95,
+      "Genres": [
+        "Crime",
+        "Drama",
+        "Action"
+      ],
+      "Director": [
+        "Viveka"
       ]
     },
     {
@@ -7666,6 +11632,39 @@
         "James Nunn"
       ],
       "Banner": "Big"
+    },
+    {
+      "Movie Name": "Kabanda",
+      "IMDB ID": "tt41245211",
+      "Poster": "https://image.tmdb.org/t/p/w500/9QS2HeOzEYrMDGu0spvqr81Zv5g.jpg",
+      "Year": 2026,
+      "Description": "In a remote farmhouse, blind Anu's weekend turns into a nightmare when her boyfriend Vedant is possessed by Kabanda, a vengeful demon. Trapped and deceived, she must use her heightened senses to outsmart the evil wearing his face.",
+      "Actors": [
+        "Shyam Nair",
+        "Tarjanee Bhadla",
+        "Brinda Trivedi",
+        "Ruchita Chothani",
+        "Ankit Brahmbhatt",
+        "Hemang Shah",
+        "Raju Barot"
+      ],
+      "TMDB ID": 1786120,
+      "Type": "Movie",
+      "Category": "Gujarati",
+      "Industry": "Gujarati",
+      "Language": "gu",
+      "Release Date": "2026-05-29",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.3187,
+      "Runtime": 106,
+      "Genres": [
+        "Drama",
+        "Thriller"
+      ],
+      "Director": [
+        "Rehan Chaudhary"
+      ]
     },
     {
       "Movie Name": "Sandigdham",
@@ -10297,6 +14296,41 @@
       "Banner": "Big"
     },
     {
+      "Movie Name": "Battle",
+      "IMDB ID": "tt38890924",
+      "Poster": "https://image.tmdb.org/t/p/w500/p1y1xAQFmEwdb2TiJ0ja6XAbE0v.jpg",
+      "Year": 2026,
+      "Description": "Born mute until the age of ten, a boy rises to fame as a celebrated Rap singer, but the trials of love, fame, and social conflict lead him into turmoil and push him to the edge, until he discovers the true soul and purpose of his art.",
+      "Actors": [
+        "Arjun Anbudan",
+        "Aradhya",
+        "Subramaniam Siva",
+        "Munishkanth",
+        "Saravana Subbiah",
+        "Gayathri",
+        "Diviyadharshini",
+        "Suruli",
+        "Dheehan"
+      ],
+      "TMDB ID": 1575753,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-04-24",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 1.3654,
+      "Runtime": 127,
+      "Genres": [
+        "Drama",
+        "Romance"
+      ],
+      "Director": [
+        "Narayanan"
+      ]
+    },
+    {
       "Movie Name": "Gedelaraju Kakinada Taluka",
       "IMDB ID": "tt35182033",
       "Poster": "https://image.tmdb.org/t/p/w500/rXg6RAJzkhE3gQql14G3oiIXcRS.jpg",
@@ -11860,6 +15894,40 @@
       ]
     },
     {
+      "Movie Name": "G.O.A.T",
+      "IMDB ID": "tt27730178",
+      "Poster": "https://image.tmdb.org/t/p/w500/egWyJwnff55sNXqKWciqs0z0hQI.jpg",
+      "Year": 2026,
+      "Description": "A small-time goon and his friends agree to stage a fake kidnapping for a bride-to-be in exchange for ransom money, but their plan backfires when their hostage proves more dominant than expected.",
+      "Actors": [
+        "Sudigali Sudheer",
+        "Divyabharathi",
+        "Rajendran",
+        "Ajay Ghosh",
+        "Chammak Chandra",
+        "Brahmaji",
+        "Thagubothu Ramesh"
+      ],
+      "TMDB ID": 1649866,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-03-26",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 1.9923,
+      "Runtime": 152,
+      "Genres": [
+        "Action",
+        "Comedy",
+        "Drama"
+      ],
+      "Director": [
+        "Naresh Kuppili"
+      ]
+    },
+    {
       "Movie Name": "Lechindi Mahila Lokam",
       "IMDB ID": "tt20114020",
       "Poster": "https://image.tmdb.org/t/p/w500/c2t1rNPSGPZMQKuaNJU6od6QqAU.jpg",
@@ -12936,6 +17004,41 @@
         "Reshu Nath"
       ],
       "Banner": "Medium"
+    },
+    {
+      "Movie Name": "Mension House Mallesh",
+      "IMDB ID": "tt33610673",
+      "Poster": "https://image.tmdb.org/t/p/w500/ogAiSE22WPT98qD0W1vfibkqKPS.jpg",
+      "Year": 2026,
+      "Description": "In a quiet village where gossip spreads faster than the wind, a swaggering young man becomes the talk of the town after his wedding night sparks unexpected rumours. What follows is a hilarious chain of misunderstandings, ego clashes, and small-town chaos. Mension House Mallesh is a lively rural entertainer packed with satire and nonstop laughter.",
+      "Actors": [
+        "Maganti Srinath",
+        "Gayathri Ramana",
+        "Kamakshi Bhaskarla",
+        "Muralidhar Goud",
+        "Rajhessh",
+        "Rajkumar Kasireddy",
+        "Sai Prasanna",
+        "Hari Rebel",
+        "Padma Nimmanagoti"
+      ],
+      "TMDB ID": 1647142,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-03-06",
+      "Rating": 5.0,
+      "Votes": 1,
+      "Popularity": 2.0479,
+      "Runtime": 121,
+      "Genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "Director": [
+        "Bala Satish"
+      ]
     },
     {
       "Movie Name": "Bury the Devil",
@@ -15888,6 +19991,37 @@
       ]
     },
     {
+      "Movie Name": "Mayilaa",
+      "IMDB ID": "tt38773508",
+      "Poster": "https://image.tmdb.org/t/p/w500/57fdtOf3g6yxfSB322pTMN9Ke0t.jpg",
+      "Year": 2026,
+      "Description": "Mayilaa embarks on a journey as a travelling salesperson in Southern India to fulfil her expensive obligations. The only problem: she doesn’t know how to sell. A sharp yet heartwarming tale of a mother-daughter duo finding their feet on the road.",
+      "Actors": [
+        "Melodi Dorcas",
+        "Shudarkodi V",
+        "Sathya Maruthani",
+        "Geetha Kailasam",
+        "Auto Chandran",
+        "Janaki Suresh"
+      ],
+      "TMDB ID": 1568076,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Tamil",
+      "Language": "ta",
+      "Release Date": "2026-01-31",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.6677,
+      "Runtime": 97,
+      "Genres": [
+        "Drama"
+      ],
+      "Director": [
+        "Semmalar Annam"
+      ]
+    },
+    {
       "Movie Name": "Mellisai",
       "IMDB ID": "tt38496328",
       "Poster": "https://image.tmdb.org/t/p/w500/tkXbSUHh9XhEwUQkSiCZxUfbtYm.jpg",
@@ -17165,6 +21299,46 @@
       ]
     },
     {
+      "Movie Name": "Mauje Dariya",
+      "IMDB ID": "tt35934217",
+      "Poster": "https://image.tmdb.org/t/p/w500/y9T1avGKdsU3Csx9gAT6bvzfhQO.jpg",
+      "Year": 2026,
+      "Description": "A delivery boy takes an alcohol-running job to fund his dad's surgery. During the wealthy client's party, a gunshot leads to mass unconsciousness, amnesia, and identity confusion as a murder scheme surfaces.",
+      "Actors": [
+        "Taksh Shah",
+        "Siddharth Dolli",
+        "Nishma Soni",
+        "Manav Gohil",
+        "Hitul Pujara",
+        "Khushi Patel",
+        "Dharmik Barot",
+        "Prashant Barot",
+        "Darshan Lashkari",
+        "Kamlesh Oza",
+        "Hemin Trivedi",
+        "Parth Parmar",
+        "Gopal Barot",
+        "Shyam Barot",
+        "Prakul Pandita"
+      ],
+      "TMDB ID": 1620105,
+      "Type": "Movie",
+      "Category": "Gujarati",
+      "Industry": "Gujarati",
+      "Language": "gu",
+      "Release Date": "2026-01-16",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.4152,
+      "Runtime": 133,
+      "Genres": [
+        "Comedy"
+      ],
+      "Director": [
+        "Parry Majmudar"
+      ]
+    },
+    {
       "Movie Name": "One Two Cha Cha Chaa",
       "IMDB ID": "tt38283987",
       "Poster": "https://image.tmdb.org/t/p/w500/cWfX0Pog0ZHgTKY3glhIjvkWxgB.jpg",
@@ -17973,6 +22147,43 @@
         "Ric Roman Waugh"
       ],
       "Banner": "Big"
+    },
+    {
+      "Movie Name": "Nilakanta",
+      "IMDB ID": "tt27142469",
+      "Poster": "https://image.tmdb.org/t/p/w500/9pfwvgT7zhLCxrCbMH6bYuPcpGD.jpg",
+      "Year": 2026,
+      "Description": "Saraswathipuram is a Village,where Education is Well Valued.nilakanta Work as a Tailor in That Village.nilakanta is Wise and Good From Childhood, He Believes in Karma but Unfortunately Karma Curses Him, No Matter How Big an Opponent He is,he Fights Bravely for His Life.who is That Rival ?",
+      "Actors": [
+        "Mahendran",
+        "Yashna Muthuluri",
+        "Neha Pathan",
+        "Sneha Ullal",
+        "Darbha Appaji Ambarisha",
+        "Surabhi Prabhavathi",
+        "Satya Prakash",
+        "Kancharapalem Raju",
+        "Ramki",
+        "Bharath Reddy",
+        "Chitram Seenu",
+        "Anil Inamadugu"
+      ],
+      "TMDB ID": 1107009,
+      "Type": "Movie",
+      "Category": "South",
+      "Industry": "Telugu",
+      "Language": "te",
+      "Release Date": "2026-01-02",
+      "Rating": 0.0,
+      "Votes": 0,
+      "Popularity": 0.6256,
+      "Runtime": 154,
+      "Genres": [
+        "Action"
+      ],
+      "Director": [
+        "Rakesh Madhavan"
+      ]
     },
     {
       "Movie Name": "Kaakaa",
