@@ -10,23 +10,18 @@ import Recent from "../components/Recent";
 
 export default function Home({ search }) {
 
-    /*
-     * Detect mobile first
-     */
-    const [isMobile, setIsMobile] =
-        useState(
-            window.innerWidth <= 768
-        );
+    const [isMobile, setIsMobile] = useState(
+        window.innerWidth <= 768
+    );
 
     /*
-     * Restore previously loaded mobile batch
+     * INITIAL MOBILE COUNT
      */
     const getInitialMobileCount = () => {
         try {
-            const saved =
-                sessionStorage.getItem(
-                    "home_mobile_count"
-                );
+            const saved = sessionStorage.getItem(
+                "home_mobile_count"
+            );
 
             const count = Number(saved);
 
@@ -42,14 +37,13 @@ export default function Home({ search }) {
     };
 
     /*
-     * Restore cached movies
+     * INITIAL MOVIES CACHE
      */
     const getInitialMovies = () => {
         try {
-            const saved =
-                sessionStorage.getItem(
-                    "home_movies"
-                );
+            const saved = sessionStorage.getItem(
+                "home_movies"
+            );
 
             if (saved) {
                 const parsed = JSON.parse(saved);
@@ -83,7 +77,7 @@ export default function Home({ search }) {
         useState([]);
 
     /*
-     * Disable browser automatic scroll restoration
+     * DISABLE BROWSER AUTOMATIC RESTORATION
      */
     useEffect(() => {
 
@@ -100,17 +94,21 @@ export default function Home({ search }) {
     }, []);
 
     /*
-     * Save Home scroll position
+     * SAVE HOME SCROLL POSITION
      */
     useEffect(() => {
 
         const saveScroll = () => {
 
-            sessionStorage.setItem(
-                "home_scroll_position",
-                String(window.scrollY)
-            );
-
+            // Do not overwrite Home position on Watch
+            if (
+                window.location.pathname === "/"
+            ) {
+                sessionStorage.setItem(
+                    "home_scroll_position",
+                    String(window.scrollY)
+                );
+            }
         };
 
         window.addEventListener(
@@ -129,7 +127,7 @@ export default function Home({ search }) {
     }, []);
 
     /*
-     * Mobile / desktop detection
+     * MOBILE / DESKTOP DETECTION
      */
     useEffect(() => {
 
@@ -154,7 +152,7 @@ export default function Home({ search }) {
     }, []);
 
     /*
-     * Load movies
+     * LOAD MOVIES
      */
     useEffect(() => {
 
@@ -162,8 +160,9 @@ export default function Home({ search }) {
 
             try {
 
-                const response =
-                    await fetch("/movies.json");
+                const response = await fetch(
+                    "/movies.json"
+                );
 
                 if (!response.ok) {
                     throw new Error(
@@ -211,7 +210,7 @@ export default function Home({ search }) {
     }, []);
 
     /*
-     * Create Hero movies from cache
+     * CREATE HERO FROM CACHE
      */
     useEffect(() => {
 
@@ -232,7 +231,7 @@ export default function Home({ search }) {
     }, [movies, heroMovies.length]);
 
     /*
-     * Search changed
+     * SEARCH CHANGED
      */
     useEffect(() => {
 
@@ -250,7 +249,7 @@ export default function Home({ search }) {
     }, [search]);
 
     /*
-     * Filter movies
+     * FILTER MOVIES
      */
     const filtered = movies.filter((movie) =>
         String(movie["Movie Name"] || "")
@@ -261,7 +260,7 @@ export default function Home({ search }) {
     const isSearching = search.trim() !== "";
 
     /*
-     * Latest
+     * LATEST
      */
     const latest = filtered
         .filter(
@@ -270,7 +269,7 @@ export default function Home({ search }) {
         .slice(0, 14);
 
     /*
-     * Trending
+     * TRENDING
      */
     useEffect(() => {
 
@@ -290,7 +289,7 @@ export default function Home({ search }) {
     }, [movies, search]);
 
     /*
-     * Desktop pagination
+     * DESKTOP PAGINATION
      */
     const DESKTOP_PER_PAGE = 35;
 
@@ -304,7 +303,7 @@ export default function Home({ search }) {
     );
 
     /*
-     * Mobile movies
+     * MOBILE MOVIES
      */
     const mobileMovies = filtered.slice(
         0,
@@ -390,39 +389,29 @@ export default function Home({ search }) {
         }
 
         const savedPosition =
-            sessionStorage.getItem(
-                "home_scroll_position"
+            Number(
+                sessionStorage.getItem(
+                    "home_scroll_position"
+                )
             );
-
-        if (!savedPosition) {
-            sessionStorage.removeItem(
-                "restore_home_scroll"
-            );
-            return;
-        }
-
-        const position = Number(savedPosition);
 
         if (
-            !Number.isFinite(position) ||
-            position < 0
+            !Number.isFinite(savedPosition) ||
+            savedPosition < 0
         ) {
-
-            sessionStorage.removeItem(
-                "home_scroll_position"
-            );
-
             sessionStorage.removeItem(
                 "restore_home_scroll"
             );
-
             return;
         }
 
         let attempts = 0;
         let frame;
+        let cancelled = false;
 
         const restore = () => {
+
+            if (cancelled) return;
 
             attempts++;
 
@@ -432,9 +421,12 @@ export default function Home({ search }) {
                 window.innerHeight
             );
 
+            /*
+             * Wait until Home has enough height
+             */
             if (
-                maxScroll < position &&
-                attempts < 60
+                maxScroll < savedPosition &&
+                attempts < 120
             ) {
 
                 frame = requestAnimationFrame(
@@ -445,34 +437,40 @@ export default function Home({ search }) {
             }
 
             window.scrollTo({
-                top: position,
+                top: Math.min(
+                    savedPosition,
+                    maxScroll
+                ),
                 left: 0,
                 behavior: "instant"
             });
 
+            /*
+             * Clear restoration flag only
+             * after successful restoration
+             */
             sessionStorage.removeItem(
-                "home_scroll_position"
+                "restore_home_scroll"
             );
 
             sessionStorage.removeItem(
-                "restore_home_scroll"
+                "home_scroll_position"
             );
         };
 
         frame = requestAnimationFrame(() => {
-
             frame = requestAnimationFrame(restore);
-
         });
 
         return () => {
+            cancelled = true;
             cancelAnimationFrame(frame);
         };
 
     }, [loading]);
 
     /*
-     * Loading
+     * LOADING
      */
     if (loading && movies.length === 0) {
 
@@ -483,6 +481,9 @@ export default function Home({ search }) {
         );
     }
 
+    /*
+     * HOME PAGE
+     */
     return (
         <>
 
@@ -516,7 +517,9 @@ export default function Home({ search }) {
 
                 {filtered.length === 0 ? (
 
-                    <h2>No movies found.</h2>
+                    <h2>
+                        No movies found.
+                    </h2>
 
                 ) : (
 
