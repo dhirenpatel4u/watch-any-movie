@@ -1,12 +1,54 @@
 
 import {
     useEffect,
+    useRef,
     useState
 } from "react";
 
 import Hero from "../components/Hero";
 import MovieSection from "../components/MovieSection";
 import Recent from "../components/Recent";
+
+/*
+ * GET INITIAL DESKTOP PAGE
+ */
+const getInitialPage = () => {
+
+    try {
+
+        const navigation =
+            performance.getEntriesByType("navigation")[0];
+
+        // Fresh browser reload always starts at page 1
+        if (navigation?.type === "reload") {
+            return 1;
+        }
+
+        // Restore page only when returning from Watch
+        if (
+            sessionStorage.getItem(
+                "restore_home_scroll"
+            ) === "true"
+        ) {
+
+            const savedPage = Number(
+                sessionStorage.getItem(
+                    "home_desktop_page"
+                )
+            );
+
+            if (
+                Number.isInteger(savedPage) &&
+                savedPage >= 1
+            ) {
+                return savedPage;
+            }
+        }
+
+    } catch {}
+
+    return 1;
+};
 
 export default function Home({ search }) {
 
@@ -18,7 +60,9 @@ export default function Home({ search }) {
      * INITIAL MOBILE COUNT
      */
     const getInitialMobileCount = () => {
+
         try {
+
             const saved = sessionStorage.getItem(
                 "home_mobile_count"
             );
@@ -31,6 +75,7 @@ export default function Home({ search }) {
             ) {
                 return count;
             }
+
         } catch {}
 
         return 40;
@@ -40,18 +85,22 @@ export default function Home({ search }) {
      * INITIAL MOVIES CACHE
      */
     const getInitialMovies = () => {
+
         try {
+
             const saved = sessionStorage.getItem(
                 "home_movies"
             );
 
             if (saved) {
+
                 const parsed = JSON.parse(saved);
 
                 if (Array.isArray(parsed)) {
                     return parsed;
                 }
             }
+
         } catch {}
 
         return [];
@@ -71,88 +120,63 @@ export default function Home({ search }) {
     const [loading, setLoading] =
         useState(initialMovies.length === 0);
 
-    const [page, setPage] = useState(1);
+    // Restore page immediately during component initialization
+    const [page, setPage] =
+        useState(getInitialPage);
 
     const [trending, setTrending] =
         useState([]);
 
+    const previousSearch = useRef(search);
+
     /*
-     * CHECK NAVIGATION TYPE
+     * CHECK RELOAD
      */
     const isReload =
         performance.getEntriesByType("navigation")[0]?.type === "reload";
 
     /*
-     * RESET PAGE ON RELOAD
+     * RESET STORAGE ON BROWSER RELOAD
      */
     useEffect(() => {
 
-        if (isReload) {
+        if (!isReload) return;
 
-            sessionStorage.removeItem(
-                "home_desktop_page"
-            );
+        sessionStorage.removeItem(
+            "home_desktop_page"
+        );
 
-            sessionStorage.removeItem(
-                "restore_home_scroll"
-            );
+        sessionStorage.removeItem(
+            "home_scroll_position"
+        );
 
-            sessionStorage.removeItem(
-                "home_scroll_position"
-            );
+        sessionStorage.removeItem(
+            "restore_home_scroll"
+        );
 
-            setPage(1);
-        }
+        setPage(1);
 
     }, []);
 
     /*
-     * RESTORE DESKTOP PAGE
+     * SAVE DESKTOP PAGE
      */
     useEffect(() => {
 
         if (isReload) return;
 
-        const shouldRestore =
-            sessionStorage.getItem(
-                "restore_home_scroll"
-            );
-
-        if (shouldRestore !== "true") {
-            return;
-        }
-
-        const savedPage = Number(
-            sessionStorage.getItem(
-                "home_desktop_page"
-            )
-        );
-
-        if (
-            Number.isFinite(savedPage) &&
-            savedPage >= 1
-        ) {
-            setPage(savedPage);
-        }
-
-    }, []);
-
-    /*
-     * SAVE DESKTOP PAGE NUMBER
-     */
-    useEffect(() => {
-
         if (
             window.location.pathname === "/" &&
-            !isReload
+            !isMobile
         ) {
+
             sessionStorage.setItem(
                 "home_desktop_page",
                 String(page)
             );
         }
 
-    }, [page]);
+    }, [page, isMobile]);
 
     /*
      * DISABLE BROWSER AUTOMATIC RESTORATION
@@ -164,6 +188,7 @@ export default function Home({ search }) {
         }
 
         return () => {
+
             if ("scrollRestoration" in history) {
                 history.scrollRestoration = "auto";
             }
@@ -178,10 +203,10 @@ export default function Home({ search }) {
 
         const saveScroll = () => {
 
-            // Do not overwrite Home position on Watch
             if (
                 window.location.pathname === "/"
             ) {
+
                 sessionStorage.setItem(
                     "home_scroll_position",
                     String(window.scrollY)
@@ -196,6 +221,7 @@ export default function Home({ search }) {
         );
 
         return () => {
+
             window.removeEventListener(
                 "scroll",
                 saveScroll
@@ -210,6 +236,7 @@ export default function Home({ search }) {
     useEffect(() => {
 
         const handleResize = () => {
+
             setIsMobile(
                 window.innerWidth <= 768
             );
@@ -221,6 +248,7 @@ export default function Home({ search }) {
         );
 
         return () => {
+
             window.removeEventListener(
                 "resize",
                 handleResize
@@ -256,10 +284,12 @@ export default function Home({ search }) {
                 setMovies(movieData);
 
                 try {
+
                     sessionStorage.setItem(
                         "home_movies",
                         JSON.stringify(movieData)
                     );
+
                 } catch {}
 
                 setHeroMovies(
@@ -312,6 +342,13 @@ export default function Home({ search }) {
      * SEARCH CHANGED
      */
     useEffect(() => {
+
+        // Do not reset restored page on initial mount
+        if (previousSearch.current === search) {
+            return;
+        }
+
+        previousSearch.current = search;
 
         setPage(1);
 
@@ -424,10 +461,12 @@ export default function Home({ search }) {
                     );
 
                     try {
+
                         sessionStorage.setItem(
                             "home_mobile_count",
                             String(nextCount)
                         );
+
                     } catch {}
 
                     return nextCount;
@@ -442,6 +481,7 @@ export default function Home({ search }) {
         );
 
         return () => {
+
             window.removeEventListener(
                 "scroll",
                 handleScroll
@@ -460,8 +500,6 @@ export default function Home({ search }) {
     useEffect(() => {
 
         if (loading) return;
-
-        // Never restore scroll after a browser reload
         if (isReload) return;
 
         const shouldRestore =
@@ -473,20 +511,21 @@ export default function Home({ search }) {
             return;
         }
 
-        const savedPosition =
-            Number(
-                sessionStorage.getItem(
-                    "home_scroll_position"
-                )
-            );
+        const savedPosition = Number(
+            sessionStorage.getItem(
+                "home_scroll_position"
+            )
+        );
 
         if (
             !Number.isFinite(savedPosition) ||
             savedPosition < 0
         ) {
+
             sessionStorage.removeItem(
                 "restore_home_scroll"
             );
+
             return;
         }
 
@@ -507,11 +546,12 @@ export default function Home({ search }) {
             );
 
             /*
-             * Wait until Home has enough height
+             * Wait for the correct page content
+             * to become available.
              */
             if (
                 maxScroll < savedPosition &&
-                attempts < 120
+                attempts < 180
             ) {
 
                 frame = requestAnimationFrame(
@@ -521,19 +561,11 @@ export default function Home({ search }) {
                 return;
             }
 
-            window.scrollTo({
-                top: Math.min(
-                    savedPosition,
-                    maxScroll
-                ),
-                left: 0,
-                behavior: "instant"
-            });
+            window.scrollTo(
+                0,
+                Math.min(savedPosition, maxScroll)
+            );
 
-            /*
-             * Clear restoration flag only
-             * after successful restoration
-             */
             sessionStorage.removeItem(
                 "restore_home_scroll"
             );
@@ -544,15 +576,19 @@ export default function Home({ search }) {
         };
 
         frame = requestAnimationFrame(() => {
+
             frame = requestAnimationFrame(restore);
+
         });
 
         return () => {
+
             cancelled = true;
+
             cancelAnimationFrame(frame);
         };
 
-    }, [loading, page]);
+    }, [loading, page, isReload]);
 
     /*
      * LOADING
@@ -584,17 +620,23 @@ export default function Home({ search }) {
                         <Recent />
 
                         <div className="home-mobile-scroll-section">
+
                             <MovieSection
                                 title="Latest"
                                 movies={latest}
+                                homePage={page}
                             />
+
                         </div>
 
                         <div className="home-mobile-scroll-section">
+
                             <MovieSection
                                 title="Trending"
                                 movies={trending}
+                                homePage={page}
                             />
+
                         </div>
 
                     </>
@@ -629,6 +671,7 @@ export default function Home({ search }) {
                                         ? mobileMovies
                                         : desktopMovies
                                 }
+                                homePage={page}
                             />
 
                         </div>
